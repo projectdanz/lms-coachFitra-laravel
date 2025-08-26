@@ -40,14 +40,6 @@ class PaymentController extends Controller
             'items.*.price' => 'required_with:items|integer|min:1',
             'items.*.quantity' => 'required_with:items|integer|min:1',
         ]);
-        $order_id = Str::uuid()->toString();
-
-        User::create([
-            'username' => $request->input('customer.username'),
-            'email' => $request->input('customer.email'),
-            'phone' => $request->input('customer.phone'),
-            'order_id' => $order_id,
-        ]);
 
         if ($validator->fails()) {
             return response()->json([
@@ -56,6 +48,15 @@ class PaymentController extends Controller
                 'errors' => $validator->errors(),
             ], 422);
         }
+
+        $order_id = Str::uuid()->toString();
+
+        User::create([
+            'username' => $request->input('customer.username'),
+            'email' => $request->input('customer.email'),
+            'phone' => $request->input('customer.phone'),
+            'order_id' => $order_id,
+        ]);
 
         try {
             $paymentData = [
@@ -294,25 +295,55 @@ class PaymentController extends Controller
         // Update order status in database
         Log::info("Payment successful for order: {$orderId}", $validation);
         try {
-            $password = Str::random(8);
             $user = User::where('order_id', $validation['order_id'])->first();
-            $response = Http::withBasicAuth('ghifariakun@gmail.com', 'H03LwDz0ivLOgi6tLoyvtWiC')
-                ->withHeaders([
-                    'Content-Type' => 'application/json'
-                ])
-                ->post('https://lms.sohibdigi.id/wp-json/wp/v2/users', [
-                    'username' => $user->username,
-                    'email' => $user->email,
-                    'password' => $password,
-                ]);
+            $hasUserEverBought = User::where('email', $user->email)
+                ->orWhere('phone', $user->phone)
+                ->count();
 
-            if ($response->successful()) {
-                $user->update([
-                    'password' => $password,
-                ]);
+            if ($hasUserEverBought) {
+                $password = Str::random(8);
+                $response = Http::withBasicAuth('ghifariakun@gmail.com', 'H03LwDz0ivLOgi6tLoyvtWiC')
+                    ->withHeaders([
+                        'Content-Type' => 'application/json'
+                    ])
+                    ->post('https://lms.sohibdigi.id/wp-json/wp/v2/users', [
+                        'username' => $user->username,
+                        'email' => $user->email,
+                        'password' => $password,
+                    ]);
+
+                if ($response->successful()) {
+                    $user->update([
+                        'password' => $password,
+                    ]);
+
+                    $this->messagePasswordRegister(
+                        $user->phone,
+                        $user->password,
+                        $user->email,
+                        $user->username
+                    );
+                    Mail::to($user->email)->send(new PaymentSuccess(
+                        $user->order_id,
+                        $user->username,
+                        $user->email,
+                        $user->password
+                    ));
+
+                    return response()->json([
+                        'message' => 'User registered successfully',
+                        'data' => $response->json()
+                    ]);
+                } else {
+                    return response()->json([
+                        'message' => 'Registration failed',
+                        'error' => $response->json()
+                    ], $response->status());
+                }
+            } else {
                 $this->messagePasswordRegister(
                     $user->phone,
-                    $user->password,
+                    null,
                     $user->email,
                     $user->username
                 );
@@ -320,19 +351,8 @@ class PaymentController extends Controller
                     $user->order_id,
                     $user->username,
                     $user->email,
-                    $user->password
+                    null
                 ));
-
-
-                return response()->json([
-                    'message' => 'User registered successfully',
-                    'data' => $response->json()
-                ]);
-            } else {
-                return response()->json([
-                    'message' => 'Registration failed',
-                    'error' => $response->json()
-                ], $response->status());
             }
         } catch (\Exception $e) {
             throw new \Exception("Error registering user: " . $e->getMessage());
@@ -392,16 +412,71 @@ class PaymentController extends Controller
         }
     }
 
-    private function messagePasswordRegister($phone, $password, $email, $username)
+    private function messagePasswordRegister($phone, $password = null, $email, $username)
     {
-        $message = "*📋 REGISTRASI AKUN BERHASIL* :\n\n" .
-            "Username: {$username}\n\n" .
-            "email: *{$email}*\n\n" .
-            "Password Akun: `{$password}`\n\n" .
-            "Password Course: 1 \n\n" . 
-            "Penting: Login dengan password diatas dan segera ubah.\n\n" .
-            "\n\nLink website: https://lms.sohibdigi.id/courses/introduction-to-photography-masterclass/ \n\n" .
-            "*Jika Anda membutuhkan bantuan, hubungi kami.*";
+        if ($password === null) {
+            // Pesan kalau password login tidak ada
+            $message = "🌟 *Hi {$username}!* 🌟  
+Terima kasih sudah mempercayai kami 🙏
+
+🎓 Kamu baru saja berhasil membeli course berikut:
+━━━━━━━━━━━━━━━━━━━━
+📌 Nama Course : Introduction to Photography Masterclass  
+💵 Harga       : Rp. 1  
+📅 Tanggal     : " . now()->format('d M Y H:i') . "  
+━━━━━━━━━━━━━━━━━━━━
+
+🔑 *Password Course*  
+👉 Gunakan untuk mengakses materi course  
+➡️ richschoolcourse1  
+
+👉 Setelah memasukan password course, Kamu juga harus login untuk bisa memulai materi  
+
+Akses kelas  
+👉 https://lms.sohibdigi.id/courses/introduction-to-photography-masterclass/  
+
+━━━━━━━━━━━━━━━━━━━━
+⚡ *Langkah Akses Course*:  
+1️⃣ Klik link akses kelas diatas  
+2️⃣ Masukan *Password Course*  
+3️⃣ Start Learning! (login dulu ya)  
+
+Terima kasih sudah bergabung 🚀  
+_Selamat belajar & semoga sukses!_ ✨";
+        } else {
+            // Pesan kalau password login ada
+            $message = "🌟 *Hi {$username}!* 🌟  
+Terima kasih sudah mempercayai kami 🙏
+
+🎓 Kamu baru saja berhasil membeli course berikut:
+━━━━━━━━━━━━━━━━━━━━
+📌 Nama Course : Introduction to Photography Masterclass  
+💵 Harga       : Rp. 1  
+📅 Tanggal     : " . now()->format('d M Y H:i') . "  
+━━━━━━━━━━━━━━━━━━━━
+
+🔑 *Password Course*  
+👉 Gunakan untuk mengakses materi course  
+➡️ richschoolcourse1  
+
+👉 Setelah memasukan password course, Kamu juga harus login untuk bisa memulai materi  
+
+🔐 *Detail Akun Kamu Untuk Login* :  
+📧 Email    : {$email}  
+➡️ Password : {$password}  
+
+Akses kelas  
+👉 https://lms.sohibdigi.id/courses/introduction-to-photography-masterclass/  
+
+━━━━━━━━━━━━━━━━━━━━
+⚡ *Langkah Akses Course*:  
+1️⃣ Klik link akses kelas diatas  
+2️⃣ Masukan *Password Course*  
+3️⃣ Start Learning! (login dulu ya)  
+
+Terima kasih sudah bergabung 🚀  
+_Selamat belajar & semoga sukses!_ ✨";
+        }
 
         try {
             $this->sendMessage($phone, $message);
@@ -409,6 +484,5 @@ class PaymentController extends Controller
         } catch (\Exception $e) {
             throw $e;
         }
-
     }
 }
