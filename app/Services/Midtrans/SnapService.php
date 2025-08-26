@@ -209,6 +209,11 @@ class SnapService
             ];
         }
 
+        $payload['enabled_payments'] = ['bri_va', 'bni_va', 'bca_va'];
+        $payload['bri_va'] = ["va_number" => "12345678901"];
+        $payload['bni_va'] = ["va_number" => "12345678902"];
+        $payload['bca_va'] = ["va_number" => "12345678903"];
+
         return $payload;
     }
 
