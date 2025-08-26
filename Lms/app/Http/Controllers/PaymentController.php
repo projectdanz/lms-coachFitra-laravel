@@ -18,7 +18,6 @@ class PaymentController extends Controller
         $this->midtrans = $midtrans;
     }
 
-
     /**
      * Create a new payment
      */
