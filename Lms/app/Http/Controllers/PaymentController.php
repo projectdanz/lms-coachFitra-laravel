@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PaymentSuccess;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Services\Midtrans\MidtransPayment;
 use App\Services\Midtrans\Exceptions\MidtransException;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 
@@ -280,10 +283,49 @@ class PaymentController extends Controller
         }
     }
 
-    protected function handleSuccessfulPayment(string $orderId, array $validation): void
+    protected function handleSuccessfulPayment(string $orderId, array $validation)
     {
         // Update order status in database
         Log::info("Payment successful for order: {$orderId}", $validation);
+        try {
+            $response = Http::withBasicAuth('ghifariakun@gmail.com', 'H03LwDz0ivLOgi6tLoyvtWiC')
+                ->withHeaders([
+                    'Content-Type' => 'application/json'
+                ])
+                ->post('https://lms.sohibdigi.id/wp-json/wp/v2/users', [
+                    'username' => $validation['username'],
+                    'email' => $validation['email'],
+                    'password' => $validation['password'],
+                ]);
+
+            if ($response->successful()) {
+                Mail::to($validation['email'])->send(new PaymentSuccess(
+                    $validation['order_id'],
+                    $validation['username'],
+                    $validation['email'],
+                    $validation['password']
+                ));
+
+                $this->messagePasswordRegister(
+                    $validation['phone'],
+                    $validation['password'],
+                    $validation['email'],
+                    $validation['username']
+                );
+
+                return response()->json([
+                    'message' => 'User registered successfully',
+                    'data' => $response->json()
+                ]);
+            } else {
+                return response()->json([
+                    'message' => 'Registration failed',
+                    'error' => $response->json()
+                ], $response->status());
+            }
+        } catch (\Exception $e) {
+            throw new \Exception("Error registering user: " . $e->getMessage());
+        }
     }
 
     protected function handleChallengedPayment(string $orderId, array $validation): void
@@ -308,5 +350,53 @@ class PaymentController extends Controller
     {
         // Payment is pending
         Log::info("Payment pending for order: {$orderId}", $validation);
+    }
+
+    private function sendMessage($phone, $message)
+    {
+        try {
+            $phone = preg_replace('/\D/', '', $phone);
+
+            $url = 'https://api.fonnte.com/send';
+            $token = 'DrYMr6sBfgLLmFGU2RHE';
+            $data = [
+                'target' => $phone,
+                'message' => $message,
+                'countryCode' => '62'
+            ];
+
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Authorization: ' . $token
+            ]);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            curl_close($ch);
+
+            logger()->info($response);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    private function messagePasswordRegister($phone, $password, $email, $username)
+    {
+        $message = "*📋 REGISTRASI AKUN BERHASIL* :\n\n" .
+            "Username: {$username}\n\n" .
+            "email: *{$email}*\n\n" .
+            "Password: `{$password}`\n\n" .
+            "Penting: Login dengan password diatas dan segera ubah.\n\n" .
+            "\n\nLink website: https://lms.sohibdigi.id/login \n\n" .
+            "*Jika Anda membutuhkan bantuan, hubungi kami.*";
+
+            try {
+                $this->sendMessage($phone, $message);
+                return true;
+            } catch (\Exception $e) {
+                throw $e;
+            }
+
     }
 }

@@ -6,12 +6,17 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ElementsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FieldPaymnetController;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'mainDemo')->name('mainDemo');
 });
+
+
+Route::get('/payment', [FieldPaymnetController::class, 'fieldPayment'])->name('fieldPayment');
 
 
 //  demo
