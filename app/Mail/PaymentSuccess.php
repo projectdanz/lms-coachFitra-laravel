@@ -48,6 +48,7 @@ class PaymentSuccess extends Mailable
                 'email' => $this->email,
                 'password' => $this->password,
                 'username' => $this->username,
+                'password_course' => 1,
             ]
         );
     }
