@@ -832,7 +832,7 @@
                                         officia consequat.</strong>
                                 </p>
                                 <div class="slider-btn">
-                                    <a class="rbt-btn btn-gradient hover-icon-reverse" href="#">
+                                    <a class="rbt-btn btn-gradient hover-icon-reverse" href="#popular-course">
                                         <span class="icon-reverse-wrapper">
                                             <span class="btn-text">View Course</span>
                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
@@ -996,171 +996,13 @@
         </div>
         <!-- End Banner Area -->
 
-        <div class="rbt-categories-area bg-color-white rbt-section-gapBottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title text-center">
-                            <span class="subtitle bg-primary-opacity">CATEGORIES</span>
-                            <h2 class="title">Explore Top Courses Caterories <br /> That Change Yourself</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-5 mt--20">
-                    <!-- Start Category Box Layout  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
-                            <div class="inner">
-                                <div class="icons">
-                                    <img src="{{ asset('assets/images/category/web-design.png') }}" alt="Icons Images">
-                                </div>
-                                <div class="content">
-                                    <h5 class="title">Web Design</h5>
-                                    <div class="read-more-btn">
-                                        <span class="rbt-btn-link">25 Courses<i class="feather-arrow-right"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- End Category Box Layout  -->
-
-                    <!-- Start Category Box Layout  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
-                            <div class="inner">
-                                <div class="icons">
-                                    <img src="{{ asset('assets/images/category/design.png') }}" alt="Icons Images">
-                                </div>
-                                <div class="content">
-                                    <h5 class="title">Graphic Design</h5>
-                                    <div class="read-more-btn">
-                                        <span class="rbt-btn-link">30 Courses<i class="feather-arrow-right"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- End Category Box Layout  -->
-
-                    <!-- Start Category Box Layout  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
-                            <div class="inner">
-                                <div class="icons">
-                                    <img src="{{ asset('assets/images/category/personal.png') }}" alt="Icons Images">
-                                </div>
-                                <div class="content">
-                                    <h5 class="title">Personal Development</h5>
-                                    <div class="read-more-btn">
-                                        <span class="rbt-btn-link">20 Courses<i class="feather-arrow-right"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- End Category Box Layout  -->
-
-                    <!-- Start Category Box Layout  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
-                            <div class="inner">
-                                <div class="icons">
-                                    <img src="{{ asset('assets/images/category/server.png') }}" alt="Icons Images">
-                                </div>
-                                <div class="content">
-                                    <h5 class="title">IT and Software</h5>
-                                    <div class="read-more-btn">
-                                        <span class="rbt-btn-link">15 Courses<i class="feather-arrow-right"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- End Category Box Layout  -->
-
-                    <!-- Start Category Box Layout  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
-                            <div class="inner">
-                                <div class="icons">
-                                    <img src="{{ asset('assets/images/category/pantone.png') }}" alt="Icons Images">
-                                </div>
-                                <div class="content">
-                                    <h5 class="title">Sales Marketing</h5>
-                                    <div class="read-more-btn">
-                                        <span class="rbt-btn-link">15 Courses<i class="feather-arrow-right"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- End Category Box Layout  -->
-
-                    <!-- Start Category Box Layout  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
-                            <div class="inner">
-                                <div class="icons">
-                                    <img src="{{ asset('assets/images/category/paint-palette.png') }}" alt="Icons Images">
-                                </div>
-                                <div class="content">
-                                    <h5 class="title">Art & Humanities</h5>
-                                    <div class="read-more-btn">
-                                        <span class="rbt-btn-link">15 Courses<i class="feather-arrow-right"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- End Category Box Layout  -->
-
-                    <!-- Start Category Box Layout  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
-                            <div class="inner">
-                                <div class="icons">
-                                    <img src="{{ asset('assets/images/category/smartphone.png') }}" alt="Icons Images">
-                                </div>
-                                <div class="content">
-                                    <h5 class="title">Mobile Application</h5>
-                                    <div class="read-more-btn">
-                                        <span class="rbt-btn-link">15 Courses<i class="feather-arrow-right"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- End Category Box Layout  -->
-
-                    <!-- Start Category Box Layout  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
-                            <div class="inner">
-                                <div class="icons">
-                                    <img src="{{ asset('assets/images/category/infographic.png') }}" alt="Icons Images">
-                                </div>
-                                <div class="content">
-                                    <h5 class="title">Finance & Accounting</h5>
-                                    <div class="read-more-btn">
-                                        <span class="rbt-btn-link">15 Courses<i class="feather-arrow-right"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- End Category Box Layout  -->
-                </div>
-            </div>
-        </div>
-
         <!-- Start Course Area -->
         <div class="rbt-course-area bg-color-extra2 rbt-section-gap">
             <div class="container">
                 <div class="row mb--60">
                     <div class="col-lg-12">
                         <div class="section-title text-center">
-                            <span class="subtitle bg-secondary-opacity">Top Popular Course</span>
+                            <span class="subtitle bg-secondary-opacity" id="popular-course">Top Popular Course</span>
                             <h2 class="title">Histudy Course student <br /> can join with us.</h2>
                         </div>
                     </div>
@@ -1356,9 +1198,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="load-more-btn mt--60 text-center">
-                            <a class="rbt-btn btn-gradient btn-lg hover-icon-reverse" href="#">
+                            <a class="rbt-btn btn-gradient btn-lg hover-icon-reverse" href="{{ route('courseWithTab') }}">
                                 <span class="icon-reverse-wrapper">
-                                    <span class="btn-text">Load More Course (40)</span>
+                                    <span class="btn-text">Load More Course</span>
                                 <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                 <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                 </span>
@@ -1370,8 +1212,166 @@
         </div>
         <!-- End Course Area -->
 
+        {{-- <div class="rbt-categories-area bg-color-white rbt-section-gapBottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title text-center">
+                            <span class="subtitle bg-primary-opacity">CATEGORIES</span>
+                            <h2 class="title">Explore Top Courses Caterories <br /> That Change Yourself</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5 mt--20">
+                    <!-- Start Category Box Layout  -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
+                            <div class="inner">
+                                <div class="icons">
+                                    <img src="{{ asset('assets/images/category/web-design.png') }}" alt="Icons Images">
+                                </div>
+                                <div class="content">
+                                    <h5 class="title">Web Design</h5>
+                                    <div class="read-more-btn">
+                                        <span class="rbt-btn-link">25 Courses<i class="feather-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- End Category Box Layout  -->
+
+                    <!-- Start Category Box Layout  -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
+                            <div class="inner">
+                                <div class="icons">
+                                    <img src="{{ asset('assets/images/category/design.png') }}" alt="Icons Images">
+                                </div>
+                                <div class="content">
+                                    <h5 class="title">Graphic Design</h5>
+                                    <div class="read-more-btn">
+                                        <span class="rbt-btn-link">30 Courses<i class="feather-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- End Category Box Layout  -->
+
+                    <!-- Start Category Box Layout  -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
+                            <div class="inner">
+                                <div class="icons">
+                                    <img src="{{ asset('assets/images/category/personal.png') }}" alt="Icons Images">
+                                </div>
+                                <div class="content">
+                                    <h5 class="title">Personal Development</h5>
+                                    <div class="read-more-btn">
+                                        <span class="rbt-btn-link">20 Courses<i class="feather-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- End Category Box Layout  -->
+
+                    <!-- Start Category Box Layout  -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
+                            <div class="inner">
+                                <div class="icons">
+                                    <img src="{{ asset('assets/images/category/server.png') }}" alt="Icons Images">
+                                </div>
+                                <div class="content">
+                                    <h5 class="title">IT and Software</h5>
+                                    <div class="read-more-btn">
+                                        <span class="rbt-btn-link">15 Courses<i class="feather-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- End Category Box Layout  -->
+
+                    <!-- Start Category Box Layout  -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
+                            <div class="inner">
+                                <div class="icons">
+                                    <img src="{{ asset('assets/images/category/pantone.png') }}" alt="Icons Images">
+                                </div>
+                                <div class="content">
+                                    <h5 class="title">Sales Marketing</h5>
+                                    <div class="read-more-btn">
+                                        <span class="rbt-btn-link">15 Courses<i class="feather-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- End Category Box Layout  -->
+
+                    <!-- Start Category Box Layout  -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
+                            <div class="inner">
+                                <div class="icons">
+                                    <img src="{{ asset('assets/images/category/paint-palette.png') }}" alt="Icons Images">
+                                </div>
+                                <div class="content">
+                                    <h5 class="title">Art & Humanities</h5>
+                                    <div class="read-more-btn">
+                                        <span class="rbt-btn-link">15 Courses<i class="feather-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- End Category Box Layout  -->
+
+                    <!-- Start Category Box Layout  -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
+                            <div class="inner">
+                                <div class="icons">
+                                    <img src="{{ asset('assets/images/category/smartphone.png') }}" alt="Icons Images">
+                                </div>
+                                <div class="content">
+                                    <h5 class="title">Mobile Application</h5>
+                                    <div class="read-more-btn">
+                                        <span class="rbt-btn-link">15 Courses<i class="feather-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- End Category Box Layout  -->
+
+                    <!-- Start Category Box Layout  -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <a class="rbt-cat-box rbt-cat-box-1 text-center" href="{{ route('courseFilterOneToggle') }}">
+                            <div class="inner">
+                                <div class="icons">
+                                    <img src="{{ asset('assets/images/category/infographic.png') }}" alt="Icons Images">
+                                </div>
+                                <div class="content">
+                                    <h5 class="title">Finance & Accounting</h5>
+                                    <div class="read-more-btn">
+                                        <span class="rbt-btn-link">15 Courses<i class="feather-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- End Category Box Layout  -->
+                </div>
+            </div>
+        </div> --}}
+
         <!-- Start About Area  -->
-        <div class="rbt-about-area bg-color-white rbt-section-gapTop pb_md--80 pb_sm--80 about-style-1">
+        {{-- <div class="rbt-about-area bg-color-white rbt-section-gapTop pb_md--80 pb_sm--80 about-style-1">
             <div class="container">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6">
@@ -1435,11 +1435,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- End About Area  -->
 
         <!-- Start Call To Action  -->
-        <div class="rbt-callto-action-area mt_dec--half">
+        {{-- <div class="rbt-callto-action-area mt_dec--half">
             <div class="container">
                 <div class="row g-5">
                     <div class="col-lg-6">
@@ -1487,11 +1487,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- End Call To Action  -->
 
         <!-- Start Counterup Area  -->
-        <div class="rbt-counterup-area bg-color-extra2 rbt-section-gapBottom default-callto-action-overlap">
+        {{-- <div class="rbt-counterup-area bg-color-extra2 rbt-section-gapBottom default-callto-action-overlap">
             <div class="container">
                 <div class="row mb--60">
                     <div class="col-lg-12">
@@ -1575,11 +1575,11 @@
                     <!-- End Single Counter  -->
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- End Counterup Area  -->
 
         <!-- Start Testimonial Area   -->
-        <div class="rbt-testimonial-area bg-color-white rbt-section-gap overflow-hidden">
+        {{-- <div class="rbt-testimonial-area bg-color-white rbt-section-gap overflow-hidden">
             <div class="wrapper">
                 <div class="container">
                     <div class="row">
@@ -2032,7 +2032,7 @@
                     <!-- End Single Testimonial  -->
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- End Testimonial Area   -->
 
         <!-- Start Event Area  -->
@@ -2215,7 +2215,7 @@
         </div>
 
         <!-- End Event Area  -->
-        <div class="rbt-team-area bg-color-white rbt-section-gap">
+        {{-- <div class="rbt-team-area bg-color-white rbt-section-gap">
             <div class="container">
                 <div class="row mb--60">
                     <div class="col-lg-12">
@@ -2560,10 +2560,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Start Blog Style -->
-        <div class="rbt-rbt-blog-area rbt-section-gap bg-color-extra2">
+        {{-- <div class="rbt-rbt-blog-area rbt-section-gap bg-color-extra2">
             <div class="container">
                 <div class="row g-5 align-items-center mb--30">
                     <div class="col-lg-6 col-md-6 col-12">
@@ -2653,10 +2653,10 @@
                 </div>
                 <!-- End Card Area -->
             </div>
-        </div>
+        </div> --}}
         <!-- End Blog Style -->
 
-        <div class="rbt-newsletter-area newsletter-style-2 bg-color-primary rbt-section-gap">
+        {{-- <div class="rbt-newsletter-area newsletter-style-2 bg-color-primary rbt-section-gap">
             <div class="container">
                 <div class="row row--15 align-items-center">
                     <div class="col-lg-12">
@@ -2713,7 +2713,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Start Footer aera -->
         <footer class="rbt-footer footer-style-1">
@@ -2723,7 +2723,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-6 col-12 mt--30">
                             <div class="footer-widget">
                                 <div class="logo logo-dark">
-                                    <a href="#">
+                                    <a href="/">
                                         <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Edu-cause">
                                     </a>
                                 </div>
@@ -2834,7 +2834,7 @@
                 <hr class="rbt-separator m-0">
             </div>
         </div>
-        
+
         <!-- Start Copyright Area  -->
         <div class="copyright-area copyright-style-1 ptb--20">
             <div class="container">
@@ -2857,5 +2857,5 @@
 
     </main>
     <!-- End Page Wrapper Area -->
-     
+
 @endsection

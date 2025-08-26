@@ -57,7 +57,7 @@
                                                     <a href="{{ route('mainDemo') }}"><img src="{{ asset('assets/images/splash/demo/h1.jpg') }}" alt="Demo Images"></a>
                                                 </div>
                                                 <div class="content">
-                                                    <h4 class="title"><a href="{{ route('mainDemo') }}">Home Demo <span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
+                                                    <h4 class="title"><a href="{{ route('mainDemo') }}">Home<span class="btn-icon"><i class="feather-arrow-right"></i></span></a></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -805,7 +805,7 @@
 
         </div>
     </div>
-    
+
     <!-- Start Side Vav -->
     <x-sideVav/>
     <!-- End Side Vav -->
