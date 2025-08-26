@@ -397,9 +397,10 @@ class PaymentController extends Controller
         $message = "*📋 REGISTRASI AKUN BERHASIL* :\n\n" .
             "Username: {$username}\n\n" .
             "email: *{$email}*\n\n" .
-            "Password: `{$password}`\n\n" .
+            "Password Akun: `{$password}`\n\n" .
+            "Password Course: 1 \n\n" . 
             "Penting: Login dengan password diatas dan segera ubah.\n\n" .
-            "\n\nLink website: https://lms.sohibdigi.id/ \n\n" .
+            "\n\nLink website: https://lms.sohibdigi.id/courses/introduction-to-photography-masterclass/ \n\n" .
             "*Jika Anda membutuhkan bantuan, hubungi kami.*";
 
         try {
