@@ -18,7 +18,7 @@ Route::controller(HomeController::class)->group(function () {
 
 
 Route::get('/payment', [FieldPaymnetController::class, 'fieldPayment'])->name('fieldPayment');
-Route::get('/mail', [PaymentSuccess::class, 'viemMail'])->name('mail');
+Route::get('/mail', [PaymentSuccess::class, 'viewMail'])->name('mail');
 
 
 //  demo
