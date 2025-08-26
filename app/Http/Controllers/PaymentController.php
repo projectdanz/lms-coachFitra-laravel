@@ -26,11 +26,10 @@ class PaymentController extends Controller
     /**
      * Create a new payment
      */
-    public function createPayment(Request $request): JsonResponse
+    public function createPayment(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'method' => 'required|string',
-            'order_id' => 'required|string|max:50',
             'amount' => 'required|integer|min:1',
             'customer.username' => 'required|string|max:45',
             'customer.email' => 'required|email|max:45',
@@ -41,12 +40,13 @@ class PaymentController extends Controller
             'items.*.price' => 'required_with:items|integer|min:1',
             'items.*.quantity' => 'required_with:items|integer|min:1',
         ]);
+        $order_id = Str::uuid()->toString();
 
         User::create([
             'username' => $request->input('customer.username'),
             'email' => $request->input('customer.email'),
             'phone' => $request->input('customer.phone'),
-            'order_id' => $request->input('customer.order_id'),
+            'order_id' => $order_id,
         ]);
 
         if ($validator->fails()) {
@@ -61,7 +61,7 @@ class PaymentController extends Controller
             $paymentData = [
                 'method' => $request->input('method'),
                 'transaction_details' => [
-                    'order_id' => $request->order_id,
+                    'order_id' => $order_id,
                     'gross_amount' => $request->amount,
                 ],
                 'customer_details' => $request->customer,
@@ -70,10 +70,7 @@ class PaymentController extends Controller
 
             $result = $this->midtrans->createPayment($paymentData);
 
-            return response()->json([
-                'success' => true,
-                'data' => $result,
-            ]);
+            return redirect($result['redirect_url']);
 
         } catch (MidtransException $e) {
             return response()->json([

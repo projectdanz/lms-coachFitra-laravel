@@ -438,51 +438,114 @@
                 </div>
             @endif
 
-            <form >
-                {{-- action="{{ route('processPayment') }}" method="POST" id="paymentForm" --}}
+            <form action="{{ route('payment.create') }}" method="POST">
                 @csrf
 
+                
+
+               <input type="hidden" name="method" value="snap">
+               <input type="hidden" name="amount" value="1">
+               <div class="form-group">
+    <label for="item_id_0">Item ID</label>
+    <input type="text"
+           id="item_id_0"
+           name="items[0][id]"
+           class="form-input @error('items.0.id') is-invalid @enderror"
+           placeholder="Item ID"
+           value="{{ old('items.0.id') }}">
+    @error('items.0.id')
+        <div class="text-danger mt-1">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="form-group">
+    <label for="item_name_0">Item Name *</label>
+    <input type="text"
+           id="item_name_0"
+           name="items[0][name]"
+           class="form-input @error('items.0.name') is-invalid @enderror"
+           placeholder="Item Name"
+           value="{{ old('items.0.name') }}"
+           required>
+    @error('items.0.name')
+        <div class="text-danger mt-1">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="form-group">
+    <label for="item_price_0">Item Price *</label>
+    <input type="number"
+           id="item_price_0"
+           name="items[0][price]"
+           class="form-input @error('items.0.price') is-invalid @enderror"
+           placeholder="10000"
+           value="{{ old('items.0.price') }}"
+           required>
+    @error('items.0.price')
+        <div class="text-danger mt-1">{{ $message }}</div>
+    @enderror
+</div>
+
+<div class="form-group">
+    <label for="item_quantity_0">Quantity *</label>
+    <input type="number"
+           id="item_quantity_0"
+           name="items[0][quantity]"
+           class="form-input @error('items.0.quantity') is-invalid @enderror"
+           placeholder="1"
+           value="{{ old('items.0.quantity') }}"
+           required>
+    @error('items.0.quantity')
+        <div class="text-danger mt-1">{{ $message }}</div>
+    @enderror
+</div>
+
+
+                {{-- Full Name --}}
                 <div class="form-group">
-                    <label for="name" class="form-label">Full Name *</label>
+                    <label for="username" class="form-label">Full Name *</label>
                     <input type="text"
-                           id="name"
-                           name="name"
-                           class="form-input @error('name') is-invalid @enderror"
-                           placeholder="Enter your full name"
-                           value="{{ old('name') }}"
-                           required>
-                    @error('name')
+                        id="username"
+                        name="username"
+                        class="form-input @error('username') is-invalid @enderror"
+                        placeholder="Enter your full name"
+                        value="{{ old('username') }}"
+                        required>
+                    @error('username')
                         <div class="text-danger mt-1">{{ $message }}</div>
                     @enderror
                 </div>
 
+                {{-- Email --}}
                 <div class="form-group">
                     <label for="email" class="form-label">Email Address *</label>
                     <input type="email"
-                           id="email"
-                           name="email"
-                           class="form-input @error('email') is-invalid @enderror"
-                           placeholder="your.email@example.com"
-                           value="{{ old('email') }}"
-                           required>
+                        id="email"
+                        name="email"
+                        class="form-input @error('email') is-invalid @enderror"
+                        placeholder="your.email@example.com"
+                        value="{{ old('email') }}"
+                        required>
                     @error('email')
                         <div class="text-danger mt-1">{{ $message }}</div>
                     @enderror
                 </div>
 
+                {{-- Phone --}}
                 <div class="form-group">
                     <label for="phone" class="form-label">Phone Number *</label>
-                    <input type="tel"
-                           id="phone"
-                           name="phone"
-                           class="form-input @error('phone') is-invalid @enderror"
-                           placeholder="+62 123-456-789"
-                           value="{{ old('phone') }}"
-                           required>
+                    <input type="text"
+                        id="phone"
+                        name="phone"
+                        class="form-input @error('phone') is-invalid @enderror"
+                        placeholder="08xxxxxxxxxx"
+                        value="{{ old('phone') }}"
+                        required>
                     @error('phone')
                         <div class="text-danger mt-1">{{ $message }}</div>
                     @enderror
                 </div>
+
 
                 <button type="submit" class="submit-btn" id="submitBtn">
                     <i class="fas fa-lock"></i>
