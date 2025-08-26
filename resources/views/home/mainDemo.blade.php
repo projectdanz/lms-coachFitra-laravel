@@ -887,8 +887,8 @@
                                                 </div>
                                                 <div class="rbt-card-bottom">
                                                     <div class="rbt-price">
-                                                        <span class="current-price">$70</span>
-                                                        <span class="off-price">$120</span>
+                                                        <span class="current-price">Rp1</span>
+                                                        {{-- <span class="off-price">$120</span> --}}
                                                     </div>
                                                     <a class="rbt-btn-link" href="{{ route('courseDetails') }}">Learn More<i
                                                             class="feather-arrow-right"></i></a>
@@ -931,8 +931,8 @@
                                                 </div>
                                                 <div class="rbt-card-bottom">
                                                     <div class="rbt-price">
-                                                        <span class="current-price">$70</span>
-                                                        <span class="off-price">$120</span>
+                                                        <span class="current-price">Rp1</span>
+                                                        {{-- <span class="off-price">$120</span> --}}
                                                     </div>
                                                     <a class="rbt-btn-link" href="{{ route('courseDetails') }}">Learn More<i
                                                             class="feather-arrow-right"></i></a>
@@ -975,8 +975,8 @@
                                                 </div>
                                                 <div class="rbt-card-bottom">
                                                     <div class="rbt-price">
-                                                        <span class="current-price">$70</span>
-                                                        <span class="off-price">$120</span>
+                                                        <span class="current-price">Rp1</span>
+                                                        {{-- <span class="off-price">$120</span> --}}
                                                     </div>
                                                     <a class="rbt-btn-link" href="{{ route('courseDetails') }}">Learn More<i
                                                             class="feather-arrow-right"></i></a>
@@ -1061,8 +1061,8 @@
 
                                 <div class="rbt-card-bottom">
                                     <div class="rbt-price">
-                                        <span class="current-price">$60</span>
-                                        <span class="off-price">$120</span>
+                                        <span class="current-price">Rp1</span>
+                                        {{-- <span class="off-price">$120</span> --}}
                                     </div>
                                     <a class="rbt-btn-link" href="{{ route('courseDetails') }}">Learn
                                         More<i class="feather-arrow-right"></i></a>
@@ -1121,8 +1121,8 @@
                                 </div>
                                 <div class="rbt-card-bottom">
                                     <div class="rbt-price">
-                                        <span class="current-price">$60</span>
-                                        <span class="off-price">$120</span>
+                                        <span class="current-price">Rp1</span>
+                                        {{-- <span class="off-price">$120</span> --}}
                                     </div>
                                     <a class="rbt-btn-link left-icon" href="{{ route('courseDetails') }}"><i
                                             class="feather-shopping-cart"></i> Add To Cart</a>
@@ -1182,8 +1182,8 @@
                                 </div>
                                 <div class="rbt-card-bottom">
                                     <div class="rbt-price">
-                                        <span class="current-price">$80</span>
-                                        <span class="off-price">$100</span>
+                                        <span class="current-price">Rp1</span>
+                                        {{-- <span class="off-price">$100</span> --}}
                                     </div>
                                     <a class="rbt-btn-link" href="{{ route('courseDetails') }}">Learn
                                         More<i class="feather-arrow-right"></i></a>
