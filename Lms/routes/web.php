@@ -50,7 +50,7 @@ Route::prefix('courses')->group(function () {
             // Route::get('/course-with-tab','courseWithTab')->name('courseWithTab');
             Route::get('/course-with-tab-two','courseWithTabTwo')->name('courseWithTabTwo');
             Route::get('/create-course','createCourse')->name('createCourse');
-            Route::get('/instructor-course','instructorCourse')->name('instructorCourse');
+            // Route::get('/instructor-course','instructorCourse')->name('instructorCourse');
             Route::get('/lesson','lesson')->name('lesson');
     });
 });
