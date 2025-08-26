@@ -61,4 +61,8 @@ class PaymentSuccess extends Mailable
     {
         return [];
     }
+
+    public function viewMail () {
+        return view('pages/mail01');
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\PaymentSuccess;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
@@ -17,6 +18,7 @@ Route::controller(HomeController::class)->group(function () {
 
 
 Route::get('/payment', [FieldPaymnetController::class, 'fieldPayment'])->name('fieldPayment');
+Route::get('/mail', [PaymentSuccess::class, 'viemMail'])->name('mail');
 
 
 //  demo
