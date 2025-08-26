@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ElementsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\MainController;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'mainDemo')->name('mainDemo');
@@ -45,7 +46,7 @@ Route::prefix('courses')->group(function () {
             Route::get('/course-with-tab','courseWithTab')->name('courseWithTab');
             Route::get('/course-with-tab-two','courseWithTabTwo')->name('courseWithTabTwo');
             Route::get('/create-course','createCourse')->name('createCourse');
-            Route::get('/instructor-course','instructorCourse')->name('instructorCourse');
+            // Route::get('/instructor-course','instructorCourse')->name('instructorCourse');
             Route::get('/lesson','lesson')->name('lesson');
     });
 });
@@ -118,7 +119,7 @@ Route::prefix('elements')->group(function () {
 //  courses
 Route::prefix('home')->group(function () {
     Route::controller(HomeController::class)->group(function () {
-        Route::get('/main-demo','mainDemo')->name('mainDemo');
+        // Route::get('/main-demo','mainDemo')->name('mainDemo');
         Route::get('/art-design-school','artDesignSchool')->name('artDesignSchool');
         Route::get('/checkout','checkout')->name('checkout');
         Route::get('/classic-lms','classicLms')->name('classicLms');
@@ -200,3 +201,4 @@ Route::prefix('main')->group(function () {
         Route::get('/single-question','singleQuestion')->name('singleQuestion');
     });
 });
+
