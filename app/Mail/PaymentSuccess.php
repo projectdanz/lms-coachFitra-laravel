@@ -42,7 +42,7 @@ class PaymentSuccess extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'pages.mail01',
             with: [
                 'order_id' => $this->orderId,
                 'email' => $this->email,

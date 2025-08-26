@@ -4,6 +4,7 @@ namespace App\Services\Midtrans;
 
 use App\Services\Midtrans\Utils\CryptoUtils;
 use App\Services\Midtrans\Exceptions\MidtransException;
+use Illuminate\Support\Facades\Log;
 // use App\Services\Midtrans\PaymentMethods\EWalletService;
 // use App\Services\Midtrans\PaymentMethods\BankService;
 // use App\Services\Midtrans\PaymentMethods\CardPaymentService;
