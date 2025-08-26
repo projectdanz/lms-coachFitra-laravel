@@ -30,7 +30,6 @@ class PaymentController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'method' => 'required|string',
-            'order_id' => 'required|string|max:50',
             'amount' => 'required|integer|min:1',
             'username' => 'required|string|max:45',
             'email' => 'required|email|max:45',
@@ -41,6 +40,8 @@ class PaymentController extends Controller
             'items.*.price' => 'required_with:items|integer|min:1',
             'items.*.quantity' => 'required_with:items|integer|min:1',
         ]);
+
+        $order_id = Str::uuid()->toString();
 
         User::create([
             'username' => $request->input('username'),
@@ -61,7 +62,7 @@ class PaymentController extends Controller
             $paymentData = [
                 'method' => $request->input('method'),
                 'transaction_details' => [
-                    'order_id' => $request->order_id,
+                    'order_id' => $order_id,
                     'gross_amount' => $request->amount,
                 ],
                 'customer_details' => $request->customer,
