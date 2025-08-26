@@ -523,7 +523,7 @@
                                     <li><a href="{{ route('instructorReviews') }}">Reviews</a></li>
                                     <li><a href="{{ route('instructorMyQuizAttempts') }}">My Quiz Attempts</a></li>
                                     <li><a href="{{ route('instructorOrderHistory') }}">Order History</a></li>
-                                    <li><a href="{{ route('instructorCourse') }}">My Course</a></li>
+                                    {{-- <li><a href="{{ route('instructorCourse') }}">My Course</a></li> --}}
                                     <li><a href="{{ route('instructorAnnouncements') }}">Announcements</a></li>
                                     <li><a href="{{ route('instructorQuizAttempts') }}">Quiz Attempts</a></li>
                                     <li><a href="{{ route('instructorAssignments') }}">Assignments</a></li>
