@@ -274,16 +274,14 @@ class PaymentController extends Controller
 
             case 'settlement':
                 // Payment settled
-                $this->handleSettledPayment($orderId, $validation);
+                $this->handleSuccessfulPayment($orderId, $validation);
+                // $this->handleSettledPayment($orderId, $validation);
                 break;
 
             case 'pending':
                 // Payment pending
                 $this->handlePendingPayment($orderId, $validation);
                 break;
-
-            // case 'deny':
-            // case 'cancel':
             case 'expire':
                 // Payment failed/cancelled
                 $this->handleFailedPayment($orderId, $validation);
@@ -296,19 +294,19 @@ class PaymentController extends Controller
         // Update order status in database
         Log::info("Payment successful for order: {$orderId}", $validation);
         try {
+            $password = Str::random(12);
+            $user = User::where('order_id', $validation['order_id'])->first();
             $response = Http::withBasicAuth('ghifariakun@gmail.com', 'H03LwDz0ivLOgi6tLoyvtWiC')
                 ->withHeaders([
                     'Content-Type' => 'application/json'
                 ])
                 ->post('https://lms.sohibdigi.id/wp-json/wp/v2/users', [
-                    'username' => $validation['username'],
-                    'email' => $validation['email'],
-                    'password' => $validation['password'],
+                    'username' => $user->username,
+                    'email' => $user->email,
+                    'password' => $password,
                 ]);
 
             if ($response->successful()) {
-                $password = Str::random(12);
-                $user = User::where('order_id', $validation['order_id'])->first();
                 $user->update([
                     'password' => $password,
                 ]);
@@ -404,12 +402,12 @@ class PaymentController extends Controller
             "\n\nLink website: https://lms.sohibdigi.id/login \n\n" .
             "*Jika Anda membutuhkan bantuan, hubungi kami.*";
 
-            try {
-                $this->sendMessage($phone, $message);
-                return true;
-            } catch (\Exception $e) {
-                throw $e;
-            }
+        try {
+            $this->sendMessage($phone, $message);
+            return true;
+        } catch (\Exception $e) {
+            throw $e;
+        }
 
     }
 }
