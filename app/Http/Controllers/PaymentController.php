@@ -31,9 +31,9 @@ class PaymentController extends Controller
         $validator = Validator::make($request->all(), [
             'method' => 'required|string',
             'amount' => 'required|integer|min:1',
-            'username' => 'required|string|max:45',
-            'email' => 'required|email|max:45',
-            'phone' => 'required|string|min:10',
+            'customer.username' => 'required|string|max:45',
+            'customer.email' => 'required|email|max:45',
+            'customer.phone' => 'required|string|min:10',
             'items' => 'array',
             'items.*.id' => 'string|max:50',
             'items.*.name' => 'required_with:items|string|max:50',
@@ -43,10 +43,10 @@ class PaymentController extends Controller
         $order_id = Str::uuid()->toString();
 
         User::create([
-            'username' => $request->input('username'),
-            'email' => $request->input('email'),
-            'phone' => $request->input('phone'),
-            'order_id' => $request->input('customer.order_id'),
+            'username' => $request->input('customer.username'),
+            'email' => $request->input('customer.email'),
+            'phone' => $request->input('customer.phone'),
+            'order_id' => $order_id,
         ]);
 
         if ($validator->fails()) {

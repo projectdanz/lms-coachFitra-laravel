@@ -445,64 +445,64 @@
 
                <input type="hidden" name="method" value="snap">
                <input type="hidden" name="amount" value="1">
+                <input type="hidden" id="item_id_0" name="items[0][id]" value="1">
+                <input type="hidden" id="item_name_0" name="items[0][name]" value="1" required>
+                <input type="hidden" id="item_price_0" name="items[0][price]" value="1" required>
+                <input type="hidden" id="item_quantity_0" name="items[0][quantity]" value="1" required>
+
+
                <div class="form-group">
-    <label for="item_id_0">Item ID</label>
-    <input type="text"
-           id="item_id_0"
-           name="items[0][id]"
-           class="form-input @error('items.0.id') is-invalid @enderror"
-           placeholder="Item ID"
-           value="{{ old('items.0.id') }}">
-    @error('items.0.id')
-        <div class="text-danger mt-1">{{ $message }}</div>
-    @enderror
-</div>
+    <div class="form-group">
+        <label for="username" class="form-label">Full Name *</label>
+        <input type="text"
+               id="username"
+               name="customer[username]"
+               class="form-input @error('customer.username') is-invalid @enderror"
+               placeholder="Enter your full name"
+               value="{{ old('customer.username') }}"
+               required>
+        @error('customer.username')
+            <div class="text-danger mt-1">{{ $message }}</div>
+        @enderror
+    </div>
 
-<div class="form-group">
-    <label for="item_name_0">Item Name *</label>
-    <input type="text"
-           id="item_name_0"
-           name="items[0][name]"
-           class="form-input @error('items.0.name') is-invalid @enderror"
-           placeholder="Item Name"
-           value="{{ old('items.0.name') }}"
-           required>
-    @error('items.0.name')
-        <div class="text-danger mt-1">{{ $message }}</div>
-    @enderror
-</div>
+    <div class="form-group">
+        <label for="email" class="form-label">Email Address *</label>
+        <input type="email"
+               id="email"
+               name="customer[email]"
+               class="form-input @error('customer.email') is-invalid @enderror"
+               placeholder="your.email@example.com"
+               value="{{ old('customer.email') }}"
+               required>
+        @error('customer.email')
+            <div class="text-danger mt-1">{{ $message }}</div>
+        @enderror
+    </div>
 
-<div class="form-group">
-    <label for="item_price_0">Item Price *</label>
-    <input type="number"
-           id="item_price_0"
-           name="items[0][price]"
-           class="form-input @error('items.0.price') is-invalid @enderror"
-           placeholder="10000"
-           value="{{ old('items.0.price') }}"
-           required>
-    @error('items.0.price')
-        <div class="text-danger mt-1">{{ $message }}</div>
-    @enderror
-</div>
+    <div class="form-group">
+        <label for="phone" class="form-label">Phone Number *</label>
+        <input type="text"
+               id="phone"
+               name="customer[phone]"
+               class="form-input @error('customer.phone') is-invalid @enderror"
+               placeholder="08xxxxxxxxxx"
+               value="{{ old('customer.phone') }}"
+               required>
+        @error('customer.phone')
+            <div class="text-danger mt-1">{{ $message }}</div>
+        @enderror
+    </div>
 
-<div class="form-group">
-    <label for="item_quantity_0">Quantity *</label>
-    <input type="number"
-           id="item_quantity_0"
-           name="items[0][quantity]"
-           class="form-input @error('items.0.quantity') is-invalid @enderror"
-           placeholder="1"
-           value="{{ old('items.0.quantity') }}"
-           required>
-    @error('items.0.quantity')
-        <div class="text-danger mt-1">{{ $message }}</div>
-    @enderror
-</div>
+    {{-- Items Section --}}
+
+    {{-- Item 0 --}}
+    
+
 
 
                 {{-- Full Name --}}
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="username" class="form-label">Full Name *</label>
                     <input type="text"
                         id="username"
@@ -516,7 +516,7 @@
                     @enderror
                 </div>
 
-                {{-- Email --}}
+                Email
                 <div class="form-group">
                     <label for="email" class="form-label">Email Address *</label>
                     <input type="email"
@@ -531,7 +531,7 @@
                     @enderror
                 </div>
 
-                {{-- Phone --}}
+                Phone
                 <div class="form-group">
                     <label for="phone" class="form-label">Phone Number *</label>
                     <input type="text"
@@ -544,7 +544,7 @@
                     @error('phone')
                         <div class="text-danger mt-1">{{ $message }}</div>
                     @enderror
-                </div>
+                </div> --}}
 
 
                 <button type="submit" class="submit-btn" id="submitBtn">
