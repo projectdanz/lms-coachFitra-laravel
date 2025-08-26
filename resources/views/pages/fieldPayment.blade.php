@@ -438,51 +438,58 @@
                 </div>
             @endif
 
-            <form >
-                {{-- action="{{ route('processPayment') }}" method="POST" id="paymentForm" --}}
+            <form action="{{ route('payment.create') }}" method="POST">
                 @csrf
 
+                
+
+               
+
+                {{-- Full Name --}}
                 <div class="form-group">
-                    <label for="name" class="form-label">Full Name *</label>
+                    <label for="username" class="form-label">Full Name *</label>
                     <input type="text"
-                           id="name"
-                           name="name"
-                           class="form-input @error('name') is-invalid @enderror"
-                           placeholder="Enter your full name"
-                           value="{{ old('name') }}"
-                           required>
-                    @error('name')
+                        id="username"
+                        name="customer[username]"
+                        class="form-input @error('customer.username') is-invalid @enderror"
+                        placeholder="Enter your full name"
+                        value="{{ old('customer.username') }}"
+                        required>
+                    @error('customer.username')
                         <div class="text-danger mt-1">{{ $message }}</div>
                     @enderror
                 </div>
 
+                {{-- Email --}}
                 <div class="form-group">
                     <label for="email" class="form-label">Email Address *</label>
                     <input type="email"
-                           id="email"
-                           name="email"
-                           class="form-input @error('email') is-invalid @enderror"
-                           placeholder="your.email@example.com"
-                           value="{{ old('email') }}"
-                           required>
-                    @error('email')
+                        id="email"
+                        name="customer[email]"
+                        class="form-input @error('customer.email') is-invalid @enderror"
+                        placeholder="your.email@example.com"
+                        value="{{ old('customer.email') }}"
+                        required>
+                    @error('customer.email')
                         <div class="text-danger mt-1">{{ $message }}</div>
                     @enderror
                 </div>
 
+                {{-- Phone --}}
                 <div class="form-group">
                     <label for="phone" class="form-label">Phone Number *</label>
-                    <input type="tel"
-                           id="phone"
-                           name="phone"
-                           class="form-input @error('phone') is-invalid @enderror"
-                           placeholder="+62 123-456-789"
-                           value="{{ old('phone') }}"
-                           required>
-                    @error('phone')
+                    <input type="text"
+                        id="phone"
+                        name="customer[phone]"
+                        class="form-input @error('customer.phone') is-invalid @enderror"
+                        placeholder="08xxxxxxxxxx"
+                        value="{{ old('customer.phone') }}"
+                        required>
+                    @error('customer.phone')
                         <div class="text-danger mt-1">{{ $message }}</div>
                     @enderror
                 </div>
+
 
                 <button type="submit" class="submit-btn" id="submitBtn">
                     <i class="fas fa-lock"></i>

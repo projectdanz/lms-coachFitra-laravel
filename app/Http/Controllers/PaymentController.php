@@ -40,7 +40,6 @@ class PaymentController extends Controller
             'items.*.price' => 'required_with:items|integer|min:1',
             'items.*.quantity' => 'required_with:items|integer|min:1',
         ]);
-
         $order_id = Str::uuid()->toString();
 
         User::create([
