@@ -809,7 +809,7 @@
     <!-- Start Side Vav -->
     <x-sideVav/>
     <!-- End Side Vav -->
-     
+
     <a class="close_side_menu" href="javascript:void(0);"></a>
 
     <!-- Start breadcrumb Area -->
@@ -18705,7 +18705,7 @@
             </div>
 
             <!-- Start Header Area -->
-            <header class="rbt-header rbt-header-10">
+            {{-- <header class="rbt-header rbt-header-10">
                 <div class="rbt-sticky-placeholder"></div>
 
                 <!-- Start Header Top  -->
@@ -20208,7 +20208,7 @@
                 <!-- End Side Vav -->
                 <a class="rbt-close_side_menu" href="javascript:void(0);"></a>
 
-            </header>
+            </header> --}}
 
             <!-- Mobile Menu Section -->
             <div class="popup-mobile-menu">

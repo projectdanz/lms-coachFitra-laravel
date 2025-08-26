@@ -1214,15 +1214,15 @@
                             <!-- End Viedo Wrapper  -->
 
                             <div class="content pt--30">
-                                <div class="add-to-card-button mb--15">
+                                {{-- <div class="add-to-card-button mb--15">
                                     <a class="rbt-btn btn-gradient icon-hover w-100 d-block text-center" href="#">
                                         <span class="btn-text">Add to Cart $49</span>
                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     </a>
-                                </div>
+                                </div> --}}
                                 <div class="buy-now-btn">
                                     <a class="rbt-btn btn-border icon-hover w-100 d-block text-center" href="#">
-                                        <span class="btn-text">Book Now</span>
+                                        <span class="btn-text">Buy Now</span>
                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     </a>
                                 </div>

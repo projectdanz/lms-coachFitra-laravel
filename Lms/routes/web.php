@@ -2,15 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CoursesController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ElementsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\ElementsController;
+use App\Http\Controllers\DashboardController;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'mainDemo')->name('mainDemo');
 });
+
 
 //  demo
 Route::prefix('blog')->group(function () {
@@ -29,6 +31,9 @@ Route::prefix('blog')->group(function () {
 });
 
 //  courses
+
+Route::get('/courses', [CoursesController::class, 'courseWithTab'])->name('courseWithTab');
+
 Route::prefix('courses')->group(function () {
     Route::controller(CoursesController::class)->group(function () {
             Route::get('/course-card-2','courseCard2')->name('courseCard2');
@@ -42,7 +47,7 @@ Route::prefix('courses')->group(function () {
             Route::get('/course-filter-two-toggle','courseFilterTwoToggle')->name('courseFilterTwoToggle');
             Route::get('/course-masonry','courseMasonry')->name('courseMasonry');
             Route::get('/course-with-sidebar','courseWithSidebar')->name('courseWithSidebar');
-            Route::get('/course-with-tab','courseWithTab')->name('courseWithTab');
+            // Route::get('/course-with-tab','courseWithTab')->name('courseWithTab');
             Route::get('/course-with-tab-two','courseWithTabTwo')->name('courseWithTabTwo');
             Route::get('/create-course','createCourse')->name('createCourse');
             Route::get('/instructor-course','instructorCourse')->name('instructorCourse');
@@ -118,7 +123,7 @@ Route::prefix('elements')->group(function () {
 //  courses
 Route::prefix('home')->group(function () {
     Route::controller(HomeController::class)->group(function () {
-        Route::get('/main-demo','mainDemo')->name('mainDemo');
+        // Route::get('/main-demo','mainDemo')->name('homeMainDemo');
         Route::get('/art-design-school','artDesignSchool')->name('artDesignSchool');
         Route::get('/checkout','checkout')->name('checkout');
         Route::get('/classic-lms','classicLms')->name('classicLms');
@@ -128,7 +133,7 @@ Route::prefix('home')->group(function () {
         Route::get('/health-wellness-institute','healthWellnessInstitute')->name('healthWellnessInstitute');
         Route::get('/home-elegant','homeElegant')->name('homeElegant');
         Route::get('/home-technology','homeTechnology')->name('homeTechnology');
-        Route::get('/instructor-course','instructorCourse')->name('instructorCourse');
+        // Route::get('/instructor-course','instructorCourse')->name('instructorCourse');
         Route::get('/instructor-portfolio','instructorPortfolio')->name('instructorPortfolio');
         Route::get('/instructors-coaches','instructorsCoaches')->name('instructorsCoaches');
         Route::get('/islamic-center','islamicCenter')->name('islamicCenter');

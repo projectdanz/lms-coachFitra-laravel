@@ -472,7 +472,7 @@
                                     <div class="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
                                         <h3 class="rbt-short-title">Course Layout</h3>
                                         <ul class="mega-menu-item">
-                                            <li><a href="{{ route('courseFilterOneToggle') }}">Filter One Toggle</a></li>
+                                            {{-- <li><a href="{{ route('courseFilterOneToggle') }}">Filter One Toggle</a></li> --}}
                                             <li><a href="{{ route('courseFilterOneOpen') }}">Filter One Open</a></li>
                                             <li><a href="{{ route('courseFilterTwoToggle') }}">Filter Two Toggle</a></li>
                                             <li><a href="{{ route('courseFilterTwoOpen') }}">Filter Two Open</a></li>
@@ -2213,5 +2213,5 @@
     </div>
 
     <x-separator/>
-    
+
 @endsection

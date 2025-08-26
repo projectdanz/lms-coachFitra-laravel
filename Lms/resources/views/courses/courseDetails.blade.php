@@ -901,18 +901,18 @@
                                     <li class="current">
                                         <a href="#overview">Overview</a>
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         <a href="#coursecontent">Course Content</a>
-                                    </li>
+                                    </li> --}}
                                     <li>
                                         <a href="#details">Details</a>
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         <a href="#intructor">Intructor</a>
                                     </li>
                                     <li>
                                         <a href="#review">Review</a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </nav>
                         </div>
@@ -985,7 +985,7 @@
                         <!-- End Course Feature Box  -->
 
                         <!-- Start Course Content  -->
-                        <div class="course-content rbt-shadow-box coursecontent-wrapper mt--30" id="coursecontent">
+                        {{-- <div class="course-content rbt-shadow-box coursecontent-wrapper mt--30" id="coursecontent">
                             <div class="rbt-course-feature-inner">
                                 <div class="section-title">
                                     <h4 class="rbt-title-style-3">Course Content</h4>
@@ -1381,7 +1381,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- End Course Content  -->
 
                         <!-- Start Course Feature Box  -->
@@ -1427,7 +1427,7 @@
                         <!-- End Course Feature Box  -->
 
                         <!-- Start Intructor Area  -->
-                        <div class="rbt-instructor rbt-shadow-box intructor-wrapper mt--30" id="intructor">
+                        {{-- <div class="rbt-instructor rbt-shadow-box intructor-wrapper mt--30" id="intructor">
                             <div class="about-author border-0 pb--0 pt--0">
                                 <div class="section-title mb--30">
                                     <h4 class="rbt-title-style-3">Instructor</h4>
@@ -1480,11 +1480,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- End Intructor Area  -->
 
                         <!-- Start Edu Review List  -->
-                        <div class="rbt-review-wrapper rbt-shadow-box review-wrapper mt--30" id="review">
+                        {{-- <div class="rbt-review-wrapper rbt-shadow-box review-wrapper mt--30" id="review">
                             <div class="course-content">
                                 <div class="section-title">
                                     <h4 class="rbt-title-style-3">Review</h4>
@@ -1638,10 +1638,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- End Edu Review List  -->
 
-                        <div class="about-author-list rbt-shadow-box featured-wrapper mt--30 has-show-more">
+                        {{-- <div class="about-author-list rbt-shadow-box featured-wrapper mt--30 has-show-more">
                             <div class="section-title">
                                 <h4 class="rbt-title-style-3">Featured review</h4>
                             </div>
@@ -1840,9 +1840,9 @@
                                 </div>
                             </div>
                             <div class="rbt-show-more-btn">Show More</div>
-                        </div>
+                        </div> --}}
                     </div>
-                    <div class="related-course mt--60">
+                    {{-- <div class="related-course mt--60">
                         <div class="row g-5 align-items-end mb--40">
                             <div class="col-lg-8 col-md-8 col-12">
                                 <div class="section-title">
@@ -1980,7 +1980,7 @@
                             </div>
                             <!-- End Single Card  -->
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="col-lg-4">
@@ -2014,12 +2014,12 @@
                                     </div>
                                 </div>
 
-                                <div class="add-to-card-button mt--15">
+                                {{-- <div class="add-to-card-button mt--15">
                                     <a class="rbt-btn btn-gradient icon-hover w-100 d-block text-center" href="#">
                                         <span class="btn-text">Add to Cart</span>
                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     </a>
-                                </div>
+                                </div> --}}
 
                                 <div class="buy-now-btn mt--15">
                                     <a class="rbt-btn btn-border icon-hover w-100 d-block text-center" href="#">
@@ -2291,7 +2291,7 @@
     </div>
 
     <!-- Start Course Action Bottom  -->
-    <div class="rbt-course-action-bottom">
+    {{-- <div class="rbt-course-action-bottom">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6">
@@ -2318,9 +2318,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- End Course Action Bottom  -->
-     
+
     <x-separator/>
-    
+
 @endsection

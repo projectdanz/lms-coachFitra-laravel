@@ -2505,5 +2505,5 @@
     </div>
 
     <x-separator/>
-    
+
 @endsection

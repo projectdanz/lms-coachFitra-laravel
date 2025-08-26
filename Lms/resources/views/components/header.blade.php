@@ -3,7 +3,7 @@
     <div class="rbt-sticky-placeholder"></div>
 
     <!-- Start Header Top  -->
-    <div class="rbt-header-top rbt-header-top-1 header-space-betwween bg-not-transparent bg-color-darker top-expended-activation">
+    {{-- <div class="rbt-header-top rbt-header-top-1 header-space-betwween bg-not-transparent bg-color-darker top-expended-activation">
         <div class="container-fluid">
             <div class="top-expended-wrapper">
                 <div class="top-expended-inner rbt-header-sec align-items-center ">
@@ -119,7 +119,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- End Header Top  -->
     <div class="rbt-header-wrapper header-space-betwween header-sticky">
         <div class="container-fluid">
@@ -127,7 +127,7 @@
                 <div class="header-left rbt-header-content">
                     <div class="header-info">
                         <div class="logo logo-dark">
-                            <a href="#">
+                            <a href="{{ route('mainDemo') }}">
                                 <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Education Logo Images">
                             </a>
                         </div>
@@ -139,7 +139,7 @@
                         </div>
                     </div>
                     <div class="header-info">
-                        <div class="rbt-category-menu-wrapper rbt-category-update">
+                        {{-- <div class="rbt-category-menu-wrapper rbt-category-update">
 
                             <div class="rbt-category-btn">
                                 <div class="rbt-offcanvas-trigger md-size icon">
@@ -281,19 +281,31 @@
                             </div>
                             <!-- End category Area  -->
 
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
                 <div class="rbt-main-navigation d-none d-xl-block">
                     <nav class="mainmenu-nav">
-                        <ul class="mainmenu">
-                            <li class="with-megamenu has-menu-child-item position-static">
-                                <a href="#">Home <i class="feather-chevron-down"></i></a>
+                        <ul style="display: flex; gap: 30px; list-style: none; display: flex; justify-content: end; align-items: center; margin: 20px">
+                            {{-- Home Menu --}}
+                            <li>
+                                <a href="{{ route('mainDemo') }}" class="text-gray-800 hover:text-blue-600">Home</a>
+                            </li>
+
+                            {{-- Courses Menu --}}
+                            <li>
+                                <a href="{{ route('courseWithTab') }}" class="text-gray-800 hover:text-blue-600">Courses</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                            {{-- <li class="with-megamenu has-menu-child-item position-static">
+                                <a href="#">Home </a>
                                 <!-- Start Mega Menu  -->
                                 <div class="rbt-megamenu menu-skin-dark">
                                     <div class="wrapper">
-                                        <div class="row row--15 home-plesentation-wrapper single-dropdown-menu-presentation">
+                                         <div class="row row--15 home-plesentation-wrapper single-dropdown-menu-presentation">
 
                                             <!-- Start Single Demo  -->
                                             <div class="col-lg-12 col-xl-2 col-xxl-2 col-md-12 col-sm-12 col-12 single-mega-item">
@@ -690,17 +702,17 @@
                                         <div class="load-demo-btn-wrap">
                                             <div class="load-demo-btn text-center">
                                                 <span class="color-white b3">Scroll to view more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
-                            </svg></span>
+                                            <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+                                            </svg></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- End Mega Menu  -->
-                            </li>
+                            </li> --}}
 
-                            <li class="with-megamenu has-menu-child-item">
-                                <a href="#">Courses <i class="feather-chevron-down"></i></a>
+                            {{-- <li class="with-megamenu has-menu-child-item">
+                                <a href="{{ route('courseWithTab') }}">Courses</i></a>
                                 <!-- Start Mega Menu  -->
                                 <div class="rbt-megamenu grid-item-2">
                                     <div class="wrapper">
@@ -753,9 +765,9 @@
                                     </div>
                                 </div>
                                 <!-- End Mega Menu  -->
-                            </li>
+                            </li> --}}
 
-                            <li class="has-dropdown has-menu-child-item">
+                            {{-- <li class="has-dropdown has-menu-child-item">
                                 <a href="#">Dashboard
                                     <i class="feather-chevron-down"></i>
                                 </a>
@@ -789,9 +801,9 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> --}}
 
-                            <li class="with-megamenu has-menu-child-item position-static">
+                            {{-- <li class="with-megamenu has-menu-child-item position-static">
                                 <a href="#">Pages <i class="feather-chevron-down"></i></a>
                                 <!-- Start Mega Menu  -->
                                 <div class="rbt-megamenu grid-item-4">
@@ -905,9 +917,9 @@
                                     </div>
                                 </div>
                                 <!-- End Mega Menu  -->
-                            </li>
+                            </li> --}}
 
-                            <li class="with-megamenu has-menu-child-item position-static">
+                            {{-- <li class="with-megamenu has-menu-child-item position-static">
                                 <a href="#">Elements <i class="feather-chevron-down"></i></a>
                                 <!-- Start Mega Menu  -->
                                 <div class="rbt-megamenu grid-item-3">
@@ -972,9 +984,9 @@
                                     </div>
                                 </div>
                                 <!-- End Mega Menu  -->
-                            </li>
+                            </li> --}}
 
-                            <li class="with-megamenu has-menu-child-item position-static">
+                            {{-- <li class="with-megamenu has-menu-child-item position-static">
                                 <a href="#">Blog <i class="feather-chevron-down"></i></a>
                                 <!-- Start Mega Menu  -->
                                 <div class="rbt-megamenu grid-item-3">
@@ -1015,15 +1027,15 @@
                                     </div>
                                 </div>
                                 <!-- End Mega Menu  -->
-                            </li>
-                        </ul>
-                    </nav>
+                            </li> --}}
+                        {{-- </ul>
+                    </nav> --}}
                 </div>
 
                 <div class="header-right">
 
                     <!-- Navbar Icons -->
-                    <ul class="quick-access">
+                    {{-- <ul class="quick-access">
                         <li class="access-icon">
                             <a class="search-trigger-active rbt-round-btn" href="#">
                                 <i class="feather-search"></i>
@@ -1219,13 +1231,13 @@
                             </div>
                         </li>
 
-                    </ul>
+                    </ul> --}}
 
-                    <div class="rbt-btn-wrapper d-none d-xl-block">
+                    {{-- <div class="rbt-btn-wrapper d-none d-xl-block">
                         <a class="rbt-btn rbt-marquee-btn marquee-auto btn-border-gradient radius-round btn-sm hover-transform-none" href="#">
                             <span data-text="Enroll Now">Enroll Now</span>
                         </a>
-                    </div>
+                    </div> --}}
 
                     <!-- Start Mobile-Menu-Bar -->
                     <div class="mobile-menu-bar d-block d-xl-none">
