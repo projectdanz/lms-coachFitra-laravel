@@ -32,9 +32,9 @@ class PaymentController extends Controller
             'method' => 'required|string',
             'order_id' => 'required|string|max:50',
             'amount' => 'required|integer|min:1',
-            'customer.username' => 'required|string|max:45',
-            'customer.email' => 'required|email|max:45',
-            'customer.phone' => 'required|string|min:10',
+            'username' => 'required|string|max:45',
+            'email' => 'required|email|max:45',
+            'phone' => 'required|string|min:10',
             'items' => 'array',
             'items.*.id' => 'string|max:50',
             'items.*.name' => 'required_with:items|string|max:50',
@@ -43,9 +43,9 @@ class PaymentController extends Controller
         ]);
 
         User::create([
-            'username' => $request->input('customer.username'),
-            'email' => $request->input('customer.email'),
-            'phone' => $request->input('customer.phone'),
+            'username' => $request->input('username'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
             'order_id' => $request->input('customer.order_id'),
         ]);
 
