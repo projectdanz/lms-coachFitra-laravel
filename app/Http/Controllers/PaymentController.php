@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\PaymentSuccess;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Services\Midtrans\MidtransPayment;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class PaymentController extends Controller
 {
@@ -30,12 +32,21 @@ class PaymentController extends Controller
             'method' => 'required|string',
             'order_id' => 'required|string|max:50',
             'amount' => 'required|integer|min:1',
+            'customer.username' => 'required|string|max:45',
             'customer.email' => 'required|email|max:45',
+            'customer.phone' => 'required|string|min:10',
             'items' => 'array',
             'items.*.id' => 'string|max:50',
             'items.*.name' => 'required_with:items|string|max:50',
             'items.*.price' => 'required_with:items|integer|min:1',
             'items.*.quantity' => 'required_with:items|integer|min:1',
+        ]);
+
+        User::create([
+            'username' => $request->input('customer.username'),
+            'email' => $request->input('customer.email'),
+            'phone' => $request->input('customer.phone'),
+            'order_id' => $request->input('customer.order_id'),
         ]);
 
         if ($validator->fails()) {
@@ -299,11 +310,16 @@ class PaymentController extends Controller
                 ]);
 
             if ($response->successful()) {
-                Mail::to($validation['email'])->send(new PaymentSuccess(
-                    $validation['order_id'],
-                    $validation['username'],
-                    $validation['email'],
-                    $validation['password']
+                $password = Str::random(12);
+                $user = User::where('order_id', $validation['order_id'])->first();
+                $user->update([
+                    'password' => $password,
+                ]);
+                Mail::to($user['email'])->send(new PaymentSuccess(
+                    $user['order_id'],
+                    $user['username'],
+                    $user['email'],
+                    $user['password']
                 ));
 
                 $this->messagePasswordRegister(
