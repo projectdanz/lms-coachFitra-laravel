@@ -230,6 +230,10 @@
                     <span class="detail-label">Password:</span>
                     <span class="detail-value">{{ $password }}</span>
                 </div>
+                <div class="detail-row">
+                    <span class="detail-label">Password Course:</span>
+                    <span class="detail-value">{{ $password_course }}</span>
+                </div>
             </div>
 
             <div class="message">
