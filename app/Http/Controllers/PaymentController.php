@@ -26,7 +26,7 @@ class PaymentController extends Controller
     /**
      * Create a new payment
      */
-    public function createPayment(Request $request): JsonResponse
+    public function createPayment(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'method' => 'required|string',
@@ -71,10 +71,7 @@ class PaymentController extends Controller
 
             $result = $this->midtrans->createPayment($paymentData);
 
-            return response()->json([
-                'success' => true,
-                'data' => $result,
-            ]);
+            return redirect($result['redirect_url']);
 
         } catch (MidtransException $e) {
             return response()->json([
