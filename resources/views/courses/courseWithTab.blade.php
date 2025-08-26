@@ -10,7 +10,7 @@
     <!-- Mobile Menu Section -->
     <div class="popup-mobile-menu">
         <div class="inner-wrapper">
-            <div class="inner-top">
+            {{-- <div class="inner-top">
                 <div class="content">
                     <div class="logo">
                         <div class="logo logo-dark">
@@ -38,7 +38,7 @@
                         <a href="#"><i class="feather-phone"></i>(302) 555-0107</a>
                     </li>
                 </ul>
-            </div>
+            </div> --}}
 
             <nav class="mainmenu-nav">
                 <ul class="mainmenu">
@@ -456,7 +456,7 @@
                     <li class="with-megamenu has-menu-child-item">
                         <a href="#">Courses <i class="feather-chevron-down"></i></a>
                         <!-- Start Mega Menu  -->
-                        <div class="rbt-megamenu grid-item-2">
+                        {{-- <div class="rbt-megamenu grid-item-2">
                             <div class="wrapper">
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -472,7 +472,7 @@
                                     <div class="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
                                         <h3 class="rbt-short-title">Course Layout</h3>
                                         <ul class="mega-menu-item">
-                                            {{-- <li><a href="{{ route('courseFilterOneToggle') }}">Filter One Toggle</a></li> --}}
+                                            <li><a href="{{ route('courseFilterOneToggle') }}">Filter One Toggle</a></li> --}}
                                             <li><a href="{{ route('courseFilterOneOpen') }}">Filter One Open</a></li>
                                             <li><a href="{{ route('courseFilterTwoToggle') }}">Filter Two Toggle</a></li>
                                             <li><a href="{{ route('courseFilterTwoOpen') }}">Filter Two Open</a></li>
@@ -505,11 +505,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- End Mega Menu  -->
                     </li>
 
-                    <li class="has-dropdown has-menu-child-item">
+                    {{-- <li class="has-dropdown has-menu-child-item">
                         <a href="#">Dashboard
                             <i class="feather-chevron-down"></i>
                         </a>
@@ -523,7 +523,7 @@
                                     <li><a href="{{ route('instructorReviews') }}">Reviews</a></li>
                                     <li><a href="{{ route('instructorMyQuizAttempts') }}">My Quiz Attempts</a></li>
                                     <li><a href="{{ route('instructorOrderHistory') }}">Order History</a></li>
-                                    {{-- <li><a href="{{ route('instructorCourse') }}">My Course</a></li> --}}
+                                    <li><a href="{{ route('instructorCourse') }}">My Course</a></li> 
                                     <li><a href="{{ route('instructorAnnouncements') }}">Announcements</a></li>
                                     <li><a href="{{ route('instructorQuizAttempts') }}">Quiz Attempts</a></li>
                                     <li><a href="{{ route('instructorAssignments') }}">Assignments</a></li>
@@ -543,9 +543,9 @@
                                 </ul>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
 
-                    <li class="with-megamenu has-menu-child-item position-static">
+                    {{-- <li class="with-megamenu has-menu-child-item position-static">
                         <a href="#">Pages <i class="feather-chevron-down"></i></a>
                         <!-- Start Mega Menu  -->
                         <div class="rbt-megamenu grid-item-4">
@@ -659,9 +659,9 @@
                             </div>
                         </div>
                         <!-- End Mega Menu  -->
-                    </li>
+                    </li> --}}
 
-                    <li class="with-megamenu has-menu-child-item position-static">
+                    {{-- <li class="with-megamenu has-menu-child-item position-static">
                         <a href="#">Elements <i class="feather-chevron-down"></i></a>
                         <!-- Start Mega Menu  -->
                         <div class="rbt-megamenu grid-item-3">
@@ -726,9 +726,9 @@
                             </div>
                         </div>
                         <!-- End Mega Menu  -->
-                    </li>
+                    </li> --}}
 
-                    <li class="with-megamenu has-menu-child-item position-static">
+                    {{-- <li class="with-megamenu has-menu-child-item position-static">
                         <a href="#">Blog <i class="feather-chevron-down"></i></a>
                         <!-- Start Mega Menu  -->
                         <div class="rbt-megamenu grid-item-3">
@@ -769,11 +769,11 @@
                             </div>
                         </div>
                         <!-- End Mega Menu  -->
-                    </li>
+                    </li> --}}
                 </ul>
             </nav>
 
-            <div class="mobile-menu-bottom">
+            {{-- <div class="mobile-menu-bottom">
                 <div class="rbt-btn-wrapper mb--20">
                     <a class="rbt-btn btn-border-gradient radius-round btn-sm hover-transform-none w-100 justify-content-center text-center" href="#">
                         <span>Enroll Now</span>
@@ -801,7 +801,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>
