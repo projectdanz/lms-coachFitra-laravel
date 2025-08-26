@@ -294,7 +294,7 @@ class PaymentController extends Controller
         // Update order status in database
         Log::info("Payment successful for order: {$orderId}", $validation);
         try {
-            $password = Str::random(12);
+            $password = Str::random(8);
             $user = User::where('order_id', $validation['order_id'])->first();
             $response = Http::withBasicAuth('ghifariakun@gmail.com', 'H03LwDz0ivLOgi6tLoyvtWiC')
                 ->withHeaders([
@@ -310,19 +310,19 @@ class PaymentController extends Controller
                 $user->update([
                     'password' => $password,
                 ]);
-                Mail::to($user['email'])->send(new PaymentSuccess(
-                    $user['order_id'],
-                    $user['username'],
-                    $user['email'],
-                    $user['password']
+                $this->messagePasswordRegister(
+                    $user->phone,
+                    $user->password,
+                    $user->email,
+                    $user->username
+                );
+                Mail::to($user->email)->send(new PaymentSuccess(
+                    $user->order_id,
+                    $user->username,
+                    $user->email,
+                    $user->password
                 ));
 
-                $this->messagePasswordRegister(
-                    $validation['phone'],
-                    $validation['password'],
-                    $validation['email'],
-                    $validation['username']
-                );
 
                 return response()->json([
                     'message' => 'User registered successfully',
@@ -399,7 +399,7 @@ class PaymentController extends Controller
             "email: *{$email}*\n\n" .
             "Password: `{$password}`\n\n" .
             "Penting: Login dengan password diatas dan segera ubah.\n\n" .
-            "\n\nLink website: https://lms.sohibdigi.id/login \n\n" .
+            "\n\nLink website: https://lms.sohibdigi.id/ \n\n" .
             "*Jika Anda membutuhkan bantuan, hubungi kami.*";
 
         try {
