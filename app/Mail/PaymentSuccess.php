@@ -20,9 +20,8 @@ class PaymentSuccess extends Mailable
         protected $orderId,
         protected $username,
         protected $email,
-        protected $password,
-    )
-    {
+        protected $password = null,
+    ) {
 
     }
 
@@ -41,16 +40,28 @@ class PaymentSuccess extends Mailable
      */
     public function content(): Content
     {
-        return new Content(
-            view: 'pages.mail01',
-            with: [
-                'order_id' => $this->orderId,
-                'email' => $this->email,
-                'password' => $this->password,
-                'username' => $this->username,
-                'password_course' => 1,
-            ]
-        );
+        if ($this->password != null) {
+            return new Content(
+                view: 'pages.mail01',
+                with: [
+                    'order_id' => $this->orderId,
+                    'email' => $this->email,
+                    'password' => $this->password,
+                    'username' => $this->username,
+                    'password_course' => "richschoolcourse1",
+                ]
+            );
+        } else {
+            return new Content(
+                view: 'pages.mail01',
+                with: [
+                    'order_id' => $this->orderId,
+                    'email' => $this->email,
+                    'username' => $this->username,
+                    'password_course' => "richschoolcourse1",
+                ]
+            );
+        }
     }
 
     /**
@@ -63,7 +74,8 @@ class PaymentSuccess extends Mailable
         return [];
     }
 
-    public function viewMail () {
+    public function viewMail()
+    {
         return view('pages/mail01');
     }
 }
