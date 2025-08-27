@@ -1221,7 +1221,7 @@
                             <div class="footer-widget">
                                 <div class="logo logo-dark">
                                     <a href="/">
-                                        <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Edu-cause">
+                                        <img src="https://lms.sohibdigi.id/wp-content/uploads/2025/08/logosekolahkaya.webp" alt="Edu-cause">
                                     </a>
                                 </div>
                                 <div class="logo d-none logo-light">
