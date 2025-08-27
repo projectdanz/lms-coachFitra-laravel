@@ -10,8 +10,8 @@
                             </a>
                         </div>
                         <div class="logo d-none logo-light">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/dark/logo/logo-light.png') }}" alt="Edu-cause">
+                            <a href="{{ route('mainDemo') }}">
+                                <img src="https://lms.sohibdigi.id/wp-content/uploads/2025/08/logosekolahkaya.webp" alt="Edu-cause">
                             </a>
                         </div>
 

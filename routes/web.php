@@ -11,6 +11,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ElementsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FieldPaymnetController;
+use App\Http\Controllers\SuccessCheckoutController;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'mainDemo')->name('mainDemo');
@@ -19,6 +20,7 @@ Route::controller(HomeController::class)->group(function () {
 
 Route::get('/payment', [FieldPaymnetController::class, 'fieldPayment'])->name('fieldPayment');
 Route::get('/mail', [PaymentSuccess::class, 'viewMail'])->name('mail');
+Route::get('/success-checkout', [SuccessCheckoutController::class, 'viewCO'])->name('success');
 
 
 //  demo

@@ -773,7 +773,7 @@
                 </ul>
             </nav>
 
-            <div class="mobile-menu-bottom">
+            {{-- <div class="mobile-menu-bottom">
                 <div class="rbt-btn-wrapper mb--20">
                     <a class="rbt-btn btn-border-gradient radius-round btn-sm hover-transform-none w-100 justify-content-center text-center" href="#">
                         <span>Enroll Now</span>
@@ -801,7 +801,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>
