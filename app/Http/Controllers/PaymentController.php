@@ -300,7 +300,7 @@ class PaymentController extends Controller
                 ->orWhere('phone', $user->phone)
                 ->count();
 
-            if ($hasUserEverBought) {
+            if ($hasUserEverBought <= 2) {
                 $password = Str::random(8);
                 $response = Http::withBasicAuth('ghifariakun@gmail.com', 'H03LwDz0ivLOgi6tLoyvtWiC')
                     ->withHeaders([
