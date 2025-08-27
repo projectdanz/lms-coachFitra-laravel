@@ -886,9 +886,9 @@
                         <div class="inner">
 
                             <!-- Start Viedo Wrapper  -->
-                            <a class="video-popup-with-text video-popup-wrapper text-center popup-video sidebar-video-hidden mb--15" href="https://www.youtube.com/watch?v=nA1Aqp0sPQo">
+                            <a class="video-popup-with-text video-popup-wrapper text-center popup-video sidebar-video-hidden mb--15" href="https://www.youtube-nocookie.com/embed/mm7dtxSRMOY?rel=0&modestbranding=1&playsinline=1&autoplay=1">
                                 <div class="video-content">
-                                    <img class="w-100 rbt-radius" src="{{ asset('assets/images/others/video-01.jpg') }}" alt="Video Images">
+                                    <img class="w-100 rbt-radius" src="{{ asset('assets/images/coachFitra/MenjadiTopSales.jpeg') }}" alt="Video Images">
                                     <div class="position-to-top">
                                         <span class="rbt-btn rounded-player-2 with-animation">
                                             <span class="play-icon"></span>
@@ -937,7 +937,7 @@
                                     <div class="rbt-show-more-btn">Show More</div>
                                 </div>
 
-                                <div class="social-share-wrapper mt--30 text-center">
+                                {{-- <div class="social-share-wrapper mt--30 text-center">
                                     <hr class="mt--20">
                                     <div class="contact-with-us text-center">
                                         <p>For details about the course</p>
@@ -945,7 +945,7 @@
                                                 class="feather-phone mr--5"></i> Call Us: <a href="#"><strong>+444 555
                                                     666 777</strong></a></p>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -968,15 +968,17 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="course-grid-3">
                                     <div class="rbt-card variation-01 rbt-hover">
-                                        <div class="rbt-card-img d-flex align-items-center justify-content-center" style="height:200px; border-radius:8px;">
-                                            <h2 class="h6 fw-bold text-dark mb-0">COMING SOON</h2>
+                                        <div class="rbt-card-img">
+                                            <a href="{{ route('courseDetails') }}">
+                                                <img src="https://lms.sohibdigi.id/wp-content/uploads/2025/08/1.webp" alt="Card image">
+                                            </a>
                                         </div>
 
                                         <div class="rbt-card-body">
 
-                                            <h4 class="rbt-card-title">Coming Soon</h4>
+                                            <h4 class="rbt-card-title">Protected: Coming Soon</h4>
 
-                                            <p class="rbt-card-text">coming soon...</p>
+                                            <p class="rbt-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, quam expedita! Beatae enim...</p>
                                             <div class="rbt-card-bottom">
                                                 <div class="rbt-price">
                                                     <span class="current-price">Rp0</span>
@@ -993,15 +995,17 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="course-grid-3">
                                     <div class="rbt-card variation-01 rbt-hover">
-                                        <div class="rbt-card-img d-flex align-items-center justify-content-center" style="height:200px; border-radius:8px;">
-                                            <h2 class="h6 fw-bold text-dark mb-0">COMING SOON</h2>
+                                        <div class="rbt-card-img">
+                                            <a href="{{ route('courseDetails') }}">
+                                                <img src="https://lms.sohibdigi.id/wp-content/uploads/2025/08/2.webp" alt="Card image">
+                                            </a>
                                         </div>
 
                                         <div class="rbt-card-body">
 
-                                            <h4 class="rbt-card-title">Coming Soon</h4>
+                                            <h4 class="rbt-card-title">Protected: Coming Soon</h4>
 
-                                            <p class="rbt-card-text">coming soon...</p>
+                                            <p class="rbt-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, quam expedita! Beatae enim...</p>
                                             <div class="rbt-card-bottom">
                                                 <div class="rbt-price">
                                                     <span class="current-price">Rp0</span>
@@ -1018,15 +1022,17 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="course-grid-3">
                                     <div class="rbt-card variation-01 rbt-hover">
-                                        <div class="rbt-card-img d-flex align-items-center justify-content-center" style="height:200px; border-radius:8px;">
-                                            <h2 class="h6 fw-bold text-dark mb-0">COMING SOON</h2>
+                                        <div class="rbt-card-img">
+                                            <a href="{{ route('courseDetails') }}">
+                                                <img src="https://sekolahkaya.com/wp-content/uploads/2025/07/5.webp" alt="Card image">
+                                            </a>
                                         </div>
 
                                         <div class="rbt-card-body">
 
-                                            <h4 class="rbt-card-title">Coming Soon</h4>
+                                            <h4 class="rbt-card-title">Protected: Coming Soon</h4>
 
-                                            <p class="rbt-card-text">coming soon...</p>
+                                            <p class="rbt-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, quam expedita! Beatae enim...</p>
                                             <div class="rbt-card-bottom">
                                                 <div class="rbt-price">
                                                     <span class="current-price">Rp0</span>

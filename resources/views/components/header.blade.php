@@ -141,20 +141,62 @@
                 </div>
 
                 <div class="rbt-main-navigation d-none d-xl-block">
-                    <nav class="mainmenu-nav">
-                        <ul style="display: flex; gap: 30px; list-style: none; display: flex; justify-content: end; align-items: center; margin: 20px">
-                            {{-- Home Menu --}}
-                            <li>
-                                <a href="{{ route('mainDemo') }}" class="text-gray-800 hover:text-blue-600">Home</a>
-                            </li>
+    <nav class="mainmenu-nav">
+        <ul class="nav-menu">
+            {{-- Home Menu --}}
+            <li>
+                <a href="{{ route('mainDemo') }}" class="nav-link">Home</a>
+            </li>
 
-                            {{-- Courses Menu --}}
-                            <li>
-                                <a href="{{ route('courseWithTab') }}" class="text-gray-800 hover:text-blue-600">Courses</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+            {{-- Courses Menu --}}
+            <li>
+                <a href="{{ route('courseWithTab') }}" class="nav-link">Courses</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+{{-- Inline CSS langsung di Blade --}}
+<style>
+    .nav-menu {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 20px;
+    }
+
+    .nav-link {
+        position: relative;
+        padding: 6px 8px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #374151; /* abu tua */
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .nav-link:hover {
+        color: #2563eb; /* biru */
+    }
+
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 0;
+        height: 2px;
+        background-color: #2563eb;
+        transition: width 0.3s ease-in-out;
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+</style>
+
 
                 <div class="header-right">
                     <!-- Start Mobile-Menu-Bar -->

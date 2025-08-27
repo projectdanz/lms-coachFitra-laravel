@@ -878,54 +878,19 @@
                             </div>
                             <div class="row g-5">
                                 <!-- Start Single Team  -->
-                                <div class="col-lg-6 col-md-6 col-12">
+                                <div>
+                                    {{-- class="col-lg-6 col-md-6 col-12" --}}
                                     <div class="rbt-team team-style-default style-two rbt-hover">
                                         <div class="inner">
-                                            <div class="thumbnail"><img src="{{ asset('assets/images/team/team-01.jpg') }}" alt="Corporate Template"></div>
+                                            <div class="thumbnail"><img src="{{ asset('assets/images/coachFitra/FotoCoachFitra.png') }}" alt="Corporate Template"></div>
                                             <div class="content">
-                                                <h2 class="title">Alejandro</h2>
-                                                <h6 class="subtitle theme-gradient">Math Teacher</h6>
+                                                <h2 class="title">Fitra Jaya Saleh</h2>
+                                                <h6 class="subtitle theme-gradient">Business Coach</h6>
                                                 <span class="team-form">
                                                     <i class="feather-map-pin"></i>
-                                                    <span class="location">CO Miego, AD,USA</span>
+                                                    <span class="location">Solo</span>
                                                 </span>
-                                                <p class="description">Yes, I am a Depertment Teacher. I have a passion
-                                                    for
-                                                    learning system.</p>
-                                                <ul class="social-icon social-default icon-naked mt--20">
-                                                    <li><a href="https://www.facebook.com/">
-                                                            <i class="feather-facebook"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li><a href="https://www.twitter.com">
-                                                            <i class="feather-twitter"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li><a href="https://www.instagram.com/">
-                                                            <i class="feather-instagram"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Team  -->
-                                <!-- Start Single Team  -->
-                                <div class="col-lg-6 col-md-6 col-12">
-                                    <div class="rbt-team team-style-default style-two rbt-hover">
-                                        <div class="inner">
-                                            <div class="thumbnail"><img src="{{ asset('assets/images/team/team-02.jpg') }}" alt="Corporate Template"></div>
-                                            <div class="content">
-                                                <h2 class="title">Alejandro</h2>
-                                                <h6 class="subtitle theme-gradient">Math Teacher</h6>
-                                                <span class="team-form">
-                                                    <i class="feather-map-pin"></i>
-                                                    <span class="location">CO Miego, AD,USA</span>
-                                                </span>
-                                                <p class="description">Yes, I am a Depertment Teacher. I have a passion
-                                                    for
-                                                    learning system.</p>
+                                                <p class="description">Yes, I am a Business Coach. I have a passion for creating systems that drive business success.</p>
                                                 <ul class="social-icon social-default icon-naked mt--20">
                                                     <li><a href="https://www.facebook.com/">
                                                             <i class="feather-facebook"></i>
@@ -1044,9 +1009,9 @@
                         <div class="inner">
 
                             <!-- Start Viedo Wrapper  -->
-                            <a class="video-popup-with-text video-popup-wrapper text-center popup-video sidebar-video-hidden mb--15" href="https://www.youtube.com/watch?v=nA1Aqp0sPQo">
+                            <a class="video-popup-with-text video-popup-wrapper text-center popup-video sidebar-video-hidden mb--15" href="hhttps://www.youtube.com/embed/mm7dtxSRMOY?si=LuCEI9OhtPAM4gT0">
                                 <div class="video-content">
-                                    <img class="w-100 rbt-radius" src="{{ asset('assets/images/others/video-01.jpg') }}" alt="Video Images">
+                                    <img class="w-100 rbt-radius" src="{{ asset('assets/images/coachFitra/MenjadiTopSales.jpeg') }}" alt="Video Images">
                                     <div class="position-to-top">
                                         <span class="rbt-btn rounded-player-2 with-animation">
                                             <span class="play-icon"></span>
@@ -1060,7 +1025,7 @@
 
                             <div class="content pt--30">
                                 <div class="buy-now-btn">
-                                    <a class="rbt-btn btn-border icon-hover w-100 d-block text-center" href="#">
+                                    <a class="rbt-btn btn-border icon-hover w-100 d-block text-center" href='{{ route('fieldPayment') }}'>
                                         <span class="btn-text">Buy Now</span>
                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     </a>
@@ -1077,47 +1042,27 @@
                                                 2024</span></li>
                                         <li><span>Skill Level</span><span
                                                 class="rbt-feature-value rbt-badge-5">Basic</span></li>
-                                        <li><span>Ongoing</span><span class="rbt-feature-value rbt-badge-5">1000+</span>
-                                        </li>
-                                        <li><span>Location</span><span class="rbt-feature-value rbt-badge-5">USA</span>
+                                        <li><span>Location</span><span class="rbt-feature-value rbt-badge-5">Pondok IT</span>
                                         </li>
                                         <li><span>Certificate</span><span
                                                 class="rbt-feature-value rbt-badge-5">Yes</span></li>
-                                        <li><span>Language</span><span class="rbt-feature-value rbt-badge-5">USA</span>
+                                        <li><span>Language</span><span class="rbt-feature-value rbt-badge-5">Indonesia</span>
                                         </li>
                                     </ul>
                                     <div class="rbt-show-more-btn">Show More</div>
                                 </div>
 
-                                <div class="social-share-wrapper mt--30 text-center">
+                                {{-- <div class="social-share-wrapper mt--30 text-center">
                                     <div class="rbt-post-share d-flex align-items-center justify-content-center">
-                                        <ul class="social-icon social-default transparent-with-border justify-content-center">
-                                            <li><a href="https://www.facebook.com/">
-                                                    <i class="feather-facebook"></i>
-                                                </a>
-                                            </li>
-                                            <li><a href="https://www.twitter.com">
-                                                    <i class="feather-twitter"></i>
-                                                </a>
-                                            </li>
-                                            <li><a href="https://www.instagram.com/">
-                                                    <i class="feather-instagram"></i>
-                                                </a>
-                                            </li>
-                                            <li><a href="https://www.linkdin.com/">
-                                                    <i class="feather-linkedin"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
                                     </div>
                                     <hr class="mt--20">
                                     <div class="contact-with-us text-center">
-                                        <p>For details about the course</p>
+                                        <p>For details about the events</p>
                                         <p class="rbt-badge-2 mt--10 justify-content-center w-100"><i
                                                 class="feather-phone mr--5"></i> Call Us: <a href="#"><strong>+444 555
                                                     666 777</strong></a></p>
                                     </div>
-                                </div>
+                                </div> --}}
 
                             </div>
                         </div>

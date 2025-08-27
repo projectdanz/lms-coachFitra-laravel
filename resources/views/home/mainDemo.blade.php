@@ -841,15 +841,15 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="shape-wrapper" id="scene">
-                                <img src="{{ asset('assets/images/banner/banner-01.png') }}" alt="Hero Image">
+                            {{-- <div class="shape-wrapper" id="scene">
+                                <img src="{{ asset('assets/images/coachFitra/FotoCoachFitra1.jpeg') }}" alt="Hero Image">
                                 <div class="hero-bg-shape-1 layer" data-depth="0.4">
                                     <img src="{{ asset('assets/images/shape/shape-01.png') }}" alt="Hero Image Background Shape">
                                 </div>
                                 <div class="hero-bg-shape-2 layer" data-depth="0.4">
                                     <img src="{{ asset('assets/images/shape/shape-02.png') }}" alt="Hero Image Background Shape">
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="banner-card pb--60 mb--50 swiper rbt-dot-bottom-center banner-swiper-active">
                                 <div class="swiper-wrapper">
