@@ -1104,11 +1104,10 @@
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
                                                 <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}">Events: Menjadi Top Sales</a></h4>
-
                                                 <div class="read-more-btn">
                                                     <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ route('eventDetails') }}">
                                                         <span class="icon-reverse-wrapper">
-                                    <span class="btn-text">Get Ticket</span>
+                                                        <span class="btn-text">Get Ticket</span>
                                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                                         </span>
@@ -1143,7 +1142,7 @@
                                                 <div class="read-more-btn">
                                                     <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ route('eventDetails') }}">
                                                         <span class="icon-reverse-wrapper">
-                                    <span class="btn-text">Get Ticket</span>
+                                                        <span class="btn-text">Get Ticket</span>
                                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                                         </span>
