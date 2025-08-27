@@ -201,13 +201,13 @@ class SnapService
         }
 
         // Add default callbacks if not provided
-        // if (!isset($payload['callbacks'])) {
-        //     $payload['callbacks'] = [
-        //         'finish' => config('midtrans.callback_urls.finish'),
-        //         'error' => config('midtrans.callback_urls.error'),
-        //         'pending' => config('midtrans.callback_urls.pending')
-        //     ];
-        // }
+        if (!isset($payload['callbacks'])) {
+            $payload['callbacks'] = [
+                'finish' => config('midtrans.callback_urls.finish'),
+                'error' => config('midtrans.callback_urls.error'),
+                'pending' => config('midtrans.callback_urls.pending')
+            ];
+        }
 
         return $payload;
     }
