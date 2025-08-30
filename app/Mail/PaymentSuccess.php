@@ -40,28 +40,16 @@ class PaymentSuccess extends Mailable
      */
     public function content(): Content
     {
-        if ($this->password != null) {
-            return new Content(
-                view: 'pages.mail01',
-                with: [
-                    'order_id' => $this->orderId,
-                    'email' => $this->email,
-                    'password' => $this->password,
-                    'username' => $this->username,
-                    'password_course' => "MbCk3l4S001",
-                ]
-            );
-        } else {
-            return new Content(
-                view: 'pages.mail01',
-                with: [
-                    'order_id' => $this->orderId,
-                    'email' => $this->email,
-                    'username' => $this->username,
-                    'password_course' => "MbCk3l4S001",
-                ]
-            );
-        }
+        return new Content(
+            view: 'pages.mail01',
+            with: [
+                'order_id' => $this->orderId,
+                'email' => $this->email,
+                'password' => $this->password,
+                'username' => $this->username,
+                'password_course' => "MbCk3l4S001",
+            ]
+        );
     }
 
     /**

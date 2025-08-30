@@ -456,6 +456,9 @@ Terima kasih sudah mempercayai kami 🙏
 📧 Email    : {$email}  
 ➡️ Password : {$password}  
 
+👉 login ke sini dulu untuk ubah password jika di perlukan : 
+https://ecourse.sekolahkaya.com/dashboard/settings/reset-password/
+
 " : "") . "
 Akses kelas  
 👉 {$courseUrl}  

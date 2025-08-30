@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -170,7 +171,9 @@
                 border-radius: 0;
             }
 
-            .header, .content, .footer {
+            .header,
+            .content,
+            .footer {
                 padding: 30px 20px;
             }
 
@@ -191,6 +194,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="email-container">
         <!-- Header Section -->
@@ -226,10 +230,14 @@
                     <span class="detail-label">Email:</span>
                     <span class="detail-value">{{ $email }}</span>
                 </div>
-                <div class="detail-row">
-                    <span class="detail-label">Password:</span>
-                    <span class="detail-value">{{ $password }}</span>
-                </div>
+
+                @if ($password)
+                    <div class="detail-row">
+                        <span class="detail-label">Password:</span>
+                        <span class="detail-value">{{ $password }}</span>
+                    </div>
+                @endif
+                
                 <div class="detail-row">
                     <span class="detail-label">Password Course:</span>
                     <span class="detail-value">{{ $password_course }}</span>
@@ -237,7 +245,8 @@
             </div>
 
             <div class="message">
-                Please keep your login credentials safe and secure. We recommend changing your password after your first login.
+                Please keep your login credentials safe and secure. We recommend changing your password after your first
+                login.
             </div>
 
             <!-- Call to Action -->
@@ -265,9 +274,11 @@
             </div>
 
             <p style="margin-top: 20px; font-size: 12px; opacity: 0.7;">
-                This email was sent to {{ $email }}. If you didn't make this purchase, please contact us immediately.
+                This email was sent to {{ $email }}. If you didn't make this purchase, please contact us
+                immediately.
             </p>
         </div>
     </div>
 </body>
+
 </html>
