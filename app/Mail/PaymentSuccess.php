@@ -48,7 +48,7 @@ class PaymentSuccess extends Mailable
                     'email' => $this->email,
                     'password' => $this->password,
                     'username' => $this->username,
-                    'password_course' => "richschoolcourse1",
+                    'password_course' => "MbCk3l4S001",
                 ]
             );
         } else {
@@ -58,7 +58,7 @@ class PaymentSuccess extends Mailable
                     'order_id' => $this->orderId,
                     'email' => $this->email,
                     'username' => $this->username,
-                    'password_course' => "richschoolcourse1",
+                    'password_course' => "MbCk3l4S001",
                 ]
             );
         }

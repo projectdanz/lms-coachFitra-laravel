@@ -385,7 +385,7 @@ class PaymentController extends Controller
         Log::info("Payment pending for order: {$orderId}", $validation);
     }
 
-    private function sendRequest(array $data): array
+    private function sendRequest(array $data): void
     {
         $url = 'https://api.fonnte.com/send';
         $token = config('app.fonnte.token');
@@ -402,9 +402,7 @@ class PaymentController extends Controller
         $response = curl_exec($ch);
         curl_close($ch);
 
-        logger()->info($response);
-
-        return json_decode($response, true) ?? [];
+        Log::info('Send request to fonnte:',[$response]);
     }
 
     private function sendMessage(string $phone, string $message): void
@@ -436,7 +434,7 @@ class PaymentController extends Controller
         $courseName = config('app.course.name', 'Introduction to Photography Masterclass');
         $coursePrice = config('app.course.price', 'Rp. 1');
         $coursePassword = config('app.course.password', 'MbCk3l4S001');
-        $courseUrl = config('app.course.url', 'https://www.sekolahkaya.com');
+        $courseUrl = config('app.course.url', 'https://ecourse.sekolahkaya.com');
 
         $message = "🌟 *Hi {$username}!* 🌟  
 Terima kasih sudah mempercayai kami 🙏
