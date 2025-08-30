@@ -6,6 +6,7 @@
 
 @section('content')
     <!-- Mobile Menu Section -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <div class="popup-mobile-menu">
         <div class="inner-wrapper">
             <div class="inner-top">
@@ -896,16 +897,14 @@
                         <div class="content">
                             <div class="inner">
                                 <div class="rbt-new-badge rbt-new-badge-one">
-                                    <span class="rbt-new-badge-icon">🏆</span> The Leader in Online Learning
+                                    <span class="rbt-new-badge-icon">🏆</span> Sekolah Kaya
                                 </div>
 
                                 <h1 class="title">
-                                    Build The Skills <br> To Drive Your Career.
+                                    THE BEST <br> BISNIS ECOURSE <br> YANG PERNAH ADA
                                 </h1>
                                 <p class="description">
-                                    Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
-                                    <strong>Velit
-                                        officia consequat.</strong>
+                                    Sekolah Kaya adalah platform e-course bisnis terdepan yang dirancang untuk membantu Anda meraih kebebasan finansial dan mengembangkan keterampilan wirausaha secara praktis.</strong>
                                 </p>
                                 <div class="slider-btn">
                                     <a class="rbt-btn btn-gradient hover-icon-reverse" href="#popular-course">
@@ -1027,7 +1026,7 @@
                     <div class="col-lg-12">
                         <div class="section-title text-center">
                             <span class="subtitle bg-secondary-opacity" id="popular-course">Top Popular Course</span>
-                            <h2 class="title">Sekolahkaya Course student <br /> can join with us.</h2>
+                            <h2 class="title">Siswa Sekolah Kaya <br> bisa bergabung bersama kami!</h2>
                         </div>
                     </div>
                 </div>
@@ -1043,10 +1042,10 @@
                                 </a>
                             </div>
                             <div class="rbt-card-body">
-                                <h4 class="rbt-card-title"><a href="{{ route('courseDetails') }}">Protected: Menjadi Top
+                                <h4 class="rbt-card-title"><a href="{{ route('courseDetails') }}">Menjadi Top
                                         Sales Jago Selling</a>
                                 </h4>
-                                <p class="rbt-card-text">IKenapa banyak sales yang rajin promosi tapi tetap gak ada
+                                <p class="rbt-card-text">Kenapa banyak sales yang rajin promosi tapi tetap gak ada
                                     closing?Karena skill closing itu...</p>
                                 <div class="rbt-card-bottom">
                                     <div class="rbt-price">
@@ -1138,8 +1137,8 @@
             <div class="container">
                 <div class="row mb--55">
                     <div class="section-title text-center">
-                        <span class="subtitle bg-white-opacity">STIMULATED TO TAKE PART IN?</span>
-                        <h2 class="title color-white">Upcoming Events</h2>
+                        <span class="subtitle bg-white-opacity">Tertarik untuk Ikut?</span>
+                        <h2 class="title color-white">Event Seru yang Akan Datang</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -1464,8 +1463,7 @@
                                     </a>
                                 </div>
 
-                                <p class="description mt--20">We’re always in search for talented
-                                    and motivated people. Don’t be shy introduce yourself!
+                                <p class="description mt--20">The Best Bisnis Ecourse Yang Pernah Ada
                                 </p>
 
 
@@ -1493,6 +1491,16 @@
                                     <li>
                                         <a href="{{ route('courseWithTab') }}" class="nav-link">Courses</a>
                                     </li>
+
+                                    {{-- Courses Menu --}}
+                                    <li>
+                                        <a href="{{ route('courseWithTab') }}" class="nav-link">About</a>
+                                    </li>
+
+                                    {{-- Courses Menu --}}
+                                    <li>
+                                        <a href="{{ route('courseWithTab') }}" class="nav-link">Contact</a>
+                                    </li>
                                 </ul>
                             </nav>
 
@@ -1508,25 +1516,27 @@
                             </style>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-    <ul class="social-icon social-default">
+                            <h4 style="text-align: center;">Temukan Kami di Sosial Media</h4>
+    <ul class="social-icon social-default justify-content-around">
         <li>
-            <a href="https://www.facebook.com/">
-                <i class="feather-facebook"></i>
+            <a href="https://www.tiktok.com/@sekolahkaya?_t=ZS-8wYaL69rtWD&_r=1">
+                <i class="fab fa-tiktok"></i>
             </a>
         </li>
-        <li>
-            <a href="https://www.twitter.com">
-                <i class="feather-twitter"></i>
-            </a>
-        </li>
-        <li>
-            <a href="https://www.instagram.com/">
+        <li><a href="https://www.instagram.com/sekolahkaya.id?igsh=eHNjNHNoNXoxaG1q">
                 <i class="feather-instagram"></i>
             </a>
         </li>
-        <li>
-            <a href="https://www.linkedin.com/"> <!-- linkdin typo, aku betulin -->
-                <i class="feather-linkedin"></i>
+        <li><a href="https://www.facebook.com/profile.php?id=61576626926556">
+                <i class="feather-facebook"></i>
+            </a>
+        </li>
+        <li><a href="https://t.me/+0dHO0KdBP0g0MzY1">
+                <i class="feather-message-circle"></i>
+            </a>
+        </li>
+        <li><a href="https://www.instagram.com/fitra.saleh?igsh=bXM3anBkaXhjNXp4">
+                <i class="feather-instagram"></i>
             </a>
         </li>
     </ul>

@@ -763,7 +763,7 @@
                 <div class="col-lg-12">
                     <div class="section-title text-center mb--60">
                         <span class="subtitle bg-secondary-opacity">Contact Us</span>
-                        <h2 class="title">Histudy Course Contact <br> can join with us.</h2>
+                        <h2 class="title">Sekolahkaya Course Contact <br> can join with us.</h2>
                     </div>
                 </div>
             </div>
@@ -775,8 +775,9 @@
                         </div>
                         <div class="inner">
                             <h4 class="title">Contact Phone Number</h4>
-                            <p><a href="tel:+444555666777">+444 555 666 777</a></p>
-                            <p><a href="tel:+222222222333">+222 222 222 333</a></p>
+                            <p><a href="tel:+444555666777">Shafa : 085881857550</a></p>
+                            <p><a href="tel:+222222222333">Mutiah : 085135904447</a></p>
+                            <p><a href="tel:+222222222333">Nisa : 088225003896</a></p>
                         </div>
                     </div>
                 </div>
@@ -787,8 +788,7 @@
                         </div>
                         <div class="inner">
                             <h4 class="title">Our Email Address</h4>
-                            <p><a href="mailto:admin@gmail.com">admin@gmail.com</a></p>
-                            <p><a href="mailto:example@gmail.com">example@gmail.com</a></p>
+                            <p><a href="mailto:sekolahkaya@gmail.com"> sekolahkaya@gmail.com</a></p>
                         </div>
                     </div>
                 </div>
@@ -799,7 +799,7 @@
                         </div>
                         <div class="inner">
                             <h4 class="title">Our Location</h4>
-                            <p>5678 Bangla Main Road, cities 580 <br> GBnagla, example 54786</p>
+                            <p>Jl. Majapahit V No.35, Nusukan, Kec. Banjarsari, Kota Surakarta, Jawa Tengah 57135</p>
                         </div>
                     </div>
                 </div>
