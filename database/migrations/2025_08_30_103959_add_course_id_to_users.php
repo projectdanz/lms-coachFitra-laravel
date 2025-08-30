@@ -11,7 +11,11 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('course_id')->constrained('courses')->cascadeOnDelete();
+            $table->unsignedBigInteger('course_id')->nullable();
+            $table->foreign('course_id')
+              ->references('id')
+              ->on('courses')
+              ->onDelete('cascade');
         });
     }
 

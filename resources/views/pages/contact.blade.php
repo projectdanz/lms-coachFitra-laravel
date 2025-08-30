@@ -513,36 +513,7 @@
                         <a href="#">Dashboard
                             <i class="feather-chevron-down"></i>
                         </a>
-                        <ul class="submenu">
-                            <li class="has-dropdown"><a href="#">Instructor Dashboard</a>
-                                <ul class="submenu">
-                                    <li><a href="{{ route('instructorDashboard') }}">Dashboard</a></li>
-                                    <li><a href="{{ route('instructorProfile') }}">Profile</a></li>
-                                    <li><a href="{{ route('instructorEnrolledCourses') }}">Enrolled Courses</a></li>
-                                    <li><a href="{{ route('instructorWishlist') }}">Wishlist</a></li>
-                                    <li><a href="{{ route('instructorReviews') }}">Reviews</a></li>
-                                    <li><a href="{{ route('instructorMyQuizAttempts') }}">My Quiz Attempts</a></li>
-                                    <li><a href="{{ route('instructorOrderHistory') }}">Order History</a></li>
-                                    <li><a href="{{ route('instructorCourse') }}">My Course</a></li>
-                                    <li><a href="{{ route('instructorAnnouncements') }}">Announcements</a></li>
-                                    <li><a href="{{ route('instructorQuizAttempts') }}">Quiz Attempts</a></li>
-                                    <li><a href="{{ route('instructorAssignments') }}">Assignments</a></li>
-                                    <li><a href="{{ route('instructorSettings') }}">Settings</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-dropdown"><a href="#">Student Dashboard</a>
-                                <ul class="submenu">
-                                    <li><a href="{{ route('studentDashboard') }}">Dashboard</a></li>
-                                    <li><a href="{{ route('studentProfile') }}">Profile</a></li>
-                                    <li><a href="{{ route('studentEnrolledCourses') }}">Enrolled Courses</a></li>
-                                    <li><a href="{{ route('studentWishlist') }}">Wishlist</a></li>
-                                    <li><a href="{{ route('studentReviews') }}">Reviews</a></li>
-                                    <li><a href="{{ route('studentMyQuizAttempts') }}">My Quiz Attempts</a></li>
-                                    <li><a href="{{ route('studentOrderHistory') }}">Order History</a></li>
-                                    <li><a href="{{ route('studentSettings') }}">Settings</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        
                     </li>
 
                     <li class="with-megamenu has-menu-child-item position-static">
@@ -734,31 +705,6 @@
                         <div class="rbt-megamenu grid-item-3">
                             <div class="wrapper">
                                 <div class="row row--15">
-                                    <div class="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
-                                        <h3 class="rbt-short-title">Blog Styles</h3>
-                                        <ul class="mega-menu-item">
-                                            <li><a href="{{ route('blogList') }}">Blog List</a></li>
-                                            <li><a href="{{ route('blog') }}">Blog Grid</a></li>
-                                            <li><a href="{{ route('blogGridMinimal') }}">Blog Grid Minimal</a></li>
-                                            <li><a href="{{ route('blogWithSidebar') }}">Blog With Sidebar</a></li>
-                                            <li><a href="{{ route('blogDetails') }}">Blog Details</a></li>
-                                            <li><a href="{{ route('postFormatStandard') }}">Post Format Standard</a></li>
-                                            <li><a href="{{ route('postFormatGallery') }}">Post Format Gallery</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
-                                        <h3 class="rbt-short-title">Get Started</h3>
-                                        <ul class="mega-menu-item">
-                                            <li><a href="{{ route('postFormatQuote') }}">Post Format Quote</a></li>
-                                            <li><a href="{{ route('postFormatAudio') }}">Post Format Audio</a></li>
-                                            <li><a href="{{ route('postFormatVideo') }}">Post Format Video</a></li>
-                                            <li><a href="#">Media Under Title <span class="rbt-badge-card">Coming</span></a></li>
-                                            <li><a href="#">Sticky Sidebar <span class="rbt-badge-card">Coming</span></a></li>
-                                            <li><a href="#">Auto Masonry <span class="rbt-badge-card">Coming</span></a></li>
-                                            <li><a href="#">Meta Overlaid <span class="rbt-badge-card">Coming</span></a></li>
-                                        </ul>
-                                    </div>
 
                                     <div class="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
                                         <div class="rbt-ads-wrapper">
@@ -859,62 +805,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="rbt-contact-address">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6">
-                    <div class="thumbnail">
-                        <img class="w-100 radius-6" src="{{ asset('assets/images/about/contact.jpg') }}" alt="Contact Images">
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="rbt-contact-form contact-form-style-1 max-width-auto">
-                        <div class="section-title text-start">
-                            <span class="subtitle bg-primary-opacity">EDUCATION FOR EVERYONE</span>
-                        </div>
-                        <h3 class="title">Get a Free Course You Can Contact With Me</h3>
-                        <form id="contact-form" method="POST" action="mail.php" class="rainbow-dynamic-form max-width-auto">
-                            <div class="form-group">
-                                <input name="contact-name" id="contact-name" type="text">
-                                <label>Name</label>
-                                <span class="focus-border"></span>
-                            </div>
-                            <div class="form-group">
-                                <input name="contact-phone" type="email">
-                                <label>Email</label>
-                                <span class="focus-border"></span>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="subject" name="subject">
-                                <label>Your Subject</label>
-                                <span class="focus-border"></span>
-                            </div>
-                            <div class="form-group">
-                                <textarea name="contact-message" id="contact-message"></textarea>
-                                <label>Message</label>
-                                <span class="focus-border"></span>
-                            </div>
-                            <div class="form-submit-group">
-                                <button name="submit" type="submit" id="submit" class="rbt-btn btn-md btn-gradient hover-icon-reverse w-100">
-                                    <span class="icon-reverse-wrapper">
-                                        <span class="btn-text">GET IT NOW</span>
-                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                    </span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="rbt-google-map bg-color-white rbt-section-gapTop">
-        <iframe class="w-100" src="{{ asset('https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2965.0824050173574!2d-93.63905729999999!3d41.998507000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sWebFilings%2C+University+Boulevard%2C+Ames%2C+IA!5e0!3m2!1sen!2sus!4v1390839289319') }}" height="600" style="border:0"></iframe>
     </div>
 
 @endsection

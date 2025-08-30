@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\PaymentSuccess;
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -29,16 +30,12 @@ class PaymentController extends Controller
     public function createPayment(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'method' => 'required|string',
+           'method' => 'required|string',
             'amount' => 'required|integer|min:1',
             'customer.username' => 'required|string|max:45',
             'customer.email' => 'required|email|max:45',
             'customer.phone' => 'required|string|min:10',
-            'items' => 'array',
-            'items.*.id' => 'string|max:50',
-            'items.*.name' => 'required_with:items|string|max:50',
-            'items.*.price' => 'required_with:items|integer|min:1',
-            'items.*.quantity' => 'required_with:items|integer|min:1',
+            'course_id' => 'required|integer|exists:courses,id',
         ]);
 
         if ($validator->fails()) {
@@ -48,6 +45,14 @@ class PaymentController extends Controller
                 'errors' => $validator->errors(),
             ], 422);
         }
+
+        $course = Course::find($request->input('course_id'));
+
+        $item = [
+            'name' => $course->nama,
+            'price' => $course->harga,
+            'quantity' => 1,
+        ];
 
         $order_id = Str::uuid()->toString();
 
@@ -66,7 +71,7 @@ class PaymentController extends Controller
                     'gross_amount' => $request->amount,
                 ],
                 'customer_details' => $request->customer,
-                'item_details' => $request->items ?? [],
+                'item_details' => $item ?? [],
             ];
 
             $result = $this->midtrans->createPayment($paymentData);
@@ -299,8 +304,24 @@ class PaymentController extends Controller
             $hasUserEverBought = User::where('email', $user->email)
                 ->orWhere('phone', $user->phone)
                 ->count();
+            $course = Course::find($user->course_id);
 
-            if ($hasUserEverBought <= 2) {
+            if ($hasUserEverBought >= 1) {
+                $this->messagePasswordRegister(
+                    $user->phone,
+                    $user->email,
+                    $user->username,
+                    null,
+                    $course,
+                );
+                Mail::to($user->email)->send(new PaymentSuccess(
+                    $user->order_id,
+                    $user->username,
+                    $user->email,
+                    null,
+                    $course->course_url
+                ));
+            } else {
                 $password = Str::random(8);
                 $response = Http::withBasicAuth(config('app.wp.username'), config('app.wp.password'))
                     ->withHeaders([
@@ -319,15 +340,17 @@ class PaymentController extends Controller
 
                     $this->messagePasswordRegister(
                         $user->phone,
-                        $user->password,
                         $user->email,
-                        $user->username
+                        $user->username,
+                        $user->password,
+                        $course,
                     );
                     Mail::to($user->email)->send(new PaymentSuccess(
                         $user->order_id,
                         $user->username,
                         $user->email,
-                        $user->password
+                        $user->password,
+                        $course->course_url
                     ));
 
                     return response()->json([
@@ -342,19 +365,6 @@ class PaymentController extends Controller
                         'error' => $response->json()
                     ], $response->status());
                 }
-            } else {
-                $this->messagePasswordRegister(
-                    $user->phone,
-                    null,
-                    $user->email,
-                    $user->username
-                );
-                Mail::to($user->email)->send(new PaymentSuccess(
-                    $user->order_id,
-                    $user->username,
-                    $user->email,
-                    null
-                ));
             }
         } catch (\Exception $e) {
             throw new \Exception("Error registering user: " . $e->getMessage());
@@ -385,105 +395,98 @@ class PaymentController extends Controller
         Log::info("Payment pending for order: {$orderId}", $validation);
     }
 
-    private function sendMessage($phone, $message)
+    private function sendRequest(array $data): void
     {
-        try {
-            $phone = preg_replace('/\D/', '', $phone);
+        $url = 'https://api.fonnte.com/send';
+        $token = config('app.fonnte.token');
 
-            $url = 'https://api.fonnte.com/send';
-            $token = config('app.fonnte.token');
-            $data = [
-                'target' => $phone,
-                'message' => $message,
-                'countryCode' => '62'
-            ];
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: ' . $token,
+            'Content-Type: application/json'
+        ]);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                'Authorization: ' . $token
-            ]);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $response = curl_exec($ch);
-            curl_close($ch);
+        $response = curl_exec($ch);
+        curl_close($ch);
 
-            logger()->info($response);
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        Log::info('Send request to fonnte:', [$response]);
     }
 
-    private function messagePasswordRegister($phone, $password = null, $email, $username)
+    private function sendMessage(string $phone, string $message): void
     {
-        if ($password === null) {
-            // Pesan kalau password login tidak ada
-            $message = "🌟 *Hi {$username}!* 🌟  
+        $phone = preg_replace('/\D/', '', $phone);
+        if (str_starts_with($phone, '0')) {
+            $phone = '62' . substr($phone, 1); // Normalisasi 0812... jadi 62812...
+        }
+
+        $this->sendRequest([
+            'target' => $phone,
+            'message' => $message,
+            'countryCode' => '62',
+        ]);
+    }
+
+    private function sendMessageToGroup(string $message): void
+    {
+        $this->sendRequest([
+            'target' => config('app.fonnte.group_token'),
+            'message' => $message,
+            'countryCode' => '62',
+        ]);
+    }
+
+    private function messagePasswordRegister(string $phone, string $email, string $username, ?string $password = null, Course $course): bool
+    {
+        $message = "🔐*INFORMASI RAHASI*
+
+*🚫Jangan berikan kepada siapapun*
+
+🌟 *Hi {$username}!* 🌟  
 Terima kasih sudah mempercayai kami 🙏
 
 🎓 Kamu baru saja berhasil membeli course berikut:
 ━━━━━━━━━━━━━━━━━━━━
-📌 Nama Course : Introduction to Photography Masterclass  
-💵 Harga       : Rp. 1  
+📌 Nama Course : {$course->nama}  
+💵 Harga       : {$course->harga}  
 📅 Tanggal     : " . now()->format('d M Y H:i') . "  
 ━━━━━━━━━━━━━━━━━━━━
 
-🔑 *Password Course*  
-👉 Gunakan untuk mengakses materi course  
-➡️ richschoolcourse1  
-
-👉 Setelah memasukan password course, Kamu juga harus login untuk bisa memulai materi  
-
-Akses kelas  
-👉 https://lms.sohibdigi.id/courses/introduction-to-photography-masterclass/  
-
-━━━━━━━━━━━━━━━━━━━━
-⚡ *Langkah Akses Course*:  
-1️⃣ Klik link akses kelas diatas  
-2️⃣ Masukan *Password Course*  
-3️⃣ Start Learning! (login dulu ya)  
-
-Terima kasih sudah bergabung 🚀  
-_Selamat belajar & semoga sukses!_ ✨";
-        } else {
-            // Pesan kalau password login ada
-            $message = "🌟 *Hi {$username}!* 🌟  
-Terima kasih sudah mempercayai kami 🙏
-
-🎓 Kamu baru saja berhasil membeli course berikut:
-━━━━━━━━━━━━━━━━━━━━
-📌 Nama Course : Introduction to Photography Masterclass  
-💵 Harga       : Rp. 1  
-📅 Tanggal     : " . now()->format('d M Y H:i') . "  
-━━━━━━━━━━━━━━━━━━━━
-
-🔑 *Password Course*  
-👉 Gunakan untuk mengakses materi course  
-➡️ richschoolcourse1  
-
-👉 Setelah memasukan password course, Kamu juga harus login untuk bisa memulai materi  
-
-🔐 *Detail Akun Kamu Untuk Login* :  
+👉 " . ($password ? "🔐 *Detail Akun Kamu Untuk Login* :  
 📧 Email    : {$email}  
 ➡️ Password : {$password}  
 
+👉 login ke sini dulu untuk ubah password : 
+https://ecourse.sekolahkaya.com/dashboard/settings/reset-password/
+
+🔑 *Password Course*  
+👉 Gunakan untuk mengakses materi course  
+➡️ {$course->password}  
+
+👉 Setelah memasukan password course, Kamu juga harus login untuk bisa memulai materi  
+
+" : "") . "
 Akses kelas  
-👉 https://lms.sohibdigi.id/courses/introduction-to-photography-masterclass/  
+👉 {$course->course_url}  
 
 ━━━━━━━━━━━━━━━━━━━━
 ⚡ *Langkah Akses Course*:  
-1️⃣ Klik link akses kelas diatas  
-2️⃣ Masukan *Password Course*  
-3️⃣ Start Learning! (login dulu ya)  
+1️⃣ Ubah Password Segera   
+2️⃣ Klik link akses kelas diatas
+3️⃣ Masukan *Password Course* 
+4️⃣ Start Learning! (login dulu ya)
 
 Terima kasih sudah bergabung 🚀  
 _Selamat belajar & semoga sukses!_ ✨";
-        }
 
         try {
             $this->sendMessage($phone, $message);
+            $this->sendMessageToGroup($message);
             return true;
         } catch (\Exception $e) {
+            logger()->error($e->getMessage());
             throw $e;
         }
     }

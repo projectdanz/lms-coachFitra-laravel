@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Course;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,9 +16,16 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // User::factory()->create([
+        //    'name' => 'Test User',
+        //    'email' => 'test@example.com',
+        // ]);
+
+        Course::create([
+            'nama' => 'Ruang Kelas Menjadi Sales Jago Closing',
+            'harga' => 1,
+            'password' => 'MbCk3l4S001',
+            'course_url' => 'https://ecourse.sekolahkaya.com/courses/introduction-to-photography-masterclass/',
         ]);
     }
 }
