@@ -512,36 +512,6 @@
                         <a href="#">Dashboard
                             <i class="feather-chevron-down"></i>
                         </a>
-                        <ul class="submenu">
-                            <li class="has-dropdown"><a href="#">Instructor Dashboard</a>
-                                <ul class="submenu">
-                                    <li><a href="{{ route('instructorDashboard') }}">Dashboard</a></li>
-                                    <li><a href="{{ route('instructorProfile') }}">Profile</a></li>
-                                    <li><a href="{{ route('instructorEnrolledCourses') }}">Enrolled Courses</a></li>
-                                    <li><a href="{{ route('instructorWishlist') }}">Wishlist</a></li>
-                                    <li><a href="{{ route('instructorReviews') }}">Reviews</a></li>
-                                    <li><a href="{{ route('instructorMyQuizAttempts') }}">My Quiz Attempts</a></li>
-                                    <li><a href="{{ route('instructorOrderHistory') }}">Order History</a></li>
-                                    {{-- <li><a href="{{ route('instructorCourse') }}">My Course</a></li> --}}
-                                    <li><a href="{{ route('instructorAnnouncements') }}">Announcements</a></li>
-                                    <li><a href="{{ route('instructorQuizAttempts') }}">Quiz Attempts</a></li>
-                                    <li><a href="{{ route('instructorAssignments') }}">Assignments</a></li>
-                                    <li><a href="{{ route('instructorSettings') }}">Settings</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-dropdown"><a href="#">Student Dashboard</a>
-                                <ul class="submenu">
-                                    <li><a href="{{ route('studentDashboard') }}">Dashboard</a></li>
-                                    <li><a href="{{ route('studentProfile') }}">Profile</a></li>
-                                    <li><a href="{{ route('studentEnrolledCourses') }}">Enrolled Courses</a></li>
-                                    <li><a href="{{ route('studentWishlist') }}">Wishlist</a></li>
-                                    <li><a href="{{ route('studentReviews') }}">Reviews</a></li>
-                                    <li><a href="{{ route('studentMyQuizAttempts') }}">My Quiz Attempts</a></li>
-                                    <li><a href="{{ route('studentOrderHistory') }}">Order History</a></li>
-                                    <li><a href="{{ route('studentSettings') }}">Settings</a></li>
-                                </ul>
-                            </li>
-                        </ul>
                     </li>
 
                     <li class="with-megamenu has-menu-child-item position-static">
@@ -733,32 +703,6 @@
                         <div class="rbt-megamenu grid-item-3">
                             <div class="wrapper">
                                 <div class="row row--15">
-                                    <div class="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
-                                        <h3 class="rbt-short-title">Blog Styles</h3>
-                                        <ul class="mega-menu-item">
-                                            <li><a href="{{ route('blogList') }}">Blog List</a></li>
-                                            <li><a href="{{ route('blog') }}">Blog Grid</a></li>
-                                            <li><a href="{{ route('blogGridMinimal') }}">Blog Grid Minimal</a></li>
-                                            <li><a href="{{ route('blogWithSidebar') }}">Blog With Sidebar</a></li>
-                                            <li><a href="{{ route('blogDetails') }}">Blog Details</a></li>
-                                            <li><a href="{{ route('postFormatStandard') }}">Post Format Standard</a></li>
-                                            <li><a href="{{ route('postFormatGallery') }}">Post Format Gallery</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
-                                        <h3 class="rbt-short-title">Get Started</h3>
-                                        <ul class="mega-menu-item">
-                                            <li><a href="{{ route('postFormatQuote') }}">Post Format Quote</a></li>
-                                            <li><a href="{{ route('postFormatAudio') }}">Post Format Audio</a></li>
-                                            <li><a href="{{ route('postFormatVideo') }}">Post Format Video</a></li>
-                                            <li><a href="#">Media Under Title <span class="rbt-badge-card">Coming</span></a></li>
-                                            <li><a href="#">Sticky Sidebar <span class="rbt-badge-card">Coming</span></a></li>
-                                            <li><a href="#">Auto Masonry <span class="rbt-badge-card">Coming</span></a></li>
-                                            <li><a href="#">Meta Overlaid <span class="rbt-badge-card">Coming</span></a></li>
-                                        </ul>
-                                    </div>
-
                                     <div class="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
                                         <div class="rbt-ads-wrapper">
                                             <a class="d-block" href="#"><img src="{{ asset('assets/images/service/mobile-cat.jpg') }}" alt="Education Images"></a>

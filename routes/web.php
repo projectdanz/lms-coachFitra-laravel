@@ -2,7 +2,6 @@
 
 use App\Mail\PaymentSuccess;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PagesController;
@@ -22,22 +21,6 @@ Route::get('/payment', [FieldPaymnetController::class, 'fieldPayment'])->name('f
 Route::get('/mail', [PaymentSuccess::class, 'viewMail'])->name('mail');
 Route::get('/success-checkout', [SuccessCheckoutController::class, 'viewCO'])->name('success');
 
-
-//  demo
-Route::prefix('blog')->group(function () {
-    Route::controller(BlogController::class)->group(function () {
-            Route::get('/blog','blog')->name('blog');
-            Route::get('/blog-details','blogDetails')->name('blogDetails');
-            Route::get('/blog-grid-minimal','blogGridMinimal')->name('blogGridMinimal');
-            Route::get('/blog-list','blogList')->name('blogList');
-            Route::get('/blog-with-sidebar','blogWithSidebar')->name('blogWithSidebar');
-            Route::get('/post-format-audio','postFormatAudio')->name('postFormatAudio');
-            Route::get('/post-format-gallery','postFormatGallery')->name('postFormatGallery');
-            Route::get('/post-format-quote','postFormatQuote')->name('postFormatQuote');
-            Route::get('/post-format-standard','postFormatStandard')->name('postFormatStandard');
-            Route::get('/post-format-video','postFormatVideo')->name('postFormatVideo');
-    });
-});
 
 //  courses
 
@@ -64,40 +47,6 @@ Route::prefix('courses')->group(function () {
     });
 });
 
-//  Instructor-dashboard
-Route::prefix('dashboard')->group(function () {
-    Route::prefix('instructor-dashboard')->group(function () {
-        Route::controller(DashboardController::class)->group(function () {
-            Route::get('/instructor-announcements','instructorAnnouncements')->name('instructorAnnouncements');
-            Route::get('/instructor-assignments','instructorAssignments')->name('instructorAssignments');
-            Route::get('/instructor-dashboard','instructorDashboard')->name('instructorDashboard');
-            Route::get('/instructor-enrolled-courses','instructorEnrolledCourses')->name('instructorEnrolledCourses');
-            Route::get('/instructor-my-quizAttempts','instructorMyQuizAttempts')->name('instructorMyQuizAttempts');
-            Route::get('/instructor-orderHistory','instructorOrderHistory')->name('instructorOrderHistory');
-            Route::get('/instructor-profile','instructorProfile')->name('instructorProfile');
-            Route::get('/instructor-quiz-attempts','instructorQuizAttempts')->name('instructorQuizAttempts');
-            Route::get('/instructor-reviews','instructorReviews')->name('instructorReviews');
-            Route::get('/instructor-settings','instructorSettings')->name('instructorSettings');
-            Route::get('/instructor-wishlist','instructorWishlist')->name('instructorWishlist');
-        });
-    });
-});
-
-//  student-dashboard
-Route::prefix('dashboard')->group(function () {
-    Route::prefix('student-dashboard')->group(function () {
-        Route::controller(DashboardController::class)->group(function () {
-            Route::get('/student-dashboard','studentDashboard')->name('studentDashboard');
-            Route::get('/student-enrolled-courses','studentEnrolledCourses')->name('studentEnrolledCourses');
-            Route::get('/student-my-quiz-attempts','studentMyQuizAttempts')->name('studentMyQuizAttempts');
-            Route::get('/student-order-history','studentOrderHistory')->name('studentOrderHistory');
-            Route::get('/student-profile','studentProfile')->name('studentProfile');
-            Route::get('/student-reviews','studentReviews')->name('studentReviews');
-            Route::get('/student-settings','studentSettings')->name('studentSettings');
-            Route::get('/student-wishlist','studentWishlist')->name('studentWishlist');
-        });
-    });
-});
 
 //  courses
 Route::prefix('elements')->group(function () {
@@ -167,7 +116,7 @@ Route::prefix('home')->group(function () {
 Route::prefix('pages')->group(function () {
     Route::controller(pagesController::class)->group(function () {
         Route::get('/page-error' ,'pageError')->name('pageError');
-        Route::get('/aboutus-01' ,'aboutus01')->name('aboutus01');
+        Route::get('/about' ,'aboutus01')->name('aboutus01');
         Route::get('/aboutus-02' ,'aboutus02')->name('aboutus02');
         Route::get('/academy-gallery' ,'academyGallery')->name('academyGallery');
         Route::get('/admission-guide' ,'admissionGuide')->name('admissionGuide');

@@ -65,12 +65,6 @@
                                 <a href="{{ route('becomeTeacher') }}">Become Teacher</a>
                             </li>
                             <li>
-                                <a href="{{ route('blog') }}">Blog</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('instructor') }}">Instructor</a>
-                            </li>
-                            <li>
                                 <a href="{{ route('eventList') }}">Events</a>
                             </li>
                         </ul>
