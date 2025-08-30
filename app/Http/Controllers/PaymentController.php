@@ -29,16 +29,12 @@ class PaymentController extends Controller
     public function createPayment(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'method' => 'required|string',
+           'method' => 'required|string',
             'amount' => 'required|integer|min:1',
             'customer.username' => 'required|string|max:45',
             'customer.email' => 'required|email|max:45',
             'customer.phone' => 'required|string|min:10',
-            'items' => 'array',
-            'items.*.id' => 'string|max:50',
-            'items.*.name' => 'required_with:items|string|max:50',
-            'items.*.price' => 'required_with:items|integer|min:1',
-            'items.*.quantity' => 'required_with:items|integer|min:1',
+            'course_id' => 'required|number|exists:course,id',
         ]);
 
         if ($validator->fails()) {
