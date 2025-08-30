@@ -46,7 +46,7 @@ class PaymentController extends Controller
             ], 422);
         }
 
-        $course = Course::find($request->input('coure_id'));
+        $course = Course::find($request->input('course_id'));
 
         $item = [
             'name' => $course->nama,
