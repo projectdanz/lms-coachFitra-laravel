@@ -318,7 +318,8 @@ class PaymentController extends Controller
                     $user->order_id,
                     $user->username,
                     $user->email,
-                    null
+                    null,
+                    $course->course_url
                 ));
             } else {
                 $password = Str::random(8);
