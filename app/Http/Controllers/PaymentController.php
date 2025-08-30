@@ -402,7 +402,7 @@ class PaymentController extends Controller
         $response = curl_exec($ch);
         curl_close($ch);
 
-        Log::info('Send request to fonnte:',[$response]);
+        Log::info('Send request to fonnte:', [$response]);
     }
 
     private function sendMessage(string $phone, string $message): void
@@ -428,7 +428,6 @@ class PaymentController extends Controller
         ]);
     }
 
-
     private function messagePasswordRegister(string $phone, string $email, string $username, ?string $password = null): bool
     {
         $courseName = config('app.course.name', 'Introduction to Photography Masterclass');
@@ -436,7 +435,11 @@ class PaymentController extends Controller
         $coursePassword = config('app.course.password', 'MbCk3l4S001');
         $courseUrl = config('app.course.url', 'https://ecourse.sekolahkaya.com');
 
-        $message = "🌟 *Hi {$username}!* 🌟  
+        $message = "🔐*INFORMASI RAHASI*
+
+*🚫Jangan berikan kepada siapapun*
+
+🌟 *Hi {$username}!* 🌟  
 Terima kasih sudah mempercayai kami 🙏
 
 🎓 Kamu baru saja berhasil membeli course berikut:
@@ -465,9 +468,10 @@ Akses kelas
 
 ━━━━━━━━━━━━━━━━━━━━
 ⚡ *Langkah Akses Course*:  
-1️⃣ Klik link akses kelas diatas  
-2️⃣ Masukan *Password Course*  
-3️⃣ Start Learning! (login dulu ya)  
+1️⃣ Ubah Password Segera   
+2️⃣ Klik link akses kelas diatas
+3️⃣ Masukan *Password Course* 
+4️⃣ Start Learning! (login dulu ya)
 
 Terima kasih sudah bergabung 🚀  
 _Selamat belajar & semoga sukses!_ ✨";
