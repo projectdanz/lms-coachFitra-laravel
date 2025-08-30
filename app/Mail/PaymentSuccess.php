@@ -21,6 +21,7 @@ class PaymentSuccess extends Mailable
         protected $username,
         protected $email,
         protected $password = null,
+        protected $courseUrl,
     ) {
 
     }
@@ -47,7 +48,7 @@ class PaymentSuccess extends Mailable
                 'email' => $this->email,
                 'password' => $this->password,
                 'username' => $this->username,
-                'password_course' => "MbCk3l4S001",
+                'password_course' => $this->courseUrl,
             ]
         );
     }
