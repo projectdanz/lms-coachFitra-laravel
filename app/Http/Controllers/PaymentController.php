@@ -302,7 +302,7 @@ class PaymentController extends Controller
 
             if ($hasUserEverBought <= 2) {
                 $password = Str::random(8);
-                $response = Http::withBasicAuth('admin', 'akiQ IdQL aFgh CryS 5PHS WBLC')
+                $response = Http::withBasicAuth(config('app.wp.username'), config('app.wp.password'))
                     ->withHeaders([
                         'Content-Type' => 'application/json'
                     ])
@@ -391,7 +391,7 @@ class PaymentController extends Controller
             $phone = preg_replace('/\D/', '', $phone);
 
             $url = 'https://api.fonnte.com/send';
-            $token = 'DrYMr6sBfgLLmFGU2RHE';
+            $token = config('app.fonnte.token');
             $data = [
                 'target' => $phone,
                 'message' => $message,

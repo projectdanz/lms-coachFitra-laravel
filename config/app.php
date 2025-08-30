@@ -126,5 +126,10 @@ return [
     'fonnte' => [
         'token' => env('FONNTE_TOKEN'),
         'group_token' => env('FONNTE_GROUP_TOKEN'),
-    ]
+    ],
+
+    'wp' => [
+        'username' => env('WP_USERNAME'),
+        'password' => env('WP_PASSWORD'),
+    ],
 ];
