@@ -1,4 +1,4 @@
-name: Publish lmsbe.sekolahkaya.com to cPanel
+name: Publish checkout.sekolahkaya.com to cPanel
 
 on:
   push:
