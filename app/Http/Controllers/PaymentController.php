@@ -302,11 +302,11 @@ class PaymentController extends Controller
 
             if ($hasUserEverBought <= 2) {
                 $password = Str::random(8);
-                $response = Http::withBasicAuth('ghifariakun@gmail.com', 'H03LwDz0ivLOgi6tLoyvtWiC')
+                $response = Http::withBasicAuth('admin', 'akiQ IdQL aFgh CryS 5PHS WBLC')
                     ->withHeaders([
                         'Content-Type' => 'application/json'
                     ])
-                    ->post('https://lms.sohibdigi.id/wp-json/wp/v2/users', [
+                    ->post('https://ecourse.sekolahkaya.com/wp-json/wp/v2/users', [
                         'username' => $user->username,
                         'email' => $user->email,
                         'password' => $password,
