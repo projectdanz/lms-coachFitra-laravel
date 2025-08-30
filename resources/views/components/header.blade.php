@@ -11,6 +11,11 @@
                             <img src="https://lms.sohibdigi.id/wp-content/uploads/2025/08/logosekolahkaya.webp" alt="Education Logo Images" style="height:50px;">
                         </a>
                     </div>
+                
+                    <div class="logo d-none logo-light">
+                        <a href="{{ route('mainDemo') }}">
+                            <img src="https://lms.sohibdigi.id/wp-content/uploads/2025/08/logosekolahkaya.webp" alt="Edu-cause"></a>
+                    </div>
                 </div>
 
                 <!-- Navigation (Desktop Only) -->
@@ -41,6 +46,18 @@
     <div class="mobile-modal-content">
         <span id="closeModal" class="close-btn">&times;</span>
         <ul class="mobile-nav-menu">
+                <div style="position: relative; top: 0px; right: 0px;">
+                    <div class="logo logo-dark">
+                        <a href="{{ route('mainDemo') }}">
+                            <img src="https://lms.sohibdigi.id/wp-content/uploads/2025/08/logosekolahkaya.webp" alt="Education Logo Images" style="height:50px;">
+                        </a>
+                    </div>
+                
+                    <div class="logo d-none logo-light">
+                        <a href="{{ route('mainDemo') }}">
+                            <img src="https://lms.sohibdigi.id/wp-content/uploads/2025/08/logosekolahkaya.webp" alt="Edu-cause"></a>
+                    </div>
+                </div>
             <li><a href="{{ route('mainDemo') }}">Home</a></li>
             <li><a href="{{ route('courseWithTab') }}">Courses</a></li>
             <li><a href="{{ route('aboutus01') }}">About</a></li>

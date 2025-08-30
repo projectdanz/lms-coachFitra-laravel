@@ -267,30 +267,30 @@
             <p class="subtitle">Terima kasih telah mempercayai kami. Course yang Anda beli sudah aktif dan siap untuk dipelajari!</p>
             
             <div class="steps-container">
-                <h2 class="steps-title">
-                    Langkah Akses Course
-                </h2>
-                
-                <div class="step-item">
-                    <div class="step-number">1️⃣</div>
-                    <div class="step-text">Pilih course yang sudah kamu beli</div>
-                </div>
-                
-                <div class="step-item">
-                    <div class="step-number">2️⃣</div>
-                    <div class="step-text">Setelah itu masukan Password Course, lalu tekan Enroll Now</div>
-                </div>
-                
-                <div class="step-item">
-                    <div class="step-number">3️⃣</div>
-                    <div class="step-text">Masukan Email, dan Password yang sudah kami berikan</div>
-                </div>
-            </div>
-            
+    <h2 class="steps-title">
+        Langkah Akses Course
+    </h2>
+    
+    <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-text">Pilih course yang dibeli</div>
+    </div>
+    
+    <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-text">Masukkan password course</div>
+    </div>
+    
+    <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-text">Login dengan email & password</div>
+    </div>
+</div>
+
             <div class="action-buttons">
-                <a href="https://mail.google.com/mail/u/0/#all" class="btn btn-email" target="_blank">
+                <a href="https://ecourse.sekolahkaya.com/dashboard/settings/reset-password/" class="btn btn-email" target="_blank">
                     <i class="fas fa-envelope"></i>
-                    Cek Email Anda
+                    Login & Ubah Password
                 </a>
                 
                 <a href="https://wa.me/6289502433722" class="btn btn-whatsapp" target="_blank">
