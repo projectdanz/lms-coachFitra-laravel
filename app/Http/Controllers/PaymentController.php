@@ -345,9 +345,9 @@ class PaymentController extends Controller
             } else {
                 $this->messagePasswordRegister(
                     $user->phone,
-                    null,
                     $user->email,
-                    $user->username
+                    $user->username,
+                    null,
                 );
                 Mail::to($user->email)->send(new PaymentSuccess(
                     $user->order_id,
