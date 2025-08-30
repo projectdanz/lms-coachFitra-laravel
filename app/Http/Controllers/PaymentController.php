@@ -35,7 +35,7 @@ class PaymentController extends Controller
             'customer.username' => 'required|string|max:45',
             'customer.email' => 'required|email|max:45',
             'customer.phone' => 'required|string|min:10',
-            'course_id' => 'required|number|exists:course,id',
+            'course_id' => 'required|integer|exists:course,id',
         ]);
 
         if ($validator->fails()) {
