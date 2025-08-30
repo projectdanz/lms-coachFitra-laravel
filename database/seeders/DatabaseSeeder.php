@@ -21,10 +21,11 @@ class DatabaseSeeder extends Seeder
         //    'email' => 'test@example.com',
         // ]);
 
-        Course::factory()->create([
+        Course::create([
             'nama' => 'Ruang Kelas Menjadi Sales Jago Closing',
             'harga' => 1,
             'password' => 'MbCk3l4S001',
+            'course_url' => 'https://ecourse.sekolahkaya.com/courses/introduction-to-photography-masterclass/',
         ]);
     }
 }
