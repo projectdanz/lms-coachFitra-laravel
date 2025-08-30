@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\PaymentSuccess;
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -45,6 +46,14 @@ class PaymentController extends Controller
             ], 422);
         }
 
+        $course = Course::find($request->input('coure_id'));
+
+        $item = [
+            'name' => $course->nama,
+            'price' => $course->harga,
+            'quantity' => 1,
+        ];
+
         $order_id = Str::uuid()->toString();
 
         User::create([
@@ -62,7 +71,7 @@ class PaymentController extends Controller
                     'gross_amount' => $request->amount,
                 ],
                 'customer_details' => $request->customer,
-                'item_details' => $request->items ?? [],
+                'item_details' => $item ?? [],
             ];
 
             $result = $this->midtrans->createPayment($paymentData);
@@ -295,8 +304,23 @@ class PaymentController extends Controller
             $hasUserEverBought = User::where('email', $user->email)
                 ->orWhere('phone', $user->phone)
                 ->count();
+            $course = Course::find($user->course_id);
 
-            if ($hasUserEverBought <= 2) {
+            if ($hasUserEverBought >= 1) {
+                $this->messagePasswordRegister(
+                    $user->phone,
+                    $user->email,
+                    $user->username,
+                    null,
+                    $course,
+                );
+                Mail::to($user->email)->send(new PaymentSuccess(
+                    $user->order_id,
+                    $user->username,
+                    $user->email,
+                    null
+                ));
+            } else {
                 $password = Str::random(8);
                 $response = Http::withBasicAuth(config('app.wp.username'), config('app.wp.password'))
                     ->withHeaders([
@@ -315,15 +339,17 @@ class PaymentController extends Controller
 
                     $this->messagePasswordRegister(
                         $user->phone,
-                        $user->password,
                         $user->email,
-                        $user->username
+                        $user->username,
+                        $user->password,
+                        $course,
                     );
                     Mail::to($user->email)->send(new PaymentSuccess(
                         $user->order_id,
                         $user->username,
                         $user->email,
-                        $user->password
+                        $user->password,
+                        $course->course_url
                     ));
 
                     return response()->json([
@@ -338,19 +364,6 @@ class PaymentController extends Controller
                         'error' => $response->json()
                     ], $response->status());
                 }
-            } else {
-                $this->messagePasswordRegister(
-                    $user->phone,
-                    $user->email,
-                    $user->username,
-                    null,
-                );
-                Mail::to($user->email)->send(new PaymentSuccess(
-                    $user->order_id,
-                    $user->username,
-                    $user->email,
-                    null
-                ));
             }
         } catch (\Exception $e) {
             throw new \Exception("Error registering user: " . $e->getMessage());
@@ -424,13 +437,8 @@ class PaymentController extends Controller
         ]);
     }
 
-    private function messagePasswordRegister(string $phone, string $email, string $username, ?string $password = null): bool
+    private function messagePasswordRegister(string $phone, string $email, string $username, ?string $password = null, Course $course): bool
     {
-        $courseName = config('app.course.name', 'Introduction to Photography Masterclass');
-        $coursePrice = config('app.course.price', 'Rp. 1');
-        $coursePassword = config('app.course.password', 'MbCk3l4S001');
-        $courseUrl = config('app.course.url', 'https://ecourse.sekolahkaya.com');
-
         $message = "🔐*INFORMASI RAHASI*
 
 *🚫Jangan berikan kepada siapapun*
@@ -440,27 +448,27 @@ Terima kasih sudah mempercayai kami 🙏
 
 🎓 Kamu baru saja berhasil membeli course berikut:
 ━━━━━━━━━━━━━━━━━━━━
-📌 Nama Course : {$courseName}  
-💵 Harga       : {$coursePrice}  
+📌 Nama Course : {$course->nama}  
+💵 Harga       : {$course->harga}  
 📅 Tanggal     : " . now()->format('d M Y H:i') . "  
 ━━━━━━━━━━━━━━━━━━━━
 
-🔑 *Password Course*  
-👉 Gunakan untuk mengakses materi course  
-➡️ {$coursePassword}  
-
-👉 Setelah memasukan password course, Kamu juga harus login untuk bisa memulai materi  
-
-" . ($password ? "🔐 *Detail Akun Kamu Untuk Login* :  
+👉 " . ($password ? "🔐 *Detail Akun Kamu Untuk Login* :  
 📧 Email    : {$email}  
 ➡️ Password : {$password}  
 
-👉 login ke sini dulu untuk ubah password jika di perlukan : 
+👉 login ke sini dulu untuk ubah password : 
 https://ecourse.sekolahkaya.com/dashboard/settings/reset-password/
+
+🔑 *Password Course*  
+👉 Gunakan untuk mengakses materi course  
+➡️ {$course->password}  
+
+👉 Setelah memasukan password course, Kamu juga harus login untuk bisa memulai materi  
 
 " : "") . "
 Akses kelas  
-👉 {$courseUrl}  
+👉 {$course->course_url}  
 
 ━━━━━━━━━━━━━━━━━━━━
 ⚡ *Langkah Akses Course*:  
