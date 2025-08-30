@@ -335,6 +335,8 @@ class PaymentController extends Controller
                         'data' => $response->json()
                     ]);
                 } else {
+                    Log::error("Registration failed", [$response->body()]);
+
                     return response()->json([
                         'message' => 'Registration failed',
                         'error' => $response->json()
