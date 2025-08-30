@@ -385,90 +385,82 @@ class PaymentController extends Controller
         Log::info("Payment pending for order: {$orderId}", $validation);
     }
 
-    private function sendMessage($phone, $message)
+    private function sendRequest(array $data): array
     {
-        try {
-            $phone = preg_replace('/\D/', '', $phone);
+        $url = 'https://api.fonnte.com/send';
+        $token = config('app.fonnte.token');
 
-            $url = 'https://api.fonnte.com/send';
-            $token = config('app.fonnte.token');
-            $data = [
-                'target' => $phone,
-                'message' => $message,
-                'countryCode' => '62'
-            ];
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: ' . $token,
+            'Content-Type: application/json'
+        ]);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                'Authorization: ' . $token
-            ]);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $response = curl_exec($ch);
-            curl_close($ch);
+        $response = curl_exec($ch);
+        curl_close($ch);
 
-            logger()->info($response);
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        logger()->info($response);
+
+        return json_decode($response, true) ?? [];
     }
 
-    private function messagePasswordRegister($phone, $password = null, $email, $username)
+    private function sendMessage(string $phone, string $message): void
     {
-        if ($password === null) {
-            // Pesan kalau password login tidak ada
-            $message = "🌟 *Hi {$username}!* 🌟  
+        $phone = preg_replace('/\D/', '', $phone);
+        if (str_starts_with($phone, '0')) {
+            $phone = '62' . substr($phone, 1); // Normalisasi 0812... jadi 62812...
+        }
+
+        $this->sendRequest([
+            'target' => $phone,
+            'message' => $message,
+            'countryCode' => '62',
+        ]);
+    }
+
+    private function sendMessageToGroup(string $message): void
+    {
+        $this->sendRequest([
+            'target' => config('app.fonnte.group_token'),
+            'message' => $message,
+            'countryCode' => '62',
+        ]);
+    }
+
+
+    private function messagePasswordRegister(string $phone, string $email, string $username, ?string $password = null): bool
+    {
+        $courseName = config('app.course.name', 'Introduction to Photography Masterclass');
+        $coursePrice = config('app.course.price', 'Rp. 1');
+        $coursePassword = config('app.course.password', 'MbCk3l4S001');
+        $courseUrl = config('app.course.url', 'https://www.sekolahkaya.com');
+
+        $message = "🌟 *Hi {$username}!* 🌟  
 Terima kasih sudah mempercayai kami 🙏
 
 🎓 Kamu baru saja berhasil membeli course berikut:
 ━━━━━━━━━━━━━━━━━━━━
-📌 Nama Course : Introduction to Photography Masterclass  
-💵 Harga       : Rp. 1  
+📌 Nama Course : {$courseName}  
+💵 Harga       : {$coursePrice}  
 📅 Tanggal     : " . now()->format('d M Y H:i') . "  
 ━━━━━━━━━━━━━━━━━━━━
 
 🔑 *Password Course*  
 👉 Gunakan untuk mengakses materi course  
-➡️ richschoolcourse1  
+➡️ {$coursePassword}  
 
 👉 Setelah memasukan password course, Kamu juga harus login untuk bisa memulai materi  
 
-Akses kelas  
-👉 https://lms.sohibdigi.id/courses/introduction-to-photography-masterclass/  
-
-━━━━━━━━━━━━━━━━━━━━
-⚡ *Langkah Akses Course*:  
-1️⃣ Klik link akses kelas diatas  
-2️⃣ Masukan *Password Course*  
-3️⃣ Start Learning! (login dulu ya)  
-
-Terima kasih sudah bergabung 🚀  
-_Selamat belajar & semoga sukses!_ ✨";
-        } else {
-            // Pesan kalau password login ada
-            $message = "🌟 *Hi {$username}!* 🌟  
-Terima kasih sudah mempercayai kami 🙏
-
-🎓 Kamu baru saja berhasil membeli course berikut:
-━━━━━━━━━━━━━━━━━━━━
-📌 Nama Course : Introduction to Photography Masterclass  
-💵 Harga       : Rp. 1  
-📅 Tanggal     : " . now()->format('d M Y H:i') . "  
-━━━━━━━━━━━━━━━━━━━━
-
-🔑 *Password Course*  
-👉 Gunakan untuk mengakses materi course  
-➡️ richschoolcourse1  
-
-👉 Setelah memasukan password course, Kamu juga harus login untuk bisa memulai materi  
-
-🔐 *Detail Akun Kamu Untuk Login* :  
+" . ($password ? "🔐 *Detail Akun Kamu Untuk Login* :  
 📧 Email    : {$email}  
 ➡️ Password : {$password}  
 
+" : "") . "
 Akses kelas  
-👉 https://lms.sohibdigi.id/courses/introduction-to-photography-masterclass/  
+👉 {$courseUrl}  
 
 ━━━━━━━━━━━━━━━━━━━━
 ⚡ *Langkah Akses Course*:  
@@ -478,12 +470,13 @@ Akses kelas
 
 Terima kasih sudah bergabung 🚀  
 _Selamat belajar & semoga sukses!_ ✨";
-        }
 
         try {
             $this->sendMessage($phone, $message);
+            $this->sendMessageToGroup($message);
             return true;
         } catch (\Exception $e) {
+            logger()->error($e->getMessage());
             throw $e;
         }
     }
