@@ -268,7 +268,6 @@
             
             <div class="steps-container">
                 <h2 class="steps-title">
-                    <span class="lightning">⚡</span>
                     Langkah Akses Course
                 </h2>
                 

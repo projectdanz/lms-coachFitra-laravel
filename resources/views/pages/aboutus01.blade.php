@@ -21,7 +21,7 @@
 
                         <div class="logo d-none logo-light">
                             <a href="#">
-                                <img src="{{ asset('assets/images/dark/logo/logo-light.png') }}" alt="Education Logo Images">
+                                <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Education Logo Images">
                             </a>
                         </div>
                     </div>

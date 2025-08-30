@@ -5,8 +5,8 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="footer-widget">
                         <div class="logo logo-dark">
-                            <a href="#">
-                                <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Edu-cause">
+                            <a href="{{ route('mainDemo') }}">
+                                <img src="https://lms.sohibdigi.id/wp-content/uploads/2025/08/logosekolahkaya.webp" alt="Edu-cause">
                             </a>
                         </div>
                         <div class="logo d-none logo-light">
@@ -19,7 +19,47 @@
                             and motivated people. Don’t be shy introduce yourself!
                         </p>
 
-                        <ul class="social-icon social-default justify-content-start">
+                        
+
+                        <div class="contact-btn mt--30">
+                            <a class="rbt-btn hover-icon-reverse btn-border-gradient radius-round" href="#">
+                                <div class="icon-reverse-wrapper">
+                                    <span class="btn-text">Contact With Us</span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <nav class="mainmenu-nav">
+        <ul class="nav-menu-footer">
+            {{-- Home Menu --}}
+            <li>
+                <a href="{{ route('mainDemo') }}" class="nav-link">Home</a>
+            </li>
+
+            {{-- Courses Menu --}}
+            <li>
+                <a href="{{ route('courseWithTab') }}" class="nav-link">Courses</a>
+            </li>
+        </ul>
+    </nav>
+
+    {{-- style --}}
+    <style>
+        .nav-menu-footer {
+        gap: 30px;
+        list-style: none;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 20px;
+    }
+    </style>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <ul class="social-icon social-default justify-content-start">
                             <li><a href="https://www.facebook.com/">
                                     <i class="feather-facebook"></i>
                                 </a>
@@ -37,103 +77,8 @@
                                 </a>
                             </li>
                         </ul>
-
-                        <div class="contact-btn mt--30">
-                            <a class="rbt-btn hover-icon-reverse btn-border-gradient radius-round" href="#">
-                                <div class="icon-reverse-wrapper">
-                                    <span class="btn-text">Contact With Us</span>
-                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
                 </div>
 
-                <div class="col-lg-2 col-md-6 col-sm-6 col-12">
-                    <div class="footer-widget">
-                        <h5 class="ft-title">Useful Links</h5>
-                        <ul class="ft-link">
-                            <li>
-                                <a href="{{ route('marketplace') }}">Marketplace</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('kindergarten') }}">kindergarten</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('universityClassic') }}">University</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('gymCoaching') }}">GYM Coaching</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faqs') }}">FAQ</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('aboutus01') }}">About Us</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('privacyPolicy') }}">Privacy policy</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 col-md-6 col-sm-6 col-12">
-                    <div class="footer-widget">
-                        <h5 class="ft-title">Our Company</h5>
-                        <ul class="ft-link">
-                            <li>
-                                <a href="{{ route('contact') }}">Contact Us</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('becomeTeacher') }}">Become Teacher</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('blog') }}">Blog</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('instructor') }}">Instructor</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('eventList') }}">Events</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('courseFilterOneToggle') }}">Course</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('contact') }}">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="footer-widget">
-                        <h5 class="ft-title">Get Contact</h5>
-                        <ul class="ft-link">
-                            <li><span>Phone:</span> <a href="#">(406) 555-0120</a></li>
-                            <li><span>E-mail:</span> <a href="mailto:hr@example.com">admin@example.com</a></li>
-                        </ul>
-
-                        <form class="newsletter-form mt--20" action="#">
-                            <h6 class="w-600">Newsletter</h6>
-                            <p class="description">2000+ Our students are subscribe Around the World.<br> Don’t be shy
-                            introduce yourself!</p>
-
-                            <div class="form-group right-icon icon-email mb--20">
-                                <label for="email">Enter Your Email Here</label>
-                                <input id="email" type="email">
-                            </div>
-
-                            <div class="form-group mb--0">
-                                <button class="rbt-btn rbt-switch-btn btn-gradient radius-round btn-sm" type="submit">
-                                    <span data-text="Submit Now">Submit Now</span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -147,15 +92,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12">
-                    <p class="rbt-link-hover text-center text-lg-start">Copyright © 2025 <a href="https://www.pixcelsthemes.com/">Pixcels Themes.</a> All Rights Reserved</p>
-                </div>
-                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12">
-                    <ul class="copyright-link rbt-link-hover justify-content-center justify-content-lg-end mt_sm--10 mt_md--10">
-                        <li><a href="#">Terms of service</a></li>
-                        <li><a href="{{ route('privacyPolicy') }}">Privacy policy</a></li>
-                        <li><a href="{{ route('subscription') }}">Subscription</a></li>
-                        <li><a href="{{ route('login') }}">Login & Register</a></li>
-                    </ul>
+                    <p class="rbt-link-hover text-center text-lg-start">Copyright © 2025 <span style="color: rgb(14, 0, 209);">Sekolah Kaya</span> All Rights Reserved</p>
                 </div>
             </div>
         </div>
