@@ -377,6 +377,19 @@
 
 
                <div class="form-group">
+                <div class="form-group">
+        <label for="phone" class="form-label">Course Id *</label>
+        <input type="text"
+               id="course_id"
+               name="course_id"
+               class="form-input @error('course_id') is-invalid @enderror"
+               placeholder="01"
+               value="{{ old('course_id') }}"
+               required>
+        @error('course_id')
+            <div class="text-danger mt-1">{{ $message }}</div>
+        @enderror
+    </div>
     <div class="form-group">
         <label for="username" class="form-label">Full Name *</label>
         <input type="text"
