@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -341,6 +342,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="payment-container">
         <!-- RIGHT SIDE - PAYMENT FORM -->
@@ -349,14 +351,14 @@
                 <h2 class="form-title">Complete Your Purchase</h2>
                 <p class="form-subtitle">Secure payment - Start learning today!</p>
             </div>
-            @if(session('success'))
+            @if (session('success'))
                 <div class="alert alert-success">
                     <i class="fas fa-check-circle"></i>
                     {{ session('success') }}
                 </div>
             @endif
 
-            @if($errors->any())
+            @if ($errors->any())
                 <div class="alert alert-error">
                     <i class="fas fa-exclamation-triangle"></i>
                     Please correct the errors below.
@@ -366,75 +368,52 @@
             <form action="{{ route('payment.create') }}" method="POST">
                 @csrf
 
-                
 
-               <input type="hidden" name="method" value="snap">
-               <input type="hidden" name="amount" value="1">
+
+                <input type="hidden" name="method" value="snap">
+                <input type="hidden" name="amount" value="1">
+                <input type="hidden" id="course_id" name="course_id" value="1" required>
                 <input type="hidden" id="item_id_0" name="items[0][id]" value="1">
                 <input type="hidden" id="item_name_0" name="items[0][name]" value="1" required>
                 <input type="hidden" id="item_price_0" name="items[0][price]" value="1" required>
                 <input type="hidden" id="item_quantity_0" name="items[0][quantity]" value="1" required>
 
 
-               <div class="form-group">
                 <div class="form-group">
-        <label for="phone" class="form-label">Course Id *</label>
-        <input type="text"
-               id="course_id"
-               name="course_id"
-               class="form-input @error('course_id') is-invalid @enderror"
-               placeholder="01"
-               value="{{ old('course_id') }}"
-               required>
-        @error('course_id')
-            <div class="text-danger mt-1">{{ $message }}</div>
-        @enderror
-    </div>
-    <div class="form-group">
-        <label for="username" class="form-label">Full Name *</label>
-        <input type="text"
-               id="username"
-               name="customer[username]"
-               class="form-input @error('customer.username') is-invalid @enderror"
-               placeholder="Enter your full name"
-               value="{{ old('customer.username') }}"
-               required>
-        @error('customer.username')
-            <div class="text-danger mt-1">{{ $message }}</div>
-        @enderror
-    </div>
 
-    <div class="form-group">
-        <label for="email" class="form-label">Email Address *</label>
-        <input type="email"
-               id="email"
-               name="customer[email]"
-               class="form-input @error('customer.email') is-invalid @enderror"
-               placeholder="your.email@example.com"
-               value="{{ old('customer.email') }}"
-               required>
-        @error('customer.email')
-            <div class="text-danger mt-1">{{ $message }}</div>
-        @enderror
-    </div>
+                    <div class="form-group">
+                        <label for="username" class="form-label">Full Name *</label>
+                        <input type="text" id="username" name="customer[username]"
+                            class="form-input @error('customer.username') is-invalid @enderror"
+                            placeholder="Enter your full name" value="{{ old('customer.username') }}" required>
+                        @error('customer.username')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-    <div class="form-group">
-        <label for="phone" class="form-label">Phone Number *</label>
-        <input type="text"
-               id="phone"
-               name="customer[phone]"
-               class="form-input @error('customer.phone') is-invalid @enderror"
-               placeholder="08xxxxxxxxxx"
-               value="{{ old('customer.phone') }}"
-               required>
-        @error('customer.phone')
-            <div class="text-danger mt-1">{{ $message }}</div>
-        @enderror
-    </div>
-                <button type="submit" class="submit-btn" id="submitBtn">
-                    <i class="fas fa-lock"></i>
-                    Buy Now
-                </button>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address *</label>
+                        <input type="email" id="email" name="customer[email]"
+                            class="form-input @error('customer.email') is-invalid @enderror"
+                            placeholder="your.email@example.com" value="{{ old('customer.email') }}" required>
+                        @error('customer.email')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone Number *</label>
+                        <input type="text" id="phone" name="customer[phone]"
+                            class="form-input @error('customer.phone') is-invalid @enderror" placeholder="08xxxxxxxxxx"
+                            value="{{ old('customer.phone') }}" required>
+                        @error('customer.phone')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <i class="fas fa-lock"></i>
+                        Buy Now
+                    </button>
             </form>
         </div>
     </div>
@@ -468,4 +447,5 @@
         });
     </script>
 </body>
+
 </html>
