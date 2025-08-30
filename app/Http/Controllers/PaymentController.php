@@ -319,7 +319,7 @@ class PaymentController extends Controller
                     $user->username,
                     $user->email,
                     null,
-                    $user->courseUrl,
+                    $course->course_url
                 ));
             } else {
                 $password = Str::random(8);
