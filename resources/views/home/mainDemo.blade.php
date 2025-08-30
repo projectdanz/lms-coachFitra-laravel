@@ -977,8 +977,7 @@
                                                     <div class="rbt-price">
                                                         <span class="current-price">Rp0</span>
                                                     </div>
-                                                    <a class="rbt-btn-link" href="{{ route('courseDetails') }}">Coming
-                                                        Soon<i class="feather-arrow-right"></i></a>
+                                                    <a class="rbt-btn-link" href="#">Buy now<i class="feather-arrow-right"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1004,8 +1003,7 @@
                                                     <div class="rbt-price">
                                                         <span class="current-price">Rp0</span>
                                                     </div>
-                                                    <a class="rbt-btn-link" href="{{ route('courseDetails') }}">Coming
-                                                        Soon<i class="feather-arrow-right"></i></a>
+                                                    <a class="rbt-btn-link" href="#">Buy now<i class="feather-arrow-right"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1081,7 +1079,7 @@
                                     <div class="rbt-price">
                                         <span class="current-price">Rp0</span>
                                     </div>
-                                    <a class="rbt-btn-link" href="#">Coming Soon<i
+                                    <a class="rbt-btn-link" href="#">Buy now<i
                                             class="feather-arrow-right"></i></a>
                                 </div>
                             </div>
@@ -1108,7 +1106,7 @@
                                     <div class="rbt-price">
                                         <span class="current-price">Rp0</span>
                                     </div>
-                                    <a class="rbt-btn-link" href="#">Coming Soon<i
+                                    <a class="rbt-btn-link" href="#">Buy now<i
                                             class="feather-arrow-right"></i></a>
                                 </div>
                             </div>
@@ -1155,7 +1153,7 @@
                                     <div class="single-slide">
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
-                                                <a href="{{ route('eventDetails') }}">
+                                                <a href="#">
                                                     <img src="{{ asset('assets/images/coachFitra/SellingExpert.jpeg') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
@@ -1169,12 +1167,12 @@
                                                     <li><i class="feather-map-pin"></i>Pondok IT</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
-                                                <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}">Events:
+                                                <h4 class="rbt-card-title"><a href="#">Events:
                                                         Selling Expert with Coach Fitra</a></h4>
 
                                                 <div class="read-more-btn">
                                                     <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round"
-                                                        href="{{ route('eventDetails') }}">
+                                                        href="#">
                                                         <span class="icon-reverse-wrapper">
                                                             <span class="btn-text">Get Ticket</span>
                                                             <span class="btn-icon"><i
@@ -1194,7 +1192,7 @@
                                     <div class="single-slide">
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
-                                                <a href="{{ route('eventDetails') }}">
+                                                <a href="#">
                                                     <img src="{{ asset('assets/images/coachFitra/MenjadiTopSales.jpeg') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
@@ -1208,11 +1206,11 @@
                                                     <li><i class="feather-map-pin"></i>Pondok IT</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
-                                                <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}">Events:
+                                                <h4 class="rbt-card-title"><a href="#">Events:
                                                         Menjadi Top Sales</a></h4>
                                                 <div class="read-more-btn">
-                                                    <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round"
-                                                        href="{{ route('eventDetails') }}">
+                                                    <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round">
+                                                        {{-- href="{{ route('eventDetails') }}" --}}
                                                         <span class="icon-reverse-wrapper">
                                                             <span class="btn-text">Get Ticket</span>
                                                             <span class="btn-icon"><i
@@ -1233,7 +1231,7 @@
                                     <div class="single-slide">
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
-                                                <a href="{{ route('eventDetails') }}">
+                                                <a href="#">
                                                     <img src="{{ asset('assets/images/coachFitra/GreatMarketing.jpeg') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
@@ -1247,12 +1245,12 @@
                                                     <li><i class="feather-map-pin"></i>Pondok IT</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
-                                                <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}">Events:
+                                                <h4 class="rbt-card-title"><a href="#">Events:
                                                         Great Marketing</a></h4>
 
                                                 <div class="read-more-btn">
                                                     <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round"
-                                                        href="{{ route('eventDetails') }}">
+                                                        href="#">
                                                         <span class="icon-reverse-wrapper">
                                                             <span class="btn-text">Get Ticket</span>
                                                             <span class="btn-icon"><i
@@ -1273,7 +1271,7 @@
                                     <div class="single-slide">
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
-                                                <a href="{{ route('eventDetails') }}">
+                                                <a href="#">
                                                     <img src="{{ asset('assets/images/coachFitra/SekolahKaya.jpeg') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
@@ -1287,13 +1285,13 @@
                                                     <li><i class="feather-map-pin"></i>Pondok IT</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
-                                                <h4 class="rbt-card-title"><a href="{{ route('eventDetails') }}">Events:
+                                                <h4 class="rbt-card-title"><a href="#">Events:
                                                         studying together</a>
                                                 </h4>
 
                                                 <div class="read-more-btn">
                                                     <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round"
-                                                        href="{{ route('eventDetails') }}">
+                                                        href="#">
                                                         <span class="icon-reverse-wrapper">
                                                             <span class="btn-text">Get Ticket</span>
                                                             <span class="btn-icon"><i
@@ -1340,13 +1338,12 @@
                 </h2>
 
                 <div class="swiper event-activation-1 rbt-arrow-between rbt-dot-bottom-center pb--60 icon-bg-primary">
-                    {{-- Video 1 --}}
-                    <!-- Start Single Slide  -->
                     <div class="swiper-wrapper">
+                        {{-- Video 1 --}}
+                        <!-- Start Single Slide  -->
                         <div class="swiper-slide">
                             <div class="single-slide">
-                                <div class="rbt-card event-grid-card variation-01 rbt-hover" 
-                                    style="display:flex; justify-content:center; align-items:center; height:100%;">
+                                <div style="display:flex; justify-content:center; align-items:center; height:100%;">
                                     
                                     <iframe 
                                         src="https://www.youtube.com/embed/VIDEO_ID_1"
@@ -1367,8 +1364,7 @@
                         <!-- Start Single Slide  -->
                         <div class="swiper-slide">
                             <div class="single-slide">
-                                <div class="rbt-card event-grid-card variation-01 rbt-hover" 
-                                    style="display:flex; justify-content:center; align-items:center; height:100%;">
+                                <div style="display:flex; justify-content:center; align-items:center; height:100%;">
                                     
                                     <iframe 
                                         src="https://www.youtube.com/embed/VIDEO_ID_1"
@@ -1389,8 +1385,7 @@
                         <!-- Start Single Slide  -->
                         <div class="swiper-slide">
                             <div class="single-slide">
-                                <div class="rbt-card event-grid-card variation-01 rbt-hover" 
-                                    style="display:flex; justify-content:center; align-items:center; height:100%;">
+                                <div style="display:flex; justify-content:center; align-items:center; height:100%;">
                                     
                                     <iframe 
                                         src="https://www.youtube.com/embed/VIDEO_ID_1"
@@ -1410,8 +1405,7 @@
                         <!-- Start Single Slide  -->
                         <div class="swiper-slide">
                             <div class="single-slide">
-                                <div class="rbt-card event-grid-card variation-01 rbt-hover" 
-                                    style="display:flex; justify-content:center; align-items:center; height:100%;">
+                                <div style="display:flex; justify-content:center; align-items:center; height:100%;">
                                     
                                     <iframe 
                                         src="https://www.youtube.com/embed/VIDEO_ID_1"
@@ -1514,25 +1508,59 @@
                             </style>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <ul class="social-icon social-default justify-content-start">
-                                <li><a href="https://www.facebook.com/">
-                                        <i class="feather-facebook"></i>
-                                    </a>
-                                </li>
-                                <li><a href="https://www.twitter.com">
-                                        <i class="feather-twitter"></i>
-                                    </a>
-                                </li>
-                                <li><a href="https://www.instagram.com/">
-                                        <i class="feather-instagram"></i>
-                                    </a>
-                                </li>
-                                <li><a href="https://www.linkdin.com/">
-                                        <i class="feather-linkedin"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+    <ul class="social-icon social-default">
+        <li>
+            <a href="https://www.facebook.com/">
+                <i class="feather-facebook"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.twitter.com">
+                <i class="feather-twitter"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.instagram.com/">
+                <i class="feather-instagram"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/"> <!-- linkdin typo, aku betulin -->
+                <i class="feather-linkedin"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<style>
+.social-icon {
+    display: flex;
+    gap: 15px; /* jarak antar ikon */
+    align-items: center; /* biar sejajar tengah */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.social-icon li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f5f5f5; /* warna background bulat */
+    color: #333;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.social-icon li a:hover {
+    background: #007bff; /* ganti warna saat hover */
+    color: #fff;
+}
+</style>
+
 
                     </div>
                 </div>

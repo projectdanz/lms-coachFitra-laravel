@@ -343,87 +343,12 @@
 </head>
 <body>
     <div class="payment-container">
-        <!-- LEFT SIDE - COURSE INFO -->
-        {{-- <div class="course-info">
-            <div class="course-badge">
-                <div class="bestseller-icon">
-                    <i class="fas fa-crown"></i>
-                </div>
-                Bestseller
-            </div>
-
-            <h1 class="course-title">
-                The Complete Python 2024: From Zero to Expert!
-            </h1>
-
-            <p class="course-description">
-                Master Python by building 100 projects in 100 days. Learn data science, automation, build websites, games and apps!
-            </p>
-
-            <div class="course-stats">
-                <div class="stat-item">
-                    <span class="rating-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </span>
-                    <span>4.8 (215,475 ratings)</span>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <span>616,029 students</span>
-                </div>
-            </div>
-
-            <ul class="course-details">
-                <li>
-                    <i class="fas fa-calendar"></i>
-                    Last updated 12/2024
-                </li>
-                <li>
-                    <i class="fas fa-globe"></i>
-                    English Language
-                </li>
-                <li>
-                    <i class="fas fa-certificate"></i>
-                    Certified Course
-                </li>
-                <li>
-                    <i class="fas fa-play-circle"></i>
-                    50 Lectures
-                </li>
-                <li>
-                    <i class="fas fa-clock"></i>
-                    5 Hrs 20 Min
-                </li>
-                <li>
-                    <i class="fas fa-signal"></i>
-                    Basic Level
-                </li>
-            </ul>
-        </div> --}}
-
         <!-- RIGHT SIDE - PAYMENT FORM -->
         <div class="payment-form">
             <div class="form-header">
                 <h2 class="form-title">Complete Your Purchase</h2>
                 <p class="form-subtitle">Secure payment - Start learning today!</p>
             </div>
-
-            {{-- <div class="price-section">
-                <div class="price-main">
-                    $60.99
-                    <span class="price-original">$84.99</span>
-                    <span class="price-discount">28% off</span>
-                </div>
-                <div class="countdown">
-                    <i class="fas fa-clock"></i>
-                    3 days left at this price!
-                </div>
-            </div> --}}
-
             @if(session('success'))
                 <div class="alert alert-success">
                     <i class="fas fa-check-circle"></i>
@@ -493,69 +418,10 @@
             <div class="text-danger mt-1">{{ $message }}</div>
         @enderror
     </div>
-
-    {{-- Items Section --}}
-
-    {{-- Item 0 --}}
-    
-
-
-
-                {{-- Full Name --}}
-                {{-- <div class="form-group">
-                    <label for="username" class="form-label">Full Name *</label>
-                    <input type="text"
-                        id="username"
-                        name="username"
-                        class="form-input @error('username') is-invalid @enderror"
-                        placeholder="Enter your full name"
-                        value="{{ old('username') }}"
-                        required>
-                    @error('username')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                Email
-                <div class="form-group">
-                    <label for="email" class="form-label">Email Address *</label>
-                    <input type="email"
-                        id="email"
-                        name="email"
-                        class="form-input @error('email') is-invalid @enderror"
-                        placeholder="your.email@example.com"
-                        value="{{ old('email') }}"
-                        required>
-                    @error('email')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                Phone
-                <div class="form-group">
-                    <label for="phone" class="form-label">Phone Number *</label>
-                    <input type="text"
-                        id="phone"
-                        name="phone"
-                        class="form-input @error('phone') is-invalid @enderror"
-                        placeholder="08xxxxxxxxxx"
-                        value="{{ old('phone') }}"
-                        required>
-                    @error('phone')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                    @enderror
-                </div> --}}
-
-
                 <button type="submit" class="submit-btn" id="submitBtn">
                     <i class="fas fa-lock"></i>
                     Buy Now
                 </button>
-
-                {{-- <div class="guarantee">
-                    <i class="fas fa-shield-alt"></i>
-                    30-Day Money-Back Guarantee
-                </div> --}}
             </form>
         </div>
     </div>
