@@ -3,7 +3,7 @@ name: Publish lmsbe.sekolahkaya.com to cPanel
 on:
   push:
     branches:
-      - main
+      - payment
 
 jobs:
   FTP-Deploy-Action:
