@@ -307,7 +307,7 @@ class PaymentController extends Controller
                 ->count();
             $course = Course::find($user->course_id);
 
-            if ($hasUserEverBought >= 1) {
+            if ($hasUserEverBought >= 2) {
                 $this->messagePasswordRegister(
                     $user->phone,
                     $user->email,
@@ -333,6 +333,8 @@ class PaymentController extends Controller
                         'email' => $user->email,
                         'password' => $password,
                     ]);
+
+                Log::info('Registering to WP:', [$response]);
 
                 if ($response->successful()) {
                     $user->update([
