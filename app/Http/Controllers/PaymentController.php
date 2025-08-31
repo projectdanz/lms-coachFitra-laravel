@@ -457,7 +457,7 @@ Terima kasih sudah mempercayai kami 🙏
 📅 Tanggal     : " . now()->format('d M Y H:i') . "  
 ━━━━━━━━━━━━━━━━━━━━
 
-👉 " . ($password ? "🔐 *Detail Akun Kamu Untuk Login* :  
+" . ($password ? "👉 🔐 *Detail Akun Kamu Untuk Login* :  
 📧 Email    : {$email}  
 ➡️ Password : {$password}  
 
