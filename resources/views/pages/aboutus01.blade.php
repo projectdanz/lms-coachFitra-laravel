@@ -775,8 +775,8 @@
                 <div class="col-lg-6">
                     <div class="inner pl--50 pl_sm--0 pl_md--0">
                         <div class="section-title text-start">
-                            <span class="subtitle bg-coral-opacity">Know About Us</span>
-                            <h2 class="title">Know About SekolahKaya <br /> Learning Platform</h2>
+                            <span class="subtitle bg-coral-opacity">Ketahui Tentang Kami</span>
+                            <h2 class="title">Pelajari Lebih Lanjut tentang SekolahKaya, Platform Edukasi Inovatif</h2>
                         </div>
                         <p class="description mt--30">Sekolah Kaya adalah platform e-course dan mentoring bisnis yang dirancang untuk membantu siapa saja—terutama kamu yang ingin punya bisnis sendiri atau ingin mengembangkan bisnis lebih besar—dengan cara belajar yang praktis, intensif, dan menyenangkan!</p>
                         <!-- Start Feature List  -->

@@ -840,28 +840,21 @@
                                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     </a>
                                 </div>
-
-                                <span class="subtitle"><i class="feather-rotate-ccw"></i> 30-Day Money-Back
-                                    Guarantee</span>
-
-
                                 <div class="rbt-widget-details has-show-more">
                                     <ul class="has-show-more-inner-content rbt-course-details-list-wrapper">
-                                        <li><span>Start Date</span><span class="rbt-feature-value rbt-badge-5">5 Hrs 20
+                                        {{-- <li><span>Start Date</span><span class="rbt-feature-value rbt-badge-5">5 Hrs 20
                                                 Min</span>
-                                        </li>
-                                        <li><span>Enrolled</span><span class="rbt-feature-value rbt-badge-5">100</span>
+                                        </li> --}}
+                                        <li><span>Enrolled</span><span class="rbt-feature-value rbt-badge-5">Default</span>
                                         </li>
                                         <li><span>Skill Level</span><span
                                                 class="rbt-feature-value rbt-badge-5">Basic</span></li>
                                         <li><span>Language</span><span
                                                 class="rbt-feature-value rbt-badge-5">Indonesia</span></li>
                                         <li><span>Certificate</span><span
-                                                class="rbt-feature-value rbt-badge-5">Yes</span></li>
-                                        <li><span>Pass Percentage</span><span
-                                                class="rbt-feature-value rbt-badge-5">95%</span></li>
+                                                class="rbt-feature-value rbt-badge-5">Default</span></li>
+                                        
                                     </ul>
-                                    <div class="rbt-show-more-btn">Show More</div>
                                 </div>
 
                                 {{-- <div class="social-share-wrapper mt--30 text-center">
