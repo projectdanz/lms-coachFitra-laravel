@@ -442,7 +442,7 @@ class PaymentController extends Controller
 
     private function messagePasswordRegister(string $phone, string $email, string $username, ?string $password = null, Course $course): bool
     {
-        $message = "🔐*INFORMASI RAHASI*
+        $message = "🔐INFORMASI RAHASIA
 
 *🚫Jangan berikan kepada siapapun*
 
@@ -456,7 +456,7 @@ Terima kasih sudah mempercayai kami 🙏
 📅 Tanggal     : " . now()->format('d M Y H:i') . "  
 ━━━━━━━━━━━━━━━━━━━━
 
-" . ($password ? "👉 🔐 *Detail Akun Kamu Untuk Login* :  
+" . ($password ? "👉 🔐 *Akun Kamu Untuk Login* :  
 📧 Email    : {$email}  
 ➡️ Password : {$password}  
 
