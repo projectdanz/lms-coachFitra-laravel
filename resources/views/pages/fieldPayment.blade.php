@@ -371,12 +371,7 @@
 
 
                 <input type="hidden" name="method" value="snap">
-                <input type="hidden" name="amount" value="1">
                 <input type="hidden" id="course_id" name="course_id" value="1" required>
-                <input type="hidden" id="item_id_0" name="items[0][id]" value="1">
-                <input type="hidden" id="item_name_0" name="items[0][name]" value="1" required>
-                <input type="hidden" id="item_price_0" name="items[0][price]" value="1" required>
-                <input type="hidden" id="item_quantity_0" name="items[0][quantity]" value="1" required>
 
 
                 <div class="form-group">

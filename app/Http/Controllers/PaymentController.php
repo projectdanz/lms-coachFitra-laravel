@@ -30,8 +30,7 @@ class PaymentController extends Controller
     public function createPayment(Request $request)
     {
         $validator = Validator::make($request->all(), [
-           'method' => 'required|string',
-            'amount' => 'required|integer|min:1',
+            'method' => 'required|string',
             'customer.username' => 'required|string|max:45',
             'customer.email' => 'required|email|max:45',
             'customer.phone' => 'required|string|min:10',
@@ -69,7 +68,7 @@ class PaymentController extends Controller
                 'method' => $request->input('method'),
                 'transaction_details' => [
                     'order_id' => $order_id,
-                    'gross_amount' => $request->amount,
+                    'gross_amount' => $course->harga,
                 ],
                 'customer_details' => $request->customer,
                 'item_details' => $item ?? [],
