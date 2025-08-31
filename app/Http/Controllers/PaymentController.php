@@ -61,6 +61,7 @@ class PaymentController extends Controller
             'email' => $request->input('customer.email'),
             'phone' => $request->input('customer.phone'),
             'order_id' => $order_id,
+            'course_id' => $request->input('course_id'),
         ]);
 
         try {
