@@ -61,6 +61,7 @@ class PaymentController extends Controller
             'email' => $request->input('customer.email'),
             'phone' => $request->input('customer.phone'),
             'order_id' => $order_id,
+            'course_id' => $request->input('course_id'),
         ]);
 
         try {
@@ -306,7 +307,7 @@ class PaymentController extends Controller
                 ->count();
             $course = Course::find($user->course_id);
 
-            if ($hasUserEverBought >= 1) {
+            if ($hasUserEverBought >= 2) {
                 $this->messagePasswordRegister(
                     $user->phone,
                     $user->email,
@@ -332,6 +333,8 @@ class PaymentController extends Controller
                         'email' => $user->email,
                         'password' => $password,
                     ]);
+
+                Log::info('Registering to WP:', [$response]);
 
                 if ($response->successful()) {
                     $user->update([
@@ -454,7 +457,7 @@ Terima kasih sudah mempercayai kami 🙏
 📅 Tanggal     : " . now()->format('d M Y H:i') . "  
 ━━━━━━━━━━━━━━━━━━━━
 
-👉 " . ($password ? "🔐 *Detail Akun Kamu Untuk Login* :  
+" . ($password ? "👉 🔐 *Detail Akun Kamu Untuk Login* :  
 📧 Email    : {$email}  
 ➡️ Password : {$password}  
 
