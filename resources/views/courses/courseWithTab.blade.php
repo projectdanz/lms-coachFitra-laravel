@@ -909,6 +909,12 @@
                             </div>
 
                             <p class="description">Pelatihan lengkap untuk pemula yang ingin jadi pebisnis kreatif unggul.</p>
+                            <div>
+                                <a href="https://ecourse.sekolahkaya.com/dashboard" class="nav-link mycourses-btn">
+                                    <span class="mycourses-icon">🎓</span>
+                                    My Courses
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -934,7 +940,7 @@
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-12">
-                            <div
+                            {{-- <div 
                                 class="rbt-sorting-list d-flex flex-wrap align-items-end justify-content-start justify-content-lg-end">
                                 <div class="rbt-short-item">
                                     <form action="#" class="rbt-search-style me-0">
@@ -944,10 +950,10 @@
                                         </button>
                                     </form>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="col-lg-12 mt--60">
-                            <ul class="rbt-portfolio-filter filter-tab-button justify-content-start nav nav-tabs"
+                            {{-- <ul class="rbt-portfolio-filter filter-tab-button justify-content-start nav nav-tabs"
                                 id="rbt-myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all"
@@ -974,7 +980,7 @@
                                         role="tab" aria-controls="latest" aria-selected="false"><span
                                             class="filter-text">Latest</span>
                                 </li>
-                            </ul>
+                            </ul> --}}
                         </div>
 
                     </div>
@@ -998,7 +1004,7 @@
                                     <div class="rbt-card variation-01 rbt-hover">
                                         <div class="rbt-card-img">
                                                 <a href="{{ route('courseDetails') }}">
-                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-sales.png') }}"
+                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-sales.webp') }}"
                                                         alt="Card image">
                                                 </a>
                                             </div>
@@ -1027,7 +1033,7 @@
                                     <div class="rbt-card variation-01 rbt-hover">
                                         <div class="rbt-card-img">
                                                 <a href="{{ route('courseDetails') }}">
-                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-great-marketing.png') }}"
+                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-great-marketing.webp') }}"
                                                         alt="Card image">
                                                 </a>
                                             </div>
@@ -1053,7 +1059,7 @@
                                     <div class="rbt-card variation-01 rbt-hover">
                                         <div class="rbt-card-img">
                                                 <a href="{{ route('courseDetails') }}">
-                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-selling.png') }}"
+                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-selling.webp') }}"
                                                         alt="Card image">
                                                 </a>
                                             </div>
