@@ -21,9 +21,11 @@ class DatabaseSeeder extends Seeder
         //    'email' => 'test@example.com',
         // ]);
 
+        $isProd = config('app.env') === 'production' ? true : false;
+
         Course::create([
             'nama' => 'Ruang Kelas Menjadi Sales Jago Closing',
-            'harga' => 1,
+            'harga' => $isProd ? 299000 : 1,
             'password' => 'MbCk3l4S001',
             'course_url' => 'https://ecourse.sekolahkaya.com/courses/introduction-to-photography-masterclass/',
         ]);
