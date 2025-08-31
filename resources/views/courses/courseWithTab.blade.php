@@ -997,13 +997,13 @@
                                 <div class="course-grid-3">
                                     <div class="rbt-card variation-01 rbt-hover">
                                         <div class="rbt-card-img">
-                                            <a href="{{ route('courseDetails') }}">
-                                                <img src="{{ asset('assets/images/coachFitra/menjadi-top-sales.webp') }}"
-                                                    alt="Card image">
-                                            </a>
-                                        </div>
+                                                <a href="{{ route('courseDetails') }}">
+                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-sales.png') }}"
+                                                        alt="Card image">
+                                                </a>
+                                            </div>
                                         <div class="rbt-card-body">
-                                            <h4 class="rbt-card-title"><a href="{{ route('courseDetails') }}">Protected:
+                                            <h4 class="rbt-card-title"><a href="{{ route('courseDetails') }}">
                                                     Menjadi Top
                                                     Sales Jago Selling</a>
                                             </h4>
@@ -1026,11 +1026,11 @@
                                 <div class="course-grid-3">
                                     <div class="rbt-card variation-01 rbt-hover">
                                         <div class="rbt-card-img">
-                                            <a href="{{ route('courseDetails') }}">
-                                                <img src="{{ asset('assets/images/coachFitra/menjadi-top-sales.webp') }}"
-                                                    alt="Card image">
-                                            </a>
-                                        </div>
+                                                <a href="{{ route('courseDetails') }}">
+                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-great-marketing.png') }}"
+                                                        alt="Card image">
+                                                </a>
+                                            </div>
                                         <div class="rbt-card-body">
                                             <h4 class="rbt-card-title"><a href="#">
                                                     Coming soon</a>
@@ -1052,11 +1052,11 @@
                                 <div class="course-grid-3">
                                     <div class="rbt-card variation-01 rbt-hover">
                                         <div class="rbt-card-img">
-                                            <a href="{{ route('courseDetails') }}">
-                                                <img src="{{ asset('assets/images/coachFitra/menjadi-top-sales.webp') }}"
-                                                    alt="Card image">
-                                            </a>
-                                        </div>
+                                                <a href="{{ route('courseDetails') }}">
+                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-selling.png') }}"
+                                                        alt="Card image">
+                                                </a>
+                                            </div>
                                         <div class="rbt-card-body">
                                             <h4 class="rbt-card-title"><a href="#">
                                                     Coming soon</a>

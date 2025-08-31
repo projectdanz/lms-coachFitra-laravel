@@ -845,7 +845,7 @@
                                         {{-- <li><span>Start Date</span><span class="rbt-feature-value rbt-badge-5">5 Hrs 20
                                                 Min</span>
                                         </li> --}}
-                                        <li><span>Enrolled</span><span class="rbt-feature-value rbt-badge-5">100</span>
+                                        <li><span>Enrolled</span><span class="rbt-feature-value rbt-badge-5">Default</span>
                                         </li>
                                         <li><span>Skill Level</span><span
                                                 class="rbt-feature-value rbt-badge-5">Basic</span></li>

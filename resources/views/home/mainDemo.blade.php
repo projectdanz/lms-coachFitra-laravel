@@ -934,7 +934,7 @@
                                         <div class="rbt-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="{{ route('courseDetails') }}">
-                                                    <img src="{{ asset('assets/images/coachFitra/menjadi-top-sales.webp') }}"
+                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-sales.png') }}"
                                                         alt="Card image">
                                                 </a>
                                             </div>
@@ -962,7 +962,7 @@
                                         <div class="rbt-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="{{ route('courseDetails') }}">
-                                                    <img src="https://lms.sohibdigi.id/wp-content/uploads/2025/08/2.webp"
+                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-great-marketing.png') }}"
                                                         alt="Card image">
                                                 </a>
                                             </div>
@@ -988,7 +988,7 @@
                                         <div class="rbt-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="{{ route('courseDetails') }}">
-                                                    <img src="	https://lms.sohibdigi.id/wp-content/uploads/2025/08/1.webp"
+                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-selling.png') }}"
                                                         alt="Card image">
                                                 </a>
                                             </div>
@@ -1037,7 +1037,7 @@
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
                                 <a href="{{ route('courseDetails') }}">
-                                    <img src="{{ asset('assets/images/coachFitra/menjadi-top-sales.webp') }}"
+                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-sales.png') }}"
                                         alt="Card image">
                                 </a>
                             </div>
@@ -1064,7 +1064,7 @@
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
                                 <a href="{{ route('courseDetails') }}">
-                                    <img src="https://lms.sohibdigi.id/wp-content/uploads/2025/08/2.webp"
+                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-selling.png') }}"
                                         alt="Card image">
                                 </a>
                             </div>
@@ -1091,7 +1091,7 @@
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
                                 <a href="{{ route('courseDetails') }}">
-                                    <img src="https://lms.sohibdigi.id/wp-content/uploads/2025/08/1.webp"
+                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-great-marketing.png') }}"
                                         alt="Card image">
                                 </a>
                             </div>
@@ -1153,17 +1153,17 @@
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="#">
-                                                    <img src="{{ asset('assets/images/coachFitra/SellingExpert.jpeg') }}"
+                                                    <img src="{{ asset('assets/images/coachFitra/events/bg-courses-great-marketing.png') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
-                                                        <span>30 Agu</span>
-                                                        <span>2025</span>
+                                                        <span>Default</span>
+                                                        {{-- <span>2025</span> --}}
                                                     </div>
                                                 </a>
                                             </div>
                                             <div class="rbt-card-body">
                                                 <ul class="rbt-meta">
-                                                    <li><i class="feather-map-pin"></i>Pondok IT</li>
+                                                    <li><i class="feather-map-pin"></i>Default</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
                                                 <h4 class="rbt-card-title"><a href="#">Events:
@@ -1192,17 +1192,17 @@
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="#">
-                                                    <img src="{{ asset('assets/images/coachFitra/MenjadiTopSales.jpeg') }}"
+                                                    <img src="{{ asset('assets/images/coachFitra/events/bg-courses-selling.png') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
-                                                        <span>25 Sep</span>
-                                                        <span>2025</span>
+                                                        <span>Default</span>
+                                                        {{-- <span>2025</span> --}}
                                                     </div>
                                                 </a>
                                             </div>
                                             <div class="rbt-card-body">
                                                 <ul class="rbt-meta">
-                                                    <li><i class="feather-map-pin"></i>Pondok IT</li>
+                                                    <li><i class="feather-map-pin"></i>Default</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
                                                 <h4 class="rbt-card-title"><a href="#">Events:
@@ -1231,17 +1231,17 @@
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="#">
-                                                    <img src="{{ asset('assets/images/coachFitra/GreatMarketing.jpeg') }}"
+                                                    <img src="{{ asset('assets/images/coachFitra/events/bg-courses-great-marketing.png') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
-                                                        <span>2 Dec</span>
-                                                        <span>2025</span>
+                                                        <span>Default</span>
+                                                        {{-- <span>2025</span> --}}
                                                     </div>
                                                 </a>
                                             </div>
                                             <div class="rbt-card-body">
                                                 <ul class="rbt-meta">
-                                                    <li><i class="feather-map-pin"></i>Pondok IT</li>
+                                                    <li><i class="feather-map-pin"></i>Default</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
                                                 <h4 class="rbt-card-title"><a href="#">Events:
@@ -1271,17 +1271,17 @@
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="#">
-                                                    <img src="{{ asset('assets/images/coachFitra/SekolahKaya.jpeg') }}"
+                                                    <img src="{{ asset('assets/images/coachFitra/events/bg-courses-selling.png') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
-                                                        <span>27 Sep</span>
-                                                        <span>2025</span>
+                                                        <span>Default</span>
+                                                        {{-- <span>2025</span> --}}
                                                     </div>
                                                 </a>
                                             </div>
                                             <div class="rbt-card-body">
                                                 <ul class="rbt-meta">
-                                                    <li><i class="feather-map-pin"></i>Pondok IT</li>
+                                                    <li><i class="feather-map-pin"></i>Default</li>
                                                     <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                                                 </ul>
                                                 <h4 class="rbt-card-title"><a href="#">Events:
