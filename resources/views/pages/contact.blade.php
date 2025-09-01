@@ -762,8 +762,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title text-center mb--60">
-                        <span class="subtitle bg-secondary-opacity">Contact Us</span>
-                        <h2 class="title">Sekolahkaya Course Contact <br> can join with us.</h2>
+                        <span class="subtitle bg-secondary-opacity">Kontak Kami</span>
+                        <h2 class="title">Hubungi kami dan bergabunglah bersama Sekolahkaya.</h2>
                     </div>
                 </div>
             </div>
@@ -806,5 +806,7 @@
             </div>
         </div>
     </div>
+
+
 
 @endsection

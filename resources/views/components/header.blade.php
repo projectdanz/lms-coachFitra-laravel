@@ -24,6 +24,11 @@
                         <ul class="nav-menu">
                             <li><a href="{{ route('mainDemo') }}" class="nav-link">Home</a></li>
                             <li><a href="{{ route('courseWithTab') }}" class="nav-link">Courses</a></li>
+                            <li>
+                                <a href="https://ecourse.sekolahkaya.com/dashboard" class="nav-link mycourses-btn">
+                                    My Courses
+                                </a>
+                            </li>
                             <li><a href="{{ route('aboutus01') }}" class="nav-link">About</a></li>
                             <li><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
                         </ul>
@@ -150,6 +155,46 @@
     .mobile-nav-menu a:hover {
         color: #2563eb;
     }
+    .mycourses-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: #2563eb;
+    color: white !important;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: background 0.3s ease;
+}
+
+
+.mycourses-btn:hover {
+    background: #1d4ed8;
+    color: #fff;
+}
+
+.mycourses-btn::after {
+    content: none !important;  /* matikan garis bawah hover */
+}
+
+
+.mycourses-icon {
+    font-size: 18px;
+}
+
+.mycourses-btn .badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #ef4444;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
 </style>
 
 <!-- Inline JS -->

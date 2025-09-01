@@ -934,7 +934,7 @@
                                         <div class="rbt-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="{{ route('courseDetails') }}">
-                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-sales.png') }}"
+                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-sales.webp') }}"
                                                         alt="Card image">
                                                 </a>
                                             </div>
@@ -962,7 +962,7 @@
                                         <div class="rbt-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="{{ route('courseDetails') }}">
-                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-great-marketing.png') }}"
+                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-great-marketing.webp') }}"
                                                         alt="Card image">
                                                 </a>
                                             </div>
@@ -974,9 +974,9 @@
                                                     elit. Illo, quam expedita! Beatae enim...</p>
                                                 <div class="rbt-card-bottom">
                                                     <div class="rbt-price">
-                                                        <span class="current-price">Rp0</span>
+                                                        {{-- <span class="current-price">Rp0</span> --}}
                                                     </div>
-                                                    <a class="rbt-btn-link" href="#">Buy now<i class="feather-arrow-right"></i></a>
+                                                    <a class="rbt-btn-link" href="#">Coming Soon<i class="feather-arrow-right"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -988,7 +988,7 @@
                                         <div class="rbt-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="{{ route('courseDetails') }}">
-                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-selling.png') }}"
+                                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-selling.webp') }}"
                                                         alt="Card image">
                                                 </a>
                                             </div>
@@ -1000,9 +1000,9 @@
                                                     elit. Illo, quam expedita! Beatae enim...</p>
                                                 <div class="rbt-card-bottom">
                                                     <div class="rbt-price">
-                                                        <span class="current-price">Rp0</span>
+                                                        {{-- <span class="current-price">Rp0</span> --}}
                                                     </div>
-                                                    <a class="rbt-btn-link" href="#">Buy now<i class="feather-arrow-right"></i></a>
+                                                    <a class="rbt-btn-link" href="#">Coming Soon<i class="feather-arrow-right"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1037,7 +1037,7 @@
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
                                 <a href="{{ route('courseDetails') }}">
-                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-sales.png') }}"
+                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-sales.webp') }}"
                                         alt="Card image">
                                 </a>
                             </div>
@@ -1051,7 +1051,7 @@
                                     <div class="rbt-price">
                                         <span class="current-price">Rp299.000</span>
                                     </div>
-                                    <a class="rbt-btn-link" href="{{ route('courseDetails') }}">Buy Now<i
+                                    <a class="rbt-btn-link" href="{{ route('courseDetails') }}">Buy now<i
                                             class="feather-arrow-right"></i></a>
                                 </div>
                             </div>
@@ -1064,7 +1064,7 @@
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
                                 <a href="{{ route('courseDetails') }}">
-                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-selling.png') }}"
+                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-selling.webp') }}"
                                         alt="Card image">
                                 </a>
                             </div>
@@ -1076,9 +1076,9 @@
                                     quam expedita! Beatae enim...</p>
                                 <div class="rbt-card-bottom">
                                     <div class="rbt-price">
-                                        <span class="current-price">Rp0</span>
+                                        {{-- <span class="current-price">Rp0</span> --}}
                                     </div>
-                                    <a class="rbt-btn-link" href="#">Buy now<i
+                                    <a class="rbt-btn-link" href="#">Coming Soon<i
                                             class="feather-arrow-right"></i></a>
                                 </div>
                             </div>
@@ -1091,7 +1091,7 @@
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
                                 <a href="{{ route('courseDetails') }}">
-                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-great-marketing.png') }}"
+                                    <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-great-marketing.webp') }}"
                                         alt="Card image">
                                 </a>
                             </div>
@@ -1103,9 +1103,9 @@
                                     quam expedita! Beatae enim...</p>
                                 <div class="rbt-card-bottom">
                                     <div class="rbt-price">
-                                        <span class="current-price">Rp0</span>
+                                        {{-- <span class="current-price">Rp0</span> --}}
                                     </div>
-                                    <a class="rbt-btn-link" href="#">Buy now<i
+                                    <a class="rbt-btn-link" href="#">Coming Soon<i
                                             class="feather-arrow-right"></i></a>
                                 </div>
                             </div>
@@ -1153,7 +1153,7 @@
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="#">
-                                                    <img src="{{ asset('assets/images/coachFitra/events/bg-courses-great-marketing.png') }}"
+                                                    <img src="{{ asset('assets/images/coachFitra/events/bg-courses-great-marketing.webp') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
                                                         <span>Default</span>
@@ -1192,7 +1192,7 @@
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="#">
-                                                    <img src="{{ asset('assets/images/coachFitra/events/bg-courses-selling.png') }}"
+                                                    <img src="{{ asset('assets/images/coachFitra/events/bg-courses-selling.webp') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
                                                         <span>Default</span>
@@ -1231,7 +1231,7 @@
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="#">
-                                                    <img src="{{ asset('assets/images/coachFitra/events/bg-courses-great-marketing.png') }}"
+                                                    <img src="{{ asset('assets/images/coachFitra/events/bg-courses-great-marketing.webp') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
                                                         <span>Default</span>
@@ -1271,7 +1271,7 @@
                                         <div class="rbt-card event-grid-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="#">
-                                                    <img src="{{ asset('assets/images/coachFitra/events/bg-courses-selling.png') }}"
+                                                    <img src="{{ asset('assets/images/coachFitra/events/bg-courses-selling.webp') }}"
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
                                                         <span>Default</span>
@@ -1494,12 +1494,17 @@
 
                                     {{-- Courses Menu --}}
                                     <li>
-                                        <a href="{{ route('courseWithTab') }}" class="nav-link">About</a>
+                                        <a href="https://ecourse.sekolahkaya.com/dashboard" class="nav-link">My Courses</a>
                                     </li>
 
                                     {{-- Courses Menu --}}
                                     <li>
-                                        <a href="{{ route('courseWithTab') }}" class="nav-link">Contact</a>
+                                        <a href="{{ route('aboutus01') }}" class="nav-link">About</a>
+                                    </li>
+
+                                    {{-- Courses Menu --}}
+                                    <li>
+                                        <a href="{{ route('contact') }}" class="nav-link">Contact</a>
                                     </li>
                                 </ul>
                             </nav>
