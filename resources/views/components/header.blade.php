@@ -65,6 +65,7 @@
                 </div>
             <li><a href="{{ route('mainDemo') }}">Home</a></li>
             <li><a href="{{ route('courseWithTab') }}">Courses</a></li>
+            <li><a href="https://ecourse.sekolahkaya.com/dashboard">My Courses</a></li>
             <li><a href="{{ route('aboutus01') }}">About</a></li>
             <li><a href="{{ route('contact') }}">Contact</a></li>
         </ul>
