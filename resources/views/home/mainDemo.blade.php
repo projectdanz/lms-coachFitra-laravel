@@ -1330,116 +1330,70 @@
         <!-- End Event area -->
 
         <!-- Start Testimoni area -->
-        <section class="rbt-section-gap bg-color-white overflow-hidden"><!-- changed -->
-            <div class="container text-center"><!-- changed -->
-                <h2 class="title color-heading mb--20"><!-- changed -->
-                    Testimonial
-                </h2>
+        <section class="rbt-section-gap bg-color-white overflow-hidden">
+    <div class="container text-center">
+        <h2 class="title color-heading mb--20">
+            Testimonial
+        </h2>
 
-                <div class="swiper event-activation-1 rbt-arrow-between rbt-dot-bottom-center pb--60 icon-bg-primary">
-                    <div class="swiper-wrapper">
-                        {{-- Video 1 --}}
-                        <!-- Start Single Slide  -->
-                        <div class="swiper-slide">
-                            <div class="single-slide">
-                                <div style="display:flex; justify-content:center; align-items:center; height:100%;">
-                                    
-                                    <iframe 
-                                        src="https://www.youtube.com/embed/VIDEO_ID_1"
-                                        title="Testimoni 1"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                        style="width:100%; max-width:500px; height:315px; border-radius:10px;">
-                                    </iframe>
+        <div class="swiper event-activation-1 rbt-arrow-between rbt-dot-bottom-center pb--60 icon-bg-primary">
+            <div class="swiper-wrapper">
 
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Single Slide  -->
-
-                        {{-- Video 2 --}}
-                        <!-- Start Single Slide  -->
-                        <div class="swiper-slide">
-                            <div class="single-slide">
-                                <div style="display:flex; justify-content:center; align-items:center; height:100%;">
-                                    
-                                    <iframe 
-                                        src="https://www.youtube.com/embed/VIDEO_ID_1"
-                                        title="Testimoni 1"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                        style="width:100%; max-width:500px; height:315px; border-radius:10px;">
-                                    </iframe>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Single Slide  -->
-
-                        {{-- Video 3 --}}
-                        <!-- Start Single Slide  -->
-                        <div class="swiper-slide">
-                            <div class="single-slide">
-                                <div style="display:flex; justify-content:center; align-items:center; height:100%;">
-                                    
-                                    <iframe 
-                                        src="https://www.youtube.com/embed/VIDEO_ID_1"
-                                        title="Testimoni 1"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                        style="width:100%; max-width:500px; height:315px; border-radius:10px;">
-                                    </iframe>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                        {{-- Video 4 --}}
-                        <!-- Start Single Slide  -->
-                        <div class="swiper-slide">
-                            <div class="single-slide">
-                                <div style="display:flex; justify-content:center; align-items:center; height:100%;">
-                                    
-                                    <iframe 
-                                        src="https://www.youtube.com/embed/VIDEO_ID_1"
-                                        title="Testimoni 1"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                        style="width:100%; max-width:500px; height:315px; border-radius:10px;">
-                                    </iframe>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Single Slide  -->
-                        <div class="rbt-swiper-pagination"></div>
-
-                    </div>
-                    <div class="rbt-swiper-arrow rbt-arrow-left">
-                        <div class="custom-overfolow">
-                            <i class="rbt-icon feather-arrow-left"></i>
-                            <i class="rbt-icon-top feather-arrow-left"></i>
+                <!-- Video 1 -->
+                <div class="swiper-slide">
+                    <div class="single-slide">
+                        <div style="display:flex; justify-content:center; align-items:center; height:100%;">
+                            <iframe 
+                                src="https://www.youtube.com/embed/lfLzLBcFKwM?rel=0&modestbranding=1&playsinline=1"
+                                title="Testimoni 1"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                style="width:100%; max-width:500px; height:315px; border-radius:10px;">
+                            </iframe>
                         </div>
                     </div>
+                </div>
 
-                    <div class="rbt-swiper-arrow rbt-arrow-right">
-                        <div class="custom-overfolow">
-                            <i class="rbt-icon feather-arrow-right"></i>
-                            <i class="rbt-icon-top feather-arrow-right"></i>
+                <!-- Video 2 -->
+                {{-- <div class="swiper-slide">
+                    <div class="single-slide">
+                        <div style="display:flex; justify-content:center; align-items:center; height:100%;">
+                            <iframe 
+                                src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&playsinline=1"
+                                title="Testimoni 2"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                style="width:100%; max-width:500px; height:315px; border-radius:10px;">
+                            </iframe>
                         </div>
                     </div>
+                </div> --}}
 
+            </div>
+
+            <!-- Pagination -->
+            <div class="rbt-swiper-pagination"></div>
+
+            <!-- Arrows -->
+            <div class="rbt-swiper-arrow rbt-arrow-left">
+                <div class="custom-overfolow">
+                    <i class="rbt-icon feather-arrow-left"></i>
+                    <i class="rbt-icon-top feather-arrow-left"></i>
                 </div>
             </div>
-        </section>
+
+            <div class="rbt-swiper-arrow rbt-arrow-right">
+                <div class="custom-overfolow">
+                    <i class="rbt-icon feather-arrow-right"></i>
+                    <i class="rbt-icon-top feather-arrow-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
         <!-- End Testimoni area -->
 
 
@@ -1606,6 +1560,14 @@
             .swiper-slide.active iframe {
                 pointer-events: auto;
             }
+           .swiper-slide iframe {
+  pointer-events: auto !important;
+  z-index: 10;
+  position: relative;
+}
+
+}
+
         </style>
 @endsection
 <script>
