@@ -442,46 +442,54 @@ class PaymentController extends Controller
 
     private function messagePasswordRegister(string $phone, string $email, string $username, ?string $password = null, Course $course): bool
     {
-        $message = "🔐INFORMASI RAHASIA
+        $message = "> *🚫 _Don’t Share_*
 
-*🚫Jangan berikan kepada siapapun*
+*🔐 INFORMASI RAHASIA*
 
 🌟 *Hi {$username}!* 🌟  
 Terima kasih sudah mempercayai kami 🙏
 
-🎓 Kamu baru saja berhasil membeli course berikut:
-━━━━━━━━━━━━━━━━━━━━
-📌 Nama Course : {$course->nama}  
-💵 Harga       : {$course->harga}  
-📅 Tanggal     : " . now()->format('d M Y H:i') . "  
-━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━
 
-" . ($password ? "👉 🔐 *Akun Kamu Untuk Login* :  
-📧 Email    : {$email}  
-➡️ Password : {$password}  
+*{$course->nama}*  
 
-👉 login ke sini dulu untuk ubah password : 
-https://ecourse.sekolahkaya.com/dashboard/settings/reset-password/
+Harga       :  _{$course->harga}_  
+Tanggal     :  _" . now()->format('d M Y H:i') . "_  
 
-🔑 *Password Course*  
-👉 Gunakan untuk mengakses materi course  
-➡️ {$course->password}  
+━━━━━━━━━━━━━━━━━
 
-👉 Setelah memasukan password course, Kamu juga harus login untuk bisa memulai materi  
+> 🔐 *_Informasi Akun_* :
+  
+- Email    : {$email} 
+" . ($password ? "- Password : {$password}" : "") . "
 
-" : "") . "
-Akses kelas  
-👉 {$course->course_url}  
+> 🔐 *_Ubah Password_* :
+ 
+- https://ecourse.sekolahkaya.com/dashboard/settings/reset-password/
 
-━━━━━━━━━━━━━━━━━━━━
-⚡ *Langkah Akses Course*:  
-1️⃣ Ubah Password Segera   
-2️⃣ Klik link akses kelas diatas
-3️⃣ Masukan *Password Course* 
-4️⃣ Start Learning! (login dulu ya)
+> 🔑 *_Password Course_:* 
+
+- {$course->password}  
+
+
+> 👉 *_Akses kelas_:*
+  
+- {$course->course_url}
+
+━━━━━━━━━━━━━━━━━
+
+⚡ *_Langkah Akses Course_*:
+
+> 1️⃣ Ubah Password Segera   
+> 2️⃣ Klik link akses kelas diatas
+> 3️⃣ Masukan *Password Course* 
+> 4️⃣ Start Learning! _(login dulu ya)_
+
 
 Terima kasih sudah bergabung 🚀  
-_Selamat belajar & semoga sukses!_ ✨";
+_Selamat belajar & semoga sukses!_ ✨
+
+> _sekolahkaya.com_";
 
         try {
             $this->sendMessage($phone, $message);
