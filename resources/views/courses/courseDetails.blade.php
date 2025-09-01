@@ -748,7 +748,7 @@
                             <li>
                                 <div class="icon-right"><i class="feather-chevron-right"></i></div>
                             </li>
-                            <li class="rbt-breadcrumb-item active">Web Development</li>
+                            <li class="rbt-breadcrumb-item active">course</li>
                         </ul>
                         <h2 class="title">Ruang Kelas Menjadi Sales Jago Closing</h2>
                         <p class="description"></p>
@@ -756,7 +756,7 @@
                         <ul class="rbt-meta">
                             <li><i class="feather-calendar"></i>Last updated 27/2025</li>
                             <li><i class="feather-globe"></i>Indonesia</li>
-                            <li><i class="feather-award"></i>Certified Course</li>
+                            {{-- <li><i class="feather-award"></i>Certified Course</li> --}}
                         </ul>
 
                     </div>
@@ -773,7 +773,7 @@
                 <div class="col-lg-8">
                     <div class="course-details-content">
                         <div class="rbt-course-feature-box rbt-shadow-box thuumbnail">
-                            <img class="w-100" src="https://sekolahkaya.com/wp-content/uploads/2025/07/5.webp"  alt="Card image">
+                            <img class="w-100" src="{{ asset('assets/images/coachFitra/courses/bg-courses-sales.webp') }}"  alt="Card image">
                         </div>
                         <!-- Start Course Feature Box  -->
                         <div class="rbt-course-feature-box overview-wrapper rbt-shadow-box mt--30 has-show-more" id="overview">
@@ -815,7 +815,7 @@
                             <!-- Start Viedo Wrapper  -->
                             <a class="video-popup-with-text video-popup-wrapper text-center popup-video sidebar-video-hidden mb--15" href="https://www.youtube-nocookie.com/embed/mm7dtxSRMOY?rel=0&modestbranding=1&playsinline=1&autoplay=1">
                                 <div class="video-content">
-                                    <img class="w-100 rbt-radius" src="{{ asset('assets/images/coachFitra/MenjadiTopSales.jpeg') }}" alt="Video Images">
+                                    <img class="w-100 rbt-radius" src="{{ asset('assets/images/coachFitra/courses/bg-courses-sales.webp') }}" alt="Video Images">
                                     <div class="position-to-top">
                                         <span class="rbt-btn rounded-player-2 with-animation">
                                             <span class="play-icon"></span>
@@ -877,127 +877,122 @@
     <x-separator/>
 
     <div class="rbt-related-course-area bg-color-white pt--60 rbt-section-gapBottom">
-        <div class="container">
-            <div class="section-title mb--30">
-                <span class="subtitle bg-primary-opacity">More Similar Courses</span>
-                <h4 class="title">Related Courses</h4>
-            </div>
-            <div class="row g-5">
-
-                <!-- Start Single Card  -->
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="course-grid-3">
-                                    <div class="rbt-card variation-01 rbt-hover">
-                                        <div class="rbt-card-img">
-                                            <a href="{{ route('courseDetails') }}">
-                                                <img src="https://lms.sohibdigi.id/wp-content/uploads/2025/08/1.webp" alt="Card image">
-                                            </a>
-                                        </div>
-
-                                        <div class="rbt-card-body">
-
-                                            <h4 class="rbt-card-title">Protected: Coming Soon</h4>
-
-                                            <p class="rbt-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, quam expedita! Beatae enim...</p>
-                                            <div class="rbt-card-bottom">
-                                                <div class="rbt-price">
-                                                    <span class="current-price">Rp0</span>
-                                                </div>
-                                                <a class="rbt-btn-link" href="{{ route('courseDetails') }}">Coming Soon<i class="feather-arrow-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                </div>
-                <!-- End Single Card  -->
-
-                <!-- Start Single Card  -->
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="course-grid-3">
-                                    <div class="rbt-card variation-01 rbt-hover">
-                                        <div class="rbt-card-img">
-                                            <a href="{{ route('courseDetails') }}">
-                                                <img src="https://lms.sohibdigi.id/wp-content/uploads/2025/08/2.webp" alt="Card image">
-                                            </a>
-                                        </div>
-
-                                        <div class="rbt-card-body">
-
-                                            <h4 class="rbt-card-title">Protected: Coming Soon</h4>
-
-                                            <p class="rbt-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, quam expedita! Beatae enim...</p>
-                                            <div class="rbt-card-bottom">
-                                                <div class="rbt-price">
-                                                    <span class="current-price">Rp0</span>
-                                                </div>
-                                                <a class="rbt-btn-link" href="{{ route('courseDetails') }}">Coming Soon<i class="feather-arrow-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                </div>
-                <!-- End Single Card  -->
-
-                <!-- Start Single Card  -->
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="course-grid-3">
-                                    <div class="rbt-card variation-01 rbt-hover">
-                                        <div class="rbt-card-img">
-                                            <a href="{{ route('courseDetails') }}">
-                                                <img src="https://sekolahkaya.com/wp-content/uploads/2025/07/5.webp" alt="Card image">
-                                            </a>
-                                        </div>
-
-                                        <div class="rbt-card-body">
-
-                                            <h4 class="rbt-card-title">Protected: Coming Soon</h4>
-
-                                            <p class="rbt-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, quam expedita! Beatae enim...</p>
-                                            <div class="rbt-card-bottom">
-                                                <div class="rbt-price">
-                                                    <span class="current-price">Rp0</span>
-                                                </div>
-                                                <a class="rbt-btn-link" href="{{ route('courseDetails') }}">Coming Soon<i class="feather-arrow-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                </div>
-                <!-- End Single Card  -->
-
-            </div>
+    <div class="container">
+        <div class="section-title mb--30 text-center">
+            <span class="subtitle bg-primary-opacity">Kursus Serupa Lainnya</span>
+            <h4 class="title">Kursus Terkait</h4>
         </div>
-    </div>
 
-    <!-- Start Course Action Bottom  -->
-    <div class="rbt-course-action-bottom">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6">
-                    <div class="section-title text-center text-md-start">
-                        <h5 class="title mb--0">The Complete Histudy 2024: From Zero to Expert!</h5>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 mt_sm--15">
-                    <div class="course-action-bottom-right rbt-single-group">
-                        <div class="rbt-single-list rbt-price large-size justify-content-center">
-                            <span class="current-price color-primary">Rp1</span>
-                            {{-- <span class="off-price">$1500.00</span> --}}
-                        </div>
-                        <div class="rbt-single-list action-btn">
-                            <a class="rbt-btn btn-gradient hover-icon-reverse btn-md" href="#">
-                                <span class="icon-reverse-wrapper">
-                                <span class="btn-text">Purchase Now</span>
-                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                </span>
+        <div class="row g-5">
+
+            <!-- Start Single Card -->
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                <div class="course-grid-3">
+                    <div class="rbt-card variation-01 rbt-hover">
+                        <div class="rbt-card-img">
+                            <a href="{{ route('courseDetails') }}">
+                                <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-great-marketing.webp') }}" alt="Card image">
                             </a>
                         </div>
+                        <div class="rbt-card-body">
+                            <h4 class="rbt-card-title">Protected: Coming Soon</h4>
+                            <p class="rbt-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, quam expedita! Beatae enim...</p>
+                            <div class="rbt-card-bottom">
+                                <a class="rbt-btn-link" href="#">Coming Soon<i class="feather-arrow-right"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- End Single Card -->
+
+            <!-- Start Single Card -->
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                <div class="course-grid-3">
+                    <div class="rbt-card variation-01 rbt-hover">
+                        <div class="rbt-card-img">
+                            <a href="{{ route('courseDetails') }}">
+                                <img src="{{ asset('assets/images/coachFitra/courses/bg-courses-selling.webp') }}" alt="Card image">
+                            </a>
+                        </div>
+                        <div class="rbt-card-body">
+                            <h4 class="rbt-card-title">Protected: Coming Soon</h4>
+                            <p class="rbt-card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, quam expedita! Beatae enim...</p>
+                            <div class="rbt-card-bottom">
+                                <a class="rbt-btn-link" href="#">Coming Soon<i class="feather-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Single Card -->
+
+            <!-- Tambahkan card lain sesuai kebutuhan -->
+
         </div>
+
+        <!-- Tombol bawah -->
+        <div class="text-center mt--40 d-flex justify-content-center gap-3">
+            <a href="https://ecourse.sekolahkaya.com/dashboard" class="mycourses-btn">
+                My Courses
+            </a>
+
+            <a href="{{ route('courseWithTab') }}" class="load-btn">
+                Load More Courses
+            </a>
+        </div>
+
     </div>
+</div>
+
+<!-- Tambahkan CSS -->
+<style>
+    .mycourses-btn, .load-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 10px 20px;
+        font-weight: 600;
+        border-radius: 25px;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .mycourses-btn {
+        background: #2563eb;
+        color: #fff !important;
+        position: relative;
+    }
+
+    .mycourses-btn:hover {
+        background: #1d4ed8;
+    }
+
+    .mycourses-btn .badge {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        background: #ef4444;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 2px 6px;
+        border-radius: 50%;
+    }
+
+    .load-btn {
+        background: #f3f4f6;
+        color: #374151;
+        border: 1px solid #d1d5db;
+    }
+
+    .load-btn:hover {
+        background: #e5e7eb;
+    }
+</style>
+
+    <!-- Start Course Action Bottom  -->
     <!-- End Course Action Bottom  -->
 
     <x-separator/>

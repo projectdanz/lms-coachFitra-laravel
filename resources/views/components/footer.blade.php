@@ -7,12 +7,12 @@
                     <div class="footer-widget">
                         <div class="logo logo-dark">
                             <a href="{{ route('mainDemo') }}">
-                                <img src="https://lms.sohibdigi.id/wp-content/uploads/2025/08/logosekolahkaya.webp" alt="Edu-cause">
+                                <img src="{{ asset('assets/images/coachFitra/logo-sekolah-kaya-trspnt.webp') }}" alt="Edu-cause">
                             </a>
                         </div>
                         <div class="logo d-none logo-light">
                             <a href="{{ route('mainDemo') }}">
-                                <img src="{{ asset('assets/images/coachFitra/logo-sekolahkaya-light.png') }}" alt="Edu-cause">
+                                <img src="{{ asset('assets/images/coachFitra/logo-sekolah-kaya-trspnt.webp') }}" alt="Edu-cause">
                             </a>
                         </div>
 
@@ -47,7 +47,12 @@
 
             {{-- Courses Menu --}}
                                     <li>
-                                        <a href="{{ route('courseWithTab') }}" class="nav-link">About</a>
+                                        <a href="https://ecourse.sekolahkaya.com/dashboard" class="nav-link">My Courses</a>
+                                    </li>
+
+            {{-- Courses Menu --}}
+                                    <li>
+                                        <a href="{{ route('aboutus01') }}" class="nav-link">About</a>
                                     </li>
 
                                     {{-- Courses Menu --}}
