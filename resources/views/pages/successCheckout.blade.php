@@ -124,9 +124,7 @@
             <div class="success-icon"><i class="fas fa-check"></i></div>
             
             <h1 class="title">Pembelian Berhasil!</h1>
-            <p class="subtitle">Pembelian anda berhasil Silahkan cek notifikasi di WhatsApp anda</p>
-            
-            
+
             
             <!-- Footer -->
             <div class="footer-note">

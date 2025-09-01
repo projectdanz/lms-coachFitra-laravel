@@ -762,8 +762,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title text-center mb--60">
-                        <span class="subtitle bg-secondary-opacity">Contact Us</span>
-                        <h2 class="title">Histudy Course Contact <br> can join with us.</h2>
+                        <span class="subtitle bg-secondary-opacity">Kontak Kami</span>
+                        <h2 class="title">Hubungi kami dan bergabunglah bersama Sekolahkaya.</h2>
                     </div>
                 </div>
             </div>
@@ -775,8 +775,9 @@
                         </div>
                         <div class="inner">
                             <h4 class="title">Contact Phone Number</h4>
-                            <p><a href="tel:+444555666777">+444 555 666 777</a></p>
-                            <p><a href="tel:+222222222333">+222 222 222 333</a></p>
+                            <p><a href="https://wa.me/085881857550">Shafa : 085881857550</a></p>
+                            <p><a href="https://wa.me/085135904447">Mutiah : 085135904447</a></p>
+                            <p><a href="https://wa.me/088225003896">Nisa : 088225003896</a></p>
                         </div>
                     </div>
                 </div>
@@ -787,8 +788,7 @@
                         </div>
                         <div class="inner">
                             <h4 class="title">Our Email Address</h4>
-                            <p><a href="mailto:admin@gmail.com">admin@gmail.com</a></p>
-                            <p><a href="mailto:example@gmail.com">example@gmail.com</a></p>
+                            <p><a href="https://mailto:sekolahkaya@gmail.com"> sekolahkaya@gmail.com</a></p>
                         </div>
                     </div>
                 </div>
@@ -799,12 +799,14 @@
                         </div>
                         <div class="inner">
                             <h4 class="title">Our Location</h4>
-                            <p>5678 Bangla Main Road, cities 580 <br> GBnagla, example 54786</p>
+                            <a href="https://www.google.com/maps/place/Jl.+Majapahit+V+No.35,+Nusukan,+Kec.+Banjarsari,+Kota+Surakarta,+Jawa+Tengah+57135/@-7.5506129,110.8227408,17z/data=!3m1!4b1!4m6!3m5!1s0x2e7a169682e101cd:0xf7cbfb41d165e27d!8m2!3d-7.5506182!4d110.8253157!16s%2Fg%2F11h92hdrrq?entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D">Jl. Majapahit V No.35, Nusukan, Kec. Banjarsari, Kota Surakarta, Jawa Tengah 57135</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
 
 @endsection

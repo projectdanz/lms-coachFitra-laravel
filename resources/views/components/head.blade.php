@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/coachFitra/LogoCF.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/coachFitra/logo-head.webp') }}">
 
     <!-- CSS  -->
     <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}">
