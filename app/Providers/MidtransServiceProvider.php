@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Services\NotificationService;
+use App\Services\PaymentService;
+use App\Services\UserRegistrationService;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Midtrans\MidtransPayment;
 use App\Services\Midtrans\SnapService;
@@ -22,6 +25,23 @@ class MidtransServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->singleton(NotificationService::class, function ($app) {
+            return new NotificationService();
+        });
+
+        $this->app->singleton(UserRegistrationService::class, function ($app) {
+            $notif = $app->make(NotificationService::class);
+            return new UserRegistrationService($notif);
+        });
+
+        $this->app->singleton(PaymentService::class, function ($app) {
+            $notif = $app->make(NotificationService::class);
+            $userRegistration = $app->make(UserRegistrationService::class);
+            $midtrans = $app->make(MidtransPayment::class);
+
+            return new PaymentService($midtrans, $userRegistration, $notif);
+        });
+
         $this->app->singleton(MidtransPayment::class, function ($app) {
             $snapService = $app->make(SnapService::class);
             return new MidtransPayment($snapService);
