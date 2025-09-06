@@ -23,7 +23,15 @@ class User extends Authenticatable
         'email',
         'password',
         'order_id',
-        'course_id'
+        'course_id',
+        'payment_status',
+        'payment_token',
+        'paid_at',
+        'wordpress_id',
+        'registered_at',
+        'registration_status',
+        'registration_error',
+        'needs_manual_processing',
     ];
 
     /**
@@ -48,7 +56,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function course() {
+    public function course()
+    {
         $this->belongsTo(Course::class, 'course_id');
     }
 }
