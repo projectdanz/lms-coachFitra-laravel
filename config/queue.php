@@ -109,4 +109,33 @@ return [
         'table' => 'failed_jobs',
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Webhook Specific Configuration
+    |--------------------------------------------------------------------------
+    */
+    'webhook' => [
+        // Dedicated webhook queue settings
+        'queue_name' => 'webhooks',
+        
+        // Retry settings
+        'max_attempts' => 3,
+        'retry_delay' => 30, // seconds
+        'timeout' => 300, // 5 minutes
+        
+        // Monitoring settings
+        'alert_failure_rate' => 20, // percent
+        'alert_queue_size' => 100,
+        'alert_processing_time' => 60, // seconds
+        
+        // Cleanup settings
+        'cleanup_days' => 30,
+        'auto_cleanup' => true,
+        
+        // Rate limiting
+        'rate_limit' => [
+            'max_per_minute' => 1000,
+            'max_per_hour' => 10000,
+        ],
+    ],
 ];
