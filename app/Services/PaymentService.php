@@ -625,4 +625,9 @@ class PaymentService
             Log::warning("User not found for order_id: {$orderId}");
         }
     }
+
+    public function validateWebhookSignature(array $webhookData)
+    {
+        return $this->midtrans->validateWebhookNotification($webhookData);
+    }
 }
