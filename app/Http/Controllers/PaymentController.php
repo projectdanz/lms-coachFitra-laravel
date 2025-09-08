@@ -120,14 +120,27 @@ class PaymentController extends Controller
                 return response()->json(['message' => 'Invalid webhook data'], 400);
             }
 
+            // Create webhook log entry
+            $webhookLog = \App\Models\WebhookLog::create([
+                'order_id' => $webhookData['order_id'],
+                'transaction_status' => $webhookData['transaction_status'],
+                'payment_type' => $webhookData['payment_type'] ?? null,
+                'fraud_status' => $webhookData['fraud_status'] ?? null,
+                'gross_amount' => $webhookData['gross_amount'] ?? null,
+                'status' => 'pending',
+                'received_at' => now(),
+                'webhook_data' => $webhookData,
+            ]);
+
             // Dispatch job to queue for processing
-            ProcessWebhookJob::dispatch($webhookData)
+            ProcessWebhookJob::dispatch($webhookData, $webhookLog->id)
                 ->onQueue('webhooks')
                 ->delay(now()->addSeconds(2)); // Small delay to ensure DB consistency
 
             Log::info('Webhook job dispatched', [
                 'order_id' => $webhookData['order_id'],
-                'transaction_status' => $webhookData['transaction_status']
+                'transaction_status' => $webhookData['transaction_status'],
+                'webhook_log_id' => $webhookLog->id
             ]);
 
             // Return success response quickly to Midtrans
