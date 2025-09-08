@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PaymentStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\User;
@@ -103,19 +104,22 @@ class PaymentController extends Controller
     }
 
     /**
-     * Handle webhook notification - Optimized for shared hosting
-     * Uses immediate processing with optimizations
+     * Handle webhook notification from Midtrans
+     * Optimized for shared hosting - immediate processing with cron fallback
      */
     public function handleWebhook(Request $request): JsonResponse
     {
         $webhookData = $request->all();
+        $startTime = microtime(true);
         
-        // Log webhook receipt
         Log::info('Webhook received', [
             'order_id' => $webhookData['order_id'] ?? 'unknown',
             'transaction_status' => $webhookData['transaction_status'] ?? 'unknown',
             'ip' => $request->ip(),
         ]);
+
+        // Set execution time limit for shared hosting
+        set_time_limit(25);
 
         // Create webhook log for tracking
         $webhookLog = WebhookLog::create([
@@ -148,13 +152,20 @@ class PaymentController extends Controller
             // Set processing lock (5 minutes)
             Cache::put($cacheKey, true, 300);
 
-            // Process webhook immediately (no queue)
+            // Process webhook immediately
             $this->processWebhookImmediate($webhookData, $webhookLog);
 
+            $processingTime = microtime(true) - $startTime;
             $webhookLog->markAsCompleted();
+            $webhookLog->update(['processing_time_seconds' => round($processingTime, 2)]);
 
             // Clear processing lock
             Cache::forget($cacheKey);
+
+            Log::info('Webhook processed successfully', [
+                'order_id' => $webhookData['order_id'],
+                'processing_time' => round($processingTime, 2) . 's'
+            ]);
 
             return response()->json(['message' => 'OK'], 200);
 
@@ -168,13 +179,13 @@ class PaymentController extends Controller
                 'webhook_log_id' => $webhookLog->id
             ]);
 
-            // Still return 200 to prevent Midtrans retries for application errors
+            // Return 200 to prevent Midtrans retries for application errors
             return response()->json(['message' => 'Error logged'], 200);
         }
     }
 
     /**
-     * Process webhook immediately - optimized version
+     * Process webhook immediately - optimized for shared hosting
      */
     private function processWebhookImmediate(array $webhookData, WebhookLog $webhookLog): void
     {
@@ -241,7 +252,7 @@ class PaymentController extends Controller
     }
 
     /**
-     * Handle successful payment - streamlined version
+     * Handle successful payment - optimized for shared hosting
      */
     private function handleSuccessfulPayment(string $orderId, array $validation): void
     {
@@ -252,7 +263,7 @@ class PaymentController extends Controller
         }
 
         // Prevent duplicate processing
-        if ($user->payment_status === 'completed') {
+        if ($user->payment_status === PaymentStatus::COMPLETED->value) {
             Log::info("Payment already completed for order: {$orderId}");
             return;
         }
@@ -263,86 +274,69 @@ class PaymentController extends Controller
             return;
         }
 
-        // Update payment status
+        // Update payment status first
         $user->update([
-            'payment_status' => 'completed',
+            'payment_status' => PaymentStatus::COMPLETED->value,
             'paid_at' => now(),
         ]);
 
-        // Process user access in background using deferred execution
-        $this->deferUserProcessing($user, $course);
+        // Process user access - decide strategy based on timing and load
+        $this->processUserAccess($user, $course);
 
         Log::info("Payment processed successfully for order: {$orderId}");
     }
 
     /**
-     * Handle other payment statuses
+     * Process user access with optimal strategy for shared hosting
      */
-    private function handlePendingPayment(string $orderId, array $validation): void
-    {
-        $this->updatePaymentStatus($orderId, 'pending');
-    }
-
-    private function handleFailedPayment(string $orderId, array $validation): void
-    {
-        $this->updatePaymentStatus($orderId, 'failed');
-    }
-
-    /**
-     * Update payment status
-     */
-    private function updatePaymentStatus(string $orderId, string $status): void
-    {
-        User::where('order_id', $orderId)->update(['payment_status' => $status]);
-    }
-
-    /**
-     * Defer user processing using various methods available in shared hosting
-     */
-    private function deferUserProcessing($user, $course): void
+    private function processUserAccess(User $user, Course $course): void
     {
         try {
-            // Method 1: Try immediate processing (risky but sometimes works)
+            // Check if we should process immediately or defer
             if ($this->shouldProcessImmediately()) {
+                Log::info('Processing user access immediately', ['user_id' => $user->id]);
                 $this->userRegistrationService->processUserAccess($user, $course);
-                return;
+            } else {
+                Log::info('Deferring user access to cron', ['user_id' => $user->id]);
+                $this->deferUserProcessing($user, $course);
             }
-
-            // Method 2: Use cron job processing
-            $this->scheduleForCronProcessing($user, $course);
-
         } catch (\Exception $e) {
-            Log::error('Deferred processing setup failed', [
+            Log::error('User access processing failed', [
                 'user_id' => $user->id,
                 'error' => $e->getMessage()
             ]);
 
-            // Fallback: Send notification with manual process message
-            $this->notificationService->sendPaymentSuccessNotifications(
-                $user,
-                $course,
-                null,
-                'Payment confirmed. Account setup in progress. You will receive credentials within 30 minutes.'
-            );
+            // Fallback to deferred processing
+            $this->deferUserProcessing($user, $course);
         }
     }
 
     /**
-     * Check if we should process immediately based on time and load
+     * Check if we should process immediately based on current load and time
      */
     private function shouldProcessImmediately(): bool
     {
-        // Process immediately during low-traffic hours (adjust timezone accordingly)
+        // Get current hour
         $currentHour = now()->hour;
-        return $currentHour >= 1 && $currentHour <= 5; // 1 AM - 5 AM
+        
+        // Process immediately during low-traffic hours (1 AM - 5 AM)
+        if ($currentHour >= 1 && $currentHour <= 5) {
+            return true;
+        }
+
+        // Check recent webhook load
+        $recentWebhooks = Cache::get('recent_webhook_count', 0);
+        
+        // If low load (less than 10 webhooks in last 10 minutes), process immediately
+        return $recentWebhooks < 10;
     }
 
     /**
-     * Schedule for cron job processing
+     * Defer user processing to cron job
      */
-    private function scheduleForCronProcessing($user, $course): void
+    private function deferUserProcessing(User $user, Course $course): void
     {
-        // Create a processing queue entry that cron can pick up
+        // Create pending processing record
         DB::table('pending_user_processing')->updateOrInsert(
             ['user_id' => $user->id],
             [
@@ -354,21 +348,83 @@ class PaymentController extends Controller
             ]
         );
 
-        Log::info('User processing scheduled for cron', [
+        // Send immediate notification about processing delay
+        $this->notificationService->sendPaymentSuccessNotifications(
+            $user,
+            $course,
+            null,
+            'Payment confirmed! Your account is being set up and you will receive login details within 15 minutes.'
+        );
+
+        Log::info('User processing deferred to cron', [
             'user_id' => $user->id,
             'order_id' => $user->order_id
         ]);
     }
 
     /**
-     * Cron job endpoint for processing users (call this from cPanel cron)
+     * Handle other payment statuses
      */
-    public function processPendingUsers(): JsonResponse
+    private function handlePendingPayment(string $orderId, array $validation): void
     {
+        $this->updatePaymentStatus($orderId, PaymentStatus::PENDING);
+        
+        // Send reminder notification
+        $user = User::where('order_id', $orderId)->first();
+        if ($user) {
+            $course = Course::find($user->course_id);
+            if ($course) {
+                $this->notificationService->sendPaymentReminderNotification($user, $course);
+            }
+        }
+    }
+
+    private function handleFailedPayment(string $orderId, array $validation): void
+    {
+        $this->updatePaymentStatus($orderId, PaymentStatus::FAILED);
+        
+        // Send failure notification
+        $user = User::where('order_id', $orderId)->first();
+        if ($user) {
+            $course = Course::find($user->course_id);
+            if ($course) {
+                $this->notificationService->sendPaymentFailureNotification(
+                    $user,
+                    $course,
+                    $validation['transaction_status'] ?? 'Payment processing failed'
+                );
+            }
+        }
+    }
+
+    /**
+     * Update payment status
+     */
+    private function updatePaymentStatus(string $orderId, PaymentStatus $status): void
+    {
+        User::where('order_id', $orderId)->update(['payment_status' => $status->value]);
+        Log::info("Updated payment status to {$status->value} for order: {$orderId}");
+    }
+
+    /**
+     * Cron job endpoint - Process pending users
+     */
+    public function processPendingUsers(Request $request): JsonResponse
+    {
+        // Verify cron authentication
+        if ($request->query('secret') !== config('webhook.cron_secret')) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        Log::info('Cron: Processing pending users started');
+        
+        set_time_limit(25); // Shared hosting limit
+        $batchSize = config('webhook.batch_size', 5);
+        
         $pendingUsers = DB::table('pending_user_processing')
             ->where('status', 'pending')
-            ->where('created_at', '>', now()->subHours(24)) // Only process recent ones
-            ->limit(10) // Process in small batches
+            ->where('created_at', '>', now()->subHours(24))
+            ->limit($batchSize)
             ->get();
 
         $processed = 0;
@@ -376,6 +432,15 @@ class PaymentController extends Controller
 
         foreach ($pendingUsers as $pending) {
             try {
+                // Mark as processing
+                DB::table('pending_user_processing')
+                    ->where('id', $pending->id)
+                    ->update([
+                        'status' => 'processing',
+                        'last_attempt_at' => now(),
+                        'attempts' => ($pending->attempts ?? 0) + 1
+                    ]);
+
                 $user = User::find($pending->user_id);
                 $course = Course::find($pending->course_id);
 
@@ -388,30 +453,52 @@ class PaymentController extends Controller
                         ->update(['status' => 'completed', 'updated_at' => now()]);
                     
                     $processed++;
+                    Log::info('Cron: User processed successfully', ['user_id' => $user->id]);
                 } else {
-                    // Mark as failed
-                    DB::table('pending_user_processing')
-                        ->where('id', $pending->id)
-                        ->update(['status' => 'failed', 'updated_at' => now()]);
-                    
-                    $failed++;
+                    throw new \Exception('User or course not found');
                 }
 
             } catch (\Exception $e) {
-                Log::error('Cron user processing failed', [
+                Log::error('Cron: User processing failed', [
                     'pending_id' => $pending->id,
+                    'user_id' => $pending->user_id ?? null,
                     'error' => $e->getMessage()
                 ]);
                 
-                DB::table('pending_user_processing')
-                    ->where('id', $pending->id)
-                    ->update(['status' => 'failed', 'updated_at' => now()]);
+                // Mark as failed or retry
+                $maxAttempts = 3;
+                $currentAttempts = ($pending->attempts ?? 0) + 1;
+                
+                if ($currentAttempts >= $maxAttempts) {
+                    DB::table('pending_user_processing')
+                        ->where('id', $pending->id)
+                        ->update([
+                            'status' => 'failed',
+                            'error_message' => $e->getMessage(),
+                            'updated_at' => now()
+                        ]);
+                } else {
+                    DB::table('pending_user_processing')
+                        ->where('id', $pending->id)
+                        ->update([
+                            'status' => 'pending',
+                            'error_message' => $e->getMessage(),
+                            'updated_at' => now()
+                        ]);
+                }
                 
                 $failed++;
             }
         }
 
+        Log::info('Cron: Processing pending users completed', [
+            'processed' => $processed,
+            'failed' => $failed,
+            'total' => count($pendingUsers)
+        ]);
+
         return response()->json([
+            'success' => true,
             'processed' => $processed,
             'failed' => $failed,
             'total' => count($pendingUsers)
@@ -419,22 +506,101 @@ class PaymentController extends Controller
     }
 
     /**
-     * Cleanup old records (call this from cPanel cron weekly)
+     * Cron job endpoint - Cleanup old records
      */
-    public function cleanupOldRecords(): JsonResponse
+    public function cleanupOldRecords(Request $request): JsonResponse
     {
+        if ($request->query('secret') !== config('webhook.cron_secret')) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        Log::info('Cron: Cleanup started');
         $deleted = 0;
 
-        // Clean webhook logs older than 30 days
-        $deleted += WebhookLog::where('created_at', '<', now()->subDays(30))->delete();
+        try {
+            // Clean webhook logs older than 30 days
+            $webhookDeleted = WebhookLog::where('created_at', '<', now()->subDays(30))->delete();
+            $deleted += $webhookDeleted;
 
-        // Clean completed processing records older than 7 days
-        $deleted += DB::table('pending_user_processing')
-            ->where('status', 'completed')
-            ->where('updated_at', '<', now()->subDays(7))
-            ->delete();
+            // Clean completed processing records older than 7 days
+            $processingDeleted = DB::table('pending_user_processing')
+                ->where('status', 'completed')
+                ->where('updated_at', '<', now()->subDays(7))
+                ->delete();
+            $deleted += $processingDeleted;
 
-        return response()->json(['deleted' => $deleted]);
+            // Clean failed processing records older than 30 days
+            $failedDeleted = DB::table('pending_user_processing')
+                ->where('status', 'failed')
+                ->where('updated_at', '<', now()->subDays(30))
+                ->delete();
+            $deleted += $failedDeleted;
+
+            Log::info('Cron: Cleanup completed', [
+                'webhook_logs_deleted' => $webhookDeleted,
+                'processing_completed_deleted' => $processingDeleted,
+                'processing_failed_deleted' => $failedDeleted,
+                'total_deleted' => $deleted
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error('Cron: Cleanup failed', ['error' => $e->getMessage()]);
+            return response()->json(['error' => 'Cleanup failed'], 500);
+        }
+
+        return response()->json([
+            'success' => true,
+            'deleted' => $deleted
+        ]);
+    }
+
+    /**
+     * Cron job endpoint - Health check
+     */
+    public function healthCheck(Request $request): JsonResponse
+    {
+        if ($request->query('secret') !== config('webhook.cron_secret')) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        $stats = [
+            'webhook_logs_today' => WebhookLog::whereDate('created_at', today())->count(),
+            'webhook_failed_today' => WebhookLog::whereDate('created_at', today())
+                ->where('status', 'failed')->count(),
+            'pending_processing' => DB::table('pending_user_processing')
+                ->where('status', 'pending')->count(),
+            'failed_processing' => DB::table('pending_user_processing')
+                ->where('status', 'failed')->count(),
+            'avg_processing_time' => WebhookLog::whereDate('created_at', today())
+                ->where('status', 'completed')
+                ->avg('processing_time_seconds'),
+            'timestamp' => now()->toISOString()
+        ];
+
+        // Check for alerts
+        $alerts = [];
+        
+        if ($stats['pending_processing'] > 50) {
+            $alerts[] = 'High number of pending user processing: ' . $stats['pending_processing'];
+        }
+        
+        if ($stats['webhook_failed_today'] > 0) {
+            $failureRate = ($stats['webhook_failed_today'] / max($stats['webhook_logs_today'], 1)) * 100;
+            if ($failureRate > 20) {
+                $alerts[] = 'High webhook failure rate: ' . round($failureRate, 2) . '%';
+            }
+        }
+
+        if (!empty($alerts)) {
+            Log::warning('Health check alerts', $alerts);
+        }
+
+        return response()->json([
+            'success' => true,
+            'stats' => $stats,
+            'alerts' => $alerts,
+            'status' => empty($alerts) ? 'healthy' : 'warning'
+        ]);
     }
 
     /**

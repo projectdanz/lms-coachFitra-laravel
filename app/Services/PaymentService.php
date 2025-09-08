@@ -22,7 +22,8 @@ class PaymentService
         private MidtransPayment $midtrans,
         private UserRegistrationService $userRegistrationService,
         private NotificationService $notificationService
-    ) {}
+    ) {
+    }
 
     /**
      * Create a new payment
@@ -67,7 +68,7 @@ class PaymentService
 
         try {
             $customer = ['email' => $validatedData['customer_email']];
-            
+
             return $this->midtrans->createSimplePayment(
                 $validatedData['method'],
                 $validatedData['order_id'],
@@ -97,10 +98,10 @@ class PaymentService
     public function cancelPayment(string $orderId): array
     {
         $result = $this->midtrans->cancelPayment($orderId);
-        
+
         // Update local status
         $this->updatePaymentStatus($orderId, PaymentStatus::CANCELLED);
-        
+
         return $result;
     }
 
@@ -125,7 +126,7 @@ class PaymentService
     public function getWebhookJobStats(): array
     {
         $cacheKey = 'webhook_stats';
-        
+
         return Cache::remember($cacheKey, 300, function () { // 5 minutes cache
             $stats = [
                 'pending_jobs' => 0,
@@ -139,12 +140,12 @@ class PaymentService
             try {
                 // Get queue statistics (implementation depends on queue driver)
                 $queueConnection = config('queue.default');
-                
+
                 if ($queueConnection === 'database') {
                     $stats['pending_jobs'] = DB::table('jobs')
                         ->where('queue', 'webhooks')
                         ->count();
-                    
+
                     $stats['failed_jobs'] = DB::table('failed_jobs')
                         ->where('payload', 'like', '%ProcessWebhookJob%')
                         ->whereDate('failed_at', today())
@@ -191,16 +192,16 @@ class PaymentService
                     try {
                         $payload = json_decode($failedJob->payload, true);
                         $webhookData = $payload['data']['webhookData'] ?? null;
-                        
+
                         if ($webhookData) {
                             // Re-dispatch the job
                             ProcessWebhookJob::dispatch($webhookData)
                                 ->onQueue('webhooks')
                                 ->delay(now()->addSeconds(5));
-                            
+
                             // Remove from failed jobs table
                             DB::table('failed_jobs')->where('id', $failedJob->id)->delete();
-                            
+
                             $results['retried']++;
                             $results['jobs'][] = [
                                 'job_id' => $failedJob->id,
@@ -233,7 +234,7 @@ class PaymentService
             Log::error('Error retrying failed webhook jobs', [
                 'error' => $e->getMessage()
             ]);
-            
+
             throw $e;
         }
 
@@ -253,12 +254,12 @@ class PaymentService
 
         try {
             $stats = $this->getWebhookJobStats();
-            
+
             // Check for high failure rate
             $totalJobs = $stats['completed_jobs_today'] + $stats['failed_jobs'];
             if ($totalJobs > 0) {
                 $failureRate = ($stats['failed_jobs'] / $totalJobs) * 100;
-                
+
                 if ($failureRate > 20) {
                     $health['status'] = 'unhealthy';
                     $health['issues'][] = "High failure rate: {$failureRate}%";
@@ -269,14 +270,14 @@ class PaymentService
                     $health['recommendations'][] = 'Monitor webhook processing closely';
                 }
             }
-            
+
             // Check for queue backlog
             if ($stats['pending_jobs'] > 50) {
                 $health['status'] = 'warning';
                 $health['issues'][] = "High number of pending jobs: {$stats['pending_jobs']}";
                 $health['recommendations'][] = 'Consider scaling queue workers';
             }
-            
+
             // Check average processing time
             if ($stats['avg_processing_time'] > 60) { // More than 60 seconds
                 $health['status'] = 'warning';
@@ -317,6 +318,14 @@ class PaymentService
         return $this->midtrans->getConfig();
     }
 
+    /**
+     * Validate webhook signature (required for shared hosting implementation)
+     */
+    public function validateWebhookSignature(array $webhookData): array
+    {
+        return $this->midtrans->validateWebhookNotification($webhookData);
+    }
+
     // ============= PRIVATE METHODS =============
 
     /**
@@ -332,7 +341,7 @@ class PaymentService
             //     ->where('status', 'completed')
             //     ->whereDate('created_at', today())
             //     ->count();
-            
+
             return 0; // Placeholder
         } catch (\Exception $e) {
             return 0;
@@ -351,7 +360,7 @@ class PaymentService
             // return DB::table('webhook_logs')
             //     ->whereDate('created_at', today())
             //     ->avg('processing_time') ?? 0;
-            
+
             return 0.0; // Placeholder
         } catch (\Exception $e) {
             return 0.0;
@@ -365,7 +374,7 @@ class PaymentService
     {
         // Return hourly breakdown of webhook processing
         $stats = [];
-        
+
         for ($i = 23; $i >= 0; $i--) {
             $hour = now()->subHours($i);
             $stats[] = [
@@ -374,7 +383,7 @@ class PaymentService
                 'failed' => 0,    // Placeholder
             ];
         }
-        
+
         return $stats;
     }
 
@@ -560,9 +569,9 @@ class PaymentService
     private function handleChallengedPayment(string $orderId, array $validation): void
     {
         Log::warning("Payment challenged for order: {$orderId}", $validation);
-        
+
         $this->updatePaymentStatus($orderId, PaymentStatus::CHALLENGED);
-        
+
         // TODO: Implement manual review process
     }
 
@@ -572,7 +581,7 @@ class PaymentService
     private function handleFailedPayment(string $orderId, array $validation): void
     {
         Log::info("Payment failed for order: {$orderId}", $validation);
-        
+
         $this->updatePaymentStatus($orderId, PaymentStatus::FAILED);
     }
 
@@ -582,7 +591,7 @@ class PaymentService
     private function handleCancelledPayment(string $orderId, array $validation): void
     {
         Log::info("Payment cancelled for order: {$orderId}", $validation);
-        
+
         $this->updatePaymentStatus($orderId, PaymentStatus::CANCELLED);
     }
 
@@ -592,7 +601,7 @@ class PaymentService
     private function handleExpiredPayment(string $orderId, array $validation): void
     {
         Log::info("Payment expired for order: {$orderId}", $validation);
-        
+
         $this->updatePaymentStatus($orderId, PaymentStatus::EXPIRED);
     }
 
@@ -602,7 +611,7 @@ class PaymentService
     private function handlePendingPayment(string $orderId, array $validation): void
     {
         Log::info("Payment pending for order: {$orderId}", $validation);
-        
+
         $this->updatePaymentStatus($orderId, PaymentStatus::PENDING);
     }
 
@@ -612,10 +621,10 @@ class PaymentService
     private function updatePaymentStatus(string $orderId, PaymentStatus $status): void
     {
         $user = User::where('order_id', $orderId)->first();
-        
+
         if ($user) {
             $user->update(['payment_status' => $status->value]);
-            
+
             Log::info("Updated payment status", [
                 'order_id' => $orderId,
                 'user_id' => $user->id,
@@ -624,10 +633,5 @@ class PaymentService
         } else {
             Log::warning("User not found for order_id: {$orderId}");
         }
-    }
-
-    public function validateWebhookSignature(array $webhookData)
-    {
-        return $this->midtrans->validateWebhookNotification($webhookData);
     }
 }
