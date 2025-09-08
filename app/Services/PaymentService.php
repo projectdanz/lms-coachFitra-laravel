@@ -7,9 +7,12 @@ use App\Models\User;
 use App\Enums\PaymentStatus;
 use App\Services\Midtrans\MidtransPayment;
 use App\Services\Midtrans\Exceptions\MidtransException;
+use App\Jobs\ProcessWebhookJob;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -102,7 +105,7 @@ class PaymentService
     }
 
     /**
-     * Handle webhook notification
+     * Handle webhook notification (legacy - now mostly for fallback)
      */
     public function handleWebhook(array $notification): void
     {
@@ -114,6 +117,180 @@ class PaymentService
         }
 
         $this->processNotification($validation);
+    }
+
+    /**
+     * Get webhook job statistics
+     */
+    public function getWebhookJobStats(): array
+    {
+        $cacheKey = 'webhook_stats';
+        
+        return Cache::remember($cacheKey, 300, function () { // 5 minutes cache
+            $stats = [
+                'pending_jobs' => 0,
+                'failed_jobs' => 0,
+                'completed_jobs_today' => 0,
+                'avg_processing_time' => 0,
+                'last_24h_stats' => [],
+                'queue_status' => 'unknown'
+            ];
+
+            try {
+                // Get queue statistics (implementation depends on queue driver)
+                $queueConnection = config('queue.default');
+                
+                if ($queueConnection === 'database') {
+                    $stats['pending_jobs'] = DB::table('jobs')
+                        ->where('queue', 'webhooks')
+                        ->count();
+                    
+                    $stats['failed_jobs'] = DB::table('failed_jobs')
+                        ->where('payload', 'like', '%ProcessWebhookJob%')
+                        ->whereDate('failed_at', today())
+                        ->count();
+                }
+
+                // Get processing statistics from logs or dedicated tracking table
+                $stats['completed_jobs_today'] = $this->getCompletedWebhookJobsToday();
+                $stats['avg_processing_time'] = $this->getAverageProcessingTime();
+                $stats['last_24h_stats'] = $this->getLast24HourStats();
+                $stats['queue_status'] = $this->getQueueStatus();
+
+            } catch (\Exception $e) {
+                Log::error('Failed to get webhook statistics', [
+                    'error' => $e->getMessage()
+                ]);
+            }
+
+            return $stats;
+        });
+    }
+
+    /**
+     * Retry failed webhook jobs
+     */
+    public function retryFailedWebhookJobs(int $limit = 10): array
+    {
+        $results = [
+            'retried' => 0,
+            'failed' => 0,
+            'jobs' => []
+        ];
+
+        try {
+            // Get failed jobs from database (if using database queue driver)
+            if (config('queue.default') === 'database') {
+                $failedJobs = DB::table('failed_jobs')
+                    ->where('payload', 'like', '%ProcessWebhookJob%')
+                    ->whereDate('failed_at', '>=', now()->subDays(7)) // Only retry jobs from last 7 days
+                    ->limit($limit)
+                    ->get();
+
+                foreach ($failedJobs as $failedJob) {
+                    try {
+                        $payload = json_decode($failedJob->payload, true);
+                        $webhookData = $payload['data']['webhookData'] ?? null;
+                        
+                        if ($webhookData) {
+                            // Re-dispatch the job
+                            ProcessWebhookJob::dispatch($webhookData)
+                                ->onQueue('webhooks')
+                                ->delay(now()->addSeconds(5));
+                            
+                            // Remove from failed jobs table
+                            DB::table('failed_jobs')->where('id', $failedJob->id)->delete();
+                            
+                            $results['retried']++;
+                            $results['jobs'][] = [
+                                'job_id' => $failedJob->id,
+                                'order_id' => $webhookData['order_id'] ?? 'unknown',
+                                'status' => 'retried'
+                            ];
+
+                            Log::info('Failed webhook job retried', [
+                                'job_id' => $failedJob->id,
+                                'order_id' => $webhookData['order_id'] ?? 'unknown'
+                            ]);
+                        }
+                    } catch (\Exception $e) {
+                        $results['failed']++;
+                        $results['jobs'][] = [
+                            'job_id' => $failedJob->id,
+                            'status' => 'retry_failed',
+                            'error' => $e->getMessage()
+                        ];
+
+                        Log::error('Failed to retry webhook job', [
+                            'job_id' => $failedJob->id,
+                            'error' => $e->getMessage()
+                        ]);
+                    }
+                }
+            }
+
+        } catch (\Exception $e) {
+            Log::error('Error retrying failed webhook jobs', [
+                'error' => $e->getMessage()
+            ]);
+            
+            throw $e;
+        }
+
+        return $results;
+    }
+
+    /**
+     * Monitor webhook processing health
+     */
+    public function getWebhookHealthStatus(): array
+    {
+        $health = [
+            'status' => 'healthy',
+            'issues' => [],
+            'recommendations' => []
+        ];
+
+        try {
+            $stats = $this->getWebhookJobStats();
+            
+            // Check for high failure rate
+            $totalJobs = $stats['completed_jobs_today'] + $stats['failed_jobs'];
+            if ($totalJobs > 0) {
+                $failureRate = ($stats['failed_jobs'] / $totalJobs) * 100;
+                
+                if ($failureRate > 20) {
+                    $health['status'] = 'unhealthy';
+                    $health['issues'][] = "High failure rate: {$failureRate}%";
+                    $health['recommendations'][] = 'Check webhook processing logs and Midtrans connectivity';
+                } elseif ($failureRate > 10) {
+                    $health['status'] = 'warning';
+                    $health['issues'][] = "Elevated failure rate: {$failureRate}%";
+                    $health['recommendations'][] = 'Monitor webhook processing closely';
+                }
+            }
+            
+            // Check for queue backlog
+            if ($stats['pending_jobs'] > 50) {
+                $health['status'] = 'warning';
+                $health['issues'][] = "High number of pending jobs: {$stats['pending_jobs']}";
+                $health['recommendations'][] = 'Consider scaling queue workers';
+            }
+            
+            // Check average processing time
+            if ($stats['avg_processing_time'] > 60) { // More than 60 seconds
+                $health['status'] = 'warning';
+                $health['issues'][] = "Slow processing time: {$stats['avg_processing_time']}s";
+                $health['recommendations'][] = 'Investigate slow webhook processing';
+            }
+
+        } catch (\Exception $e) {
+            $health['status'] = 'error';
+            $health['issues'][] = 'Unable to check webhook health';
+            $health['recommendations'][] = 'Check application logs and monitoring systems';
+        }
+
+        return $health;
     }
 
     /**
@@ -141,6 +318,79 @@ class PaymentService
     }
 
     // ============= PRIVATE METHODS =============
+
+    /**
+     * Get completed webhook jobs count for today
+     */
+    private function getCompletedWebhookJobsToday(): int
+    {
+        // This could be implemented using a dedicated tracking table
+        // or by analyzing logs. For now, return a placeholder
+        try {
+            // Example implementation using a hypothetical webhook_logs table
+            // return DB::table('webhook_logs')
+            //     ->where('status', 'completed')
+            //     ->whereDate('created_at', today())
+            //     ->count();
+            
+            return 0; // Placeholder
+        } catch (\Exception $e) {
+            return 0;
+        }
+    }
+
+    /**
+     * Get average processing time for webhook jobs
+     */
+    private function getAverageProcessingTime(): float
+    {
+        // This could be calculated from job execution logs
+        // For now, return a placeholder
+        try {
+            // Example implementation
+            // return DB::table('webhook_logs')
+            //     ->whereDate('created_at', today())
+            //     ->avg('processing_time') ?? 0;
+            
+            return 0.0; // Placeholder
+        } catch (\Exception $e) {
+            return 0.0;
+        }
+    }
+
+    /**
+     * Get statistics for the last 24 hours
+     */
+    private function getLast24HourStats(): array
+    {
+        // Return hourly breakdown of webhook processing
+        $stats = [];
+        
+        for ($i = 23; $i >= 0; $i--) {
+            $hour = now()->subHours($i);
+            $stats[] = [
+                'hour' => $hour->format('H:00'),
+                'processed' => 0, // Placeholder
+                'failed' => 0,    // Placeholder
+            ];
+        }
+        
+        return $stats;
+    }
+
+    /**
+     * Get queue status
+     */
+    private function getQueueStatus(): string
+    {
+        try {
+            // Simple connectivity test
+            Queue::size('webhooks');
+            return 'operational';
+        } catch (\Exception $e) {
+            return 'error';
+        }
+    }
 
     /**
      * Validate payment data
@@ -218,14 +468,14 @@ class PaymentService
     }
 
     /**
-     * Process webhook notification
+     * Process webhook notification (legacy method, kept for fallback)
      */
     private function processNotification(array $validation): void
     {
         $orderId = $validation['order_id'];
         $transactionStatus = $validation['transaction_status'];
 
-        Log::info('Processing webhook notification', [
+        Log::info('Processing webhook notification (sync)', [
             'order_id' => $orderId,
             'transaction_status' => $transactionStatus,
             'validation' => $validation
@@ -314,7 +564,6 @@ class PaymentService
         $this->updatePaymentStatus($orderId, PaymentStatus::CHALLENGED);
         
         // TODO: Implement manual review process
-        // Could send notification to admin, create review task, etc.
     }
 
     /**
@@ -325,8 +574,6 @@ class PaymentService
         Log::info("Payment failed for order: {$orderId}", $validation);
         
         $this->updatePaymentStatus($orderId, PaymentStatus::FAILED);
-        
-        // TODO: Send failure notification to user
     }
 
     /**
@@ -357,8 +604,6 @@ class PaymentService
         Log::info("Payment pending for order: {$orderId}", $validation);
         
         $this->updatePaymentStatus($orderId, PaymentStatus::PENDING);
-        
-        // TODO: Set up monitoring for pending payments
     }
 
     /**
