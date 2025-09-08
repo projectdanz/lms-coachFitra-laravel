@@ -15,12 +15,14 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use App\Models\WebhookLog;
 
 class ProcessWebhookJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public array $webhookData;
+    public ?int $webhookLogId = null;
     public int $tries = 3;
     public int $maxExceptions = 3;
     public int $timeout = 300; // 5 minutes
@@ -29,9 +31,10 @@ class ProcessWebhookJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(array $webhookData)
+    public function __construct(array $webhookData, ?int $webhookLogId = null)
     {
         $this->webhookData = $webhookData;
+        $this->webhookLogId = $webhookLogId;
         $this->onQueue('webhooks'); // Use dedicated queue for webhooks
     }
 
@@ -43,10 +46,25 @@ class ProcessWebhookJob implements ShouldQueue
         UserRegistrationService $userRegistrationService,
         NotificationService $notificationService
     ): void {
+        $webhookLog = null;
+        
+        // Get or create webhook log
+        if ($this->webhookLogId) {
+            $webhookLog = WebhookLog::find($this->webhookLogId);
+        }
+        
+        if (!$webhookLog) {
+            $webhookLog = $this->createWebhookLog();
+        }
+        
+        // Mark as processing
+        $webhookLog->markAsProcessing($this->job->getJobId());
+
         Log::info('Processing webhook job started', [
             'order_id' => $this->webhookData['order_id'] ?? 'unknown',
             'transaction_status' => $this->webhookData['transaction_status'] ?? 'unknown',
             'job_id' => $this->job->getJobId(),
+            'webhook_log_id' => $webhookLog->id,
             'attempt' => $this->attempts()
         ]);
 
@@ -57,11 +75,17 @@ class ProcessWebhookJob implements ShouldQueue
             if (!$validation['valid']) {
                 Log::warning('Invalid webhook signature in job', [
                     'webhook_data' => $this->webhookData,
-                    'validation' => $validation
+                    'validation' => $validation,
+                    'webhook_log_id' => $webhookLog->id
                 ]);
+                
+                $webhookLog->markAsFailed('Invalid webhook signature');
                 $this->fail('Invalid webhook signature');
                 return;
             }
+
+            // Store validation data
+            $webhookLog->update(['validation_data' => $validation]);
 
             // Process the notification
             $this->processNotification(
@@ -70,18 +94,26 @@ class ProcessWebhookJob implements ShouldQueue
                 $notificationService
             );
 
+            // Mark as completed
+            $webhookLog->markAsCompleted();
+
             Log::info('Webhook job completed successfully', [
                 'order_id' => $validation['order_id'],
                 'transaction_status' => $validation['transaction_status'],
-                'job_id' => $this->job->getJobId()
+                'job_id' => $this->job->getJobId(),
+                'webhook_log_id' => $webhookLog->id,
+                'processing_time' => $webhookLog->processing_time_seconds
             ]);
 
         } catch (\Exception $e) {
+            $webhookLog->markAsFailed($e->getMessage());
+            
             Log::error('Webhook job processing failed', [
                 'order_id' => $this->webhookData['order_id'] ?? 'unknown',
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
                 'job_id' => $this->job->getJobId(),
+                'webhook_log_id' => $webhookLog->id,
                 'attempt' => $this->attempts()
             ]);
 
@@ -94,6 +126,23 @@ class ProcessWebhookJob implements ShouldQueue
 
             throw $e; // Let Laravel handle retries for other exceptions
         }
+    }
+
+    /**
+     * Create webhook log entry
+     */
+    private function createWebhookLog(): WebhookLog
+    {
+        return WebhookLog::create([
+            'order_id' => $this->webhookData['order_id'] ?? 'unknown',
+            'transaction_status' => $this->webhookData['transaction_status'] ?? 'unknown',
+            'payment_type' => $this->webhookData['payment_type'] ?? null,
+            'fraud_status' => $this->webhookData['fraud_status'] ?? null,
+            'gross_amount' => $this->webhookData['gross_amount'] ?? null,
+            'status' => 'pending',
+            'received_at' => now(),
+            'webhook_data' => $this->webhookData,
+        ]);
     }
 
     /**
