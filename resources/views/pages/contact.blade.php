@@ -775,7 +775,7 @@
                         </div>
                         <div class="inner">
                             <h4 class="title">Contact Phone Number</h4>
-                            <p style="margin: 8px 0px;" ><a href="https://wa.me/6285881857550">Shafa : 085881857550</a></p>
+                            {{-- <p style="margin: 8px 0px;" ><a href="https://wa.me/6285881857550">Shafa : 085881857550</a></p> --}}
                             <p style="margin: 8px 0px;" ><a href="https://wa.me/6285135904447">Mutiah : 085135904447</a></p>
                             <p style="margin: 8px 0px;" ><a href="https://wa.me/6288225003896">Nisa : 088225003896</a></p>
                         </div>
