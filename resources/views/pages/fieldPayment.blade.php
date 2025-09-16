@@ -183,6 +183,7 @@
 
         .form-group {
             margin-bottom: 20px;
+            position: relative;
         }
 
         .form-label {
@@ -340,6 +341,30 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+
+        /* VALIDATION STYLES */
+        .form-input.error {
+            border-color: #ff4757;
+            background-color: #fff5f5;
+        }
+
+        .form-input.success {
+            border-color: #00b894;
+        }
+
+        .error-message {
+            color: #ff4757;
+            font-size: 12px;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .success-message {
+            color: #00b894;
+            font-size: 12px;
+            margin-top: 5px;
+            display: block;
+        }
     </style>
 </head>
 
@@ -365,80 +390,182 @@
                 </div>
             @endif
 
-            <form action="{{ route('payment.create') }}" method="POST">
+            <form id="paymentForm" action="{{ route('payment.create') }}" method="POST">
                 @csrf
-
-
-
                 <input type="hidden" name="method" value="snap">
                 <input type="hidden" id="course_id" name="course_id" value="1" required>
 
+                <div class="form-group">
+                    <label for="username" class="form-label">Full Name *</label>
+                    <input type="text" id="username" name="customer[username]"
+                        class="form-input @error('customer.username') is-invalid @enderror"
+                        placeholder="Enter your full name" value="{{ old('customer.username') }}" required>
+                    @error('customer.username')
+                        <div class="text-danger mt-1">{{ $message }}</div>
+                    @enderror
+                    <span class="error-message" id="usernameError"></span>
+                </div>
 
                 <div class="form-group">
+                    <label for="email" class="form-label">Email Address *</label>
+                    <input type="email" id="email" name="customer[email]"
+                        class="form-input @error('customer.email') is-invalid @enderror"
+                        placeholder="your.email@example.com" value="{{ old('customer.email') }}" required>
+                    @error('customer.email')
+                        <div class="text-danger mt-1">{{ $message }}</div>
+                    @enderror
+                    <span class="error-message" id="emailError"></span>
+                </div>
 
-                    <div class="form-group">
-                        <label for="username" class="form-label">Full Name *</label>
-                        <input type="text" id="username" name="customer[username]"
-                            class="form-input @error('customer.username') is-invalid @enderror"
-                            placeholder="Enter your full name" value="{{ old('customer.username') }}" required>
-                        @error('customer.username')
-                            <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email Address *</label>
-                        <input type="email" id="email" name="customer[email]"
-                            class="form-input @error('customer.email') is-invalid @enderror"
-                            placeholder="your.email@example.com" value="{{ old('customer.email') }}" required>
-                        @error('customer.email')
-                            <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone" class="form-label">Phone Number *</label>
-                        <input type="text" id="phone" name="customer[phone]"
-                            class="form-input @error('customer.phone') is-invalid @enderror" placeholder="08xxxxxxxxxx"
-                            value="{{ old('customer.phone') }}" required>
-                        @error('customer.phone')
-                            <div class="text-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        <i class="fas fa-lock"></i>
-                        Buy Now
-                    </button>
+                <div class="form-group">
+                    <label for="phone" class="form-label">Phone Number *</label>
+                    <input type="text" id="phone" name="customer[phone]"
+                        class="form-input @error('customer.phone') is-invalid @enderror" placeholder="08xxxxxxxxxx"
+                        value="{{ old('customer.phone') }}" required>
+                    @error('customer.phone')
+                        <div class="text-danger mt-1">{{ $message }}</div>
+                    @enderror
+                    <span class="error-message" id="phoneError"></span>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <i class="fas fa-lock"></i>
+                    Buy Now
+                </button>
             </form>
         </div>
     </div>
 
     <script>
-        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('paymentForm');
+            const username = document.getElementById('username');
+            const email = document.getElementById('email');
+            const phone = document.getElementById('phone');
             const submitBtn = document.getElementById('submitBtn');
-
-            // Add loading state
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
-
-            // Optional: You can remove this timeout in production
-            // This is just for demo purposes
-            setTimeout(() => {
-                // Form will submit naturally after this
-            }, 1000);
-        });
-
-        // Format phone number as user types
-        document.getElementById('phone').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length >= 10) {
-                value = value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
-            } else if (value.length >= 6) {
-                value = value.replace(/(\d{3})(\d{3})/, '($1) $2-');
-            } else if (value.length >= 3) {
-                value = value.replace(/(\d{3})/, '($1) ');
+            
+            // Error elements
+            const usernameError = document.getElementById('usernameError');
+            const emailError = document.getElementById('emailError');
+            const phoneError = document.getElementById('phoneError');
+            
+            // Validation functions
+            function validateUsername() {
+                const value = username.value.trim();
+                if (value === '') {
+                    showError(username, usernameError, 'Full name is required');
+                    return false;
+                } else if (value.length < 3) {
+                    showError(username, usernameError, 'Name must be at least 3 characters');
+                    return false;
+                } else if (!/^[a-zA-Z\s]+$/.test(value)) {
+                    showError(username, usernameError, 'Name can only contain letters and spaces');
+                    return false;
+                } else {
+                    showSuccess(username, usernameError);
+                    return true;
+                }
             }
-            e.target.value = value;
+            
+            function validateEmail() {
+                const value = email.value.trim();
+                if (value === '') {
+                    showError(email, emailError, 'Email is required');
+                    return false;
+                } else if (!isValidEmail(value)) {
+                    showError(email, emailError, 'Please enter a valid email address');
+                    return false;
+                } else {
+                    showSuccess(email, emailError);
+                    return true;
+                }
+            }
+            
+            function validatePhone() {
+                const value = phone.value.trim();
+                // Remove non-digit characters for validation
+                const digitsOnly = value.replace(/\D/g, '');
+                
+                if (value === '') {
+                    showError(phone, phoneError, 'Phone number is required');
+                    return false;
+                } else if (digitsOnly.length < 10 || digitsOnly.length > 12) {
+                    showError(phone, phoneError, 'Phone number must be 10-12 digits');
+                    return false;
+                } else if (!/^08/.test(digitsOnly)) {
+                    showError(phone, phoneError, 'Phone number must start with 08');
+                    return false;
+                } else {
+                    showSuccess(phone, phoneError);
+                    return true;
+                }
+            }
+            
+            function isValidEmail(email) {
+                const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            }
+            
+            function showError(input, errorElement, message) {
+                input.classList.remove('success');
+                input.classList.add('error');
+                errorElement.textContent = message;
+            }
+            
+            function showSuccess(input, errorElement) {
+                input.classList.remove('error');
+                input.classList.add('success');
+                errorElement.textContent = '';
+            }
+            
+            // Real-time validation
+            username.addEventListener('input', validateUsername);
+            email.addEventListener('input', validateEmail);
+            phone.addEventListener('input', validatePhone);
+            
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                // Validate all fields
+                const isUsernameValid = validateUsername();
+                const isEmailValid = validateEmail();
+                const isPhoneValid = validatePhone();
+                
+                // If any validation fails, prevent form submission
+                if (!isUsernameValid || !isEmailValid || !isPhoneValid) {
+                    e.preventDefault();
+                    
+                    // Add loading state only if form is valid
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                } else {
+                    // Add loading state
+                    submitBtn.classList.add('loading');
+                    submitBtn.disabled = true;
+                    
+                    // Optional: You can remove this timeout in production
+                    // This is just for demo purposes
+                    setTimeout(() => {
+                        // Form will submit naturally after this
+                    }, 1000);
+                }
+            });
+            
+            // Format phone number as user types
+            phone.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 12) {
+                    value = value.substring(0, 12);
+                }
+                
+                // Format based on length
+                if (value.length >= 7) {
+                    value = value.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+                } else if (value.length >= 4) {
+                    value = value.replace(/(\d{3})(\d{1,3})/, '$1-$2');
+                }
+                
+                e.target.value = value;
+            });
         });
     </script>
 </body>
