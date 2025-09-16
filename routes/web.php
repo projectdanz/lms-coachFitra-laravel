@@ -163,4 +163,3 @@ Route::prefix('main')->group(function () {
         Route::get('/single-question','singleQuestion')->name('singleQuestion');
     });
 });
-
