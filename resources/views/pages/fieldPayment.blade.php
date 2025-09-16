@@ -34,91 +34,6 @@
             min-height: 600px;
         }
 
-        /* LEFT SIDE - COURSE INFO */
-        .course-info {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .course-badge {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            width: fit-content;
-        }
-
-        .bestseller-icon {
-            background: #ffd700;
-            color: #333;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 8px;
-            font-size: 12px;
-        }
-
-        .course-title {
-            font-size: 28px;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 16px;
-        }
-
-        .course-description {
-            font-size: 16px;
-            line-height: 1.6;
-            opacity: 0.9;
-            margin-bottom: 24px;
-        }
-
-        .course-stats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 24px;
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-        }
-
-        .rating-stars {
-            color: #ffd700;
-        }
-
-        .course-details {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .course-details li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-
-        .course-details li i {
-            margin-right: 10px;
-            width: 16px;
-        }
-
         /* RIGHT SIDE - PAYMENT FORM */
         .payment-form {
             padding: 40px;
@@ -142,43 +57,6 @@
         .form-subtitle {
             color: #666;
             font-size: 14px;
-        }
-
-        .price-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .price-main {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .price-original {
-            text-decoration: line-through;
-            opacity: 0.7;
-            font-size: 18px;
-            margin-right: 8px;
-        }
-
-        .price-discount {
-            background: #ff4757;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .countdown {
-            margin-top: 10px;
-            font-size: 14px;
-            opacity: 0.9;
         }
 
         .form-group {
@@ -238,110 +116,6 @@
             transform: translateY(0);
         }
 
-        .guarantee {
-            text-align: center;
-            font-size: 14px;
-            color: #666;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .guarantee i {
-            color: #00b894;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .payment-container {
-                grid-template-columns: 1fr;
-                max-width: 500px;
-            }
-
-            .course-info {
-                padding: 30px 20px;
-            }
-
-            .payment-form {
-                padding: 30px 20px;
-            }
-
-            .course-title {
-                font-size: 24px;
-            }
-
-            .price-main {
-                font-size: 28px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-
-            .course-info,
-            .payment-form {
-                padding: 20px;
-            }
-
-            .course-title {
-                font-size: 20px;
-            }
-
-            .form-title {
-                font-size: 20px;
-            }
-        }
-
-        /* LOADING STATE */
-        .submit-btn.loading {
-            position: relative;
-            color: transparent;
-        }
-
-        .submit-btn.loading::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            top: 50%;
-            left: 50%;
-            margin-left: -10px;
-            margin-top: -10px;
-            border: 2px solid #ffffff;
-            border-radius: 50%;
-            border-top-color: transparent;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* SUCCESS MESSAGE */
-        .alert {
-            padding: 12px 16px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .alert-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
         /* VALIDATION STYLES */
         .form-input.error {
             border-color: #ff4757;
@@ -365,6 +139,12 @@
             margin-top: 5px;
             display: block;
         }
+
+        .format-example {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
     </style>
 </head>
 
@@ -376,55 +156,27 @@
                 <h2 class="form-title">Complete Your Purchase</h2>
                 <p class="form-subtitle">Secure payment - Start learning today!</p>
             </div>
-            @if (session('success'))
-                <div class="alert alert-success">
-                    <i class="fas fa-check-circle"></i>
-                    {{ session('success') }}
-                </div>
-            @endif
 
-            @if ($errors->any())
-                <div class="alert alert-error">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    Please correct the errors below.
-                </div>
-            @endif
-
-            <form id="paymentForm" action="{{ route('payment.create') }}" method="POST">
-                @csrf
-                <input type="hidden" name="method" value="snap">
-                <input type="hidden" id="course_id" name="course_id" value="1" required>
-
+            <form id="paymentForm">
                 <div class="form-group">
                     <label for="username" class="form-label">Full Name *</label>
-                    <input type="text" id="username" name="customer[username]"
-                        class="form-input @error('customer.username') is-invalid @enderror"
-                        placeholder="Enter your full name" value="{{ old('customer.username') }}" required>
-                    @error('customer.username')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                    @enderror
+                    <input type="text" id="username" name="customer[username]" class="form-input"
+                        placeholder="Enter your full name" required>
                     <span class="error-message" id="usernameError"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="email" class="form-label">Email Address *</label>
-                    <input type="email" id="email" name="customer[email]"
-                        class="form-input @error('customer.email') is-invalid @enderror"
-                        placeholder="your.email@example.com" value="{{ old('customer.email') }}" required>
-                    @error('customer.email')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                    @enderror
+                    <input type="email" id="email" name="customer[email]" class="form-input"
+                        placeholder="your.email@example.com" required>
                     <span class="error-message" id="emailError"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="phone" class="form-label">Phone Number *</label>
-                    <input type="text" id="phone" name="customer[phone]"
-                        class="form-input @error('customer.phone') is-invalid @enderror" placeholder="08xxxxxxxxxx"
-                        value="{{ old('customer.phone') }}" required>
-                    @error('customer.phone')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                    @enderror
+                    <input type="text" id="phone" name="customer[phone]" class="form-input" 
+                        placeholder="08**-****-****" required>
+                    {{-- <div class="format-example">Format: 0819-1443-0274</div> --}}
                     <span class="error-message" id="phoneError"></span>
                 </div>
                 
@@ -489,8 +241,8 @@
                 if (value === '') {
                     showError(phone, phoneError, 'Phone number is required');
                     return false;
-                } else if (digitsOnly.length < 10 || digitsOnly.length > 12) {
-                    showError(phone, phoneError, 'Phone number must be 10-12 digits');
+                } else if (digitsOnly.length !== 12) {
+                    showError(phone, phoneError, 'Phone number must be 12 digits (e.g., 0819-1443-0274)');
                     return false;
                 } else if (!/^08/.test(digitsOnly)) {
                     showError(phone, phoneError, 'Phone number must start with 08');
@@ -521,50 +273,52 @@
             // Real-time validation
             username.addEventListener('input', validateUsername);
             email.addEventListener('input', validateEmail);
-            phone.addEventListener('input', validatePhone);
+            phone.addEventListener('input', function(e) {
+                formatPhoneNumber(e);
+                validatePhone();
+            });
+            
+            // Format phone number as user types
+            function formatPhoneNumber(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                
+                // Limit to 12 digits
+                if (value.length > 12) {
+                    value = value.substring(0, 12);
+                }
+                
+                // Format based on length: 0819-1443-0274
+                if (value.length >= 8) {
+                    value = value.replace(/(\d{4})(\d{4})(\d{0,4})/, '$1-$2-$3');
+                } else if (value.length >= 5) {
+                    value = value.replace(/(\d{4})(\d{0,4})/, '$1-$2');
+                }
+                
+                e.target.value = value;
+            }
             
             // Form submission
             form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
                 // Validate all fields
                 const isUsernameValid = validateUsername();
                 const isEmailValid = validateEmail();
                 const isPhoneValid = validatePhone();
                 
-                // If any validation fails, prevent form submission
-                if (!isUsernameValid || !isEmailValid || !isPhoneValid) {
-                    e.preventDefault();
-                    
-                    // Add loading state only if form is valid
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                } else {
+                // If all validations pass, submit the form
+                if (isUsernameValid && isEmailValid && isPhoneValid) {
                     // Add loading state
                     submitBtn.classList.add('loading');
                     submitBtn.disabled = true;
                     
-                    // Optional: You can remove this timeout in production
-                    // This is just for demo purposes
+                    // Simulate form submission
                     setTimeout(() => {
-                        // Form will submit naturally after this
-                    }, 1000);
+                        alert('Form submitted successfully!');
+                        submitBtn.classList.remove('loading');
+                        submitBtn.disabled = false;
+                    }, 1500);
                 }
-            });
-            
-            // Format phone number as user types
-            phone.addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 12) {
-                    value = value.substring(0, 12);
-                }
-                
-                // Format based on length
-                if (value.length >= 7) {
-                    value = value.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
-                } else if (value.length >= 4) {
-                    value = value.replace(/(\d{3})(\d{1,3})/, '$1-$2');
-                }
-                
-                e.target.value = value;
             });
         });
     </script>
