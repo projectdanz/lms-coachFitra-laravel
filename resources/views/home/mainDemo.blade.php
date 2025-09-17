@@ -840,7 +840,8 @@
         function openWhatsApp() {
             // Ganti nomor ini dengan nomor WhatsApp Anda
             const phoneNumber = '6285135904447'; // Format: 62 untuk Indonesia + nomor tanpa 0 di depan
-            const message = 'Halo, saya ingin bertanya tentang layanan Anda.'; // Pesan default
+            const message =
+            'halo! saya ingin bertanya mengenai sekolah kaya.'; // Pesan default
 
             // Encode pesan untuk URL
             const encodedMessage = encodeURIComponent(message);
