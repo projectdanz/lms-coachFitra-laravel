@@ -111,7 +111,7 @@
                                     <!-- End Single Card  -->
 
                                     <!-- Start Single Card  -->
-                                    <div class="swiper-slide">
+                                    {{-- <div class="swiper-slide">
                                         <div class="rbt-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="{{ route('courseDetails') }}">
@@ -127,18 +127,18 @@
                                                     elit. Illo, quam expedita! Beatae enim...</p>
                                                 <div class="rbt-card-bottom">
                                                     <div class="rbt-price">
-                                                        {{-- <span class="current-price">Rp0</span> --}}
+                                                        <span class="current-price">Rp0</span>
                                                     </div>
                                                     <a class="rbt-btn-link" href="#">Coming Soon<i
                                                             class="feather-arrow-right"></i></a>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <!-- End Single Card  -->
 
                                     <!-- Start Single Card  -->
-                                    <div class="swiper-slide">
+                                    {{-- <div class="swiper-slide">
                                         <div class="rbt-card variation-01 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a href="{{ route('courseDetails') }}">
@@ -154,14 +154,14 @@
                                                     elit. Illo, quam expedita! Beatae enim...</p>
                                                 <div class="rbt-card-bottom">
                                                     <div class="rbt-price">
-                                                        {{-- <span class="current-price">Rp0</span> --}}
+                                                        <span class="current-price">Rp0</span>
                                                     </div>
                                                     <a class="rbt-btn-link" href="#">Coming Soon<i
                                                             class="feather-arrow-right"></i></a>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <!-- End Single Card  -->
 
                                 </div>
@@ -215,7 +215,7 @@
                     <!-- End Single Course  -->
 
                     <!-- Start Single Course  -->
-                    <div class="col-lg-4 col-md-6 col-12">
+                    {{-- <div class="col-lg-4 col-md-6 col-12">
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
                                 <a href="{{ route('courseDetails') }}">
@@ -231,18 +231,18 @@
                                     quam expedita! Beatae enim...</p>
                                 <div class="rbt-card-bottom">
                                     <div class="rbt-price">
-                                        {{-- <span class="current-price">Rp0</span> --}}
+                                        <span class="current-price">Rp0</span>
                                     </div>
                                     <a class="rbt-btn-link" href="#">Coming Soon<i
                                             class="feather-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- End Single Course  -->
 
                     <!-- Start Single Course  -->
-                    <div class="col-lg-4 col-md-6 col-12">
+                    {{-- <div class="col-lg-4 col-md-6 col-12">
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
                                 <a href="{{ route('courseDetails') }}">
@@ -258,14 +258,14 @@
                                     quam expedita! Beatae enim...</p>
                                 <div class="rbt-card-bottom">
                                     <div class="rbt-price">
-                                        {{-- <span class="current-price">Rp0</span> --}}
+                                        <span class="current-price">Rp0</span>
                                     </div>
                                     <a class="rbt-btn-link" href="#">Coming Soon<i
                                             class="feather-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- End Single Course  -->
                 </div>
                 <!-- End Card Area -->
@@ -288,7 +288,7 @@
         </div>
 
         <!-- Start Event Area  -->
-        <div class="rbt-event-area rbt-section-gap bg-gradient-3">
+        {{-- <div class="rbt-event-area rbt-section-gap bg-gradient-3">
             <div class="container">
                 <div class="row mb--55">
                     <div class="section-title text-center">
@@ -312,7 +312,7 @@
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
                                                         <span>Default</span>
-                                                        {{-- <span>2025</span> --}}
+                                                        <span>2025</span> 
                                                     </div>
                                                 </a>
                                             </div>
@@ -351,7 +351,7 @@
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
                                                         <span>Default</span>
-                                                        {{-- <span>2025</span> --}}
+                                                        <span>2025</span> 
                                                     </div>
                                                 </a>
                                             </div>
@@ -364,7 +364,7 @@
                                                         Menjadi Top Sales</a></h4>
                                                 <div class="read-more-btn">
                                                     <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round">
-                                                        {{-- href="{{ route('eventDetails') }}" --}}
+                                                         href="{{ route('eventDetails') }}" 
                                                         <span class="icon-reverse-wrapper">
                                                             <span class="btn-text">Get Ticket</span>
                                                             <span class="btn-icon"><i
@@ -390,7 +390,7 @@
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
                                                         <span>Default</span>
-                                                        {{-- <span>2025</span> --}}
+                                                        <span>2025</span> 
                                                     </div>
                                                 </a>
                                             </div>
@@ -430,7 +430,7 @@
                                                         alt="Card image">
                                                     <div class="rbt-badge-3 bg-white">
                                                         <span>Default</span>
-                                                        {{-- <span>2025</span> --}}
+                                                         <span>2025</span> 
                                                     </div>
                                                 </a>
                                             </div>
@@ -481,7 +481,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- End Event area -->
 
         <!-- Start Testimoni area -->
