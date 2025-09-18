@@ -124,7 +124,7 @@ class UserRegistrationService
             $this->notificationService->sendPaymentSuccessNotifications(
                 $user, 
                 $course, 
-                $registrationResult['password']
+                $password
             );
         } else {
             // Registration failed, handle gracefully
