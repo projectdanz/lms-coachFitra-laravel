@@ -104,12 +104,13 @@ class UserRegistrationService
      */
     private function handleNewCustomer(User $user, Course $course): void
     {
-        $registrationResult = $this->registerUserToWordPress($user);
+        $password = Str::random(8);
+        $registrationResult = $this->registerUserToWordPress($user, $password);
 
         if ($registrationResult['success']) {
             // Update user with WordPress password
             $user->update([
-                'password' => $registrationResult['password'],
+                'password' => $password,
                 'wordpress_id' => $registrationResult['wordpress_id'] ?? null,
                 'registered_at' => now(),
             ]);
@@ -123,7 +124,7 @@ class UserRegistrationService
             $this->notificationService->sendPaymentSuccessNotifications(
                 $user, 
                 $course, 
-                $registrationResult['password']
+                $password
             );
         } else {
             // Registration failed, handle gracefully
@@ -134,9 +135,8 @@ class UserRegistrationService
     /**
      * Register user to WordPress
      */
-    private function registerUserToWordPress(User $user): array
+    private function registerUserToWordPress(User $user, string $password): array
     {
-        $password = Str::random(8);
         $maxRetries = 3;
         $retryCount = 0;
 
@@ -148,8 +148,7 @@ class UserRegistrationService
                     'max_retries' => $maxRetries
                 ]);
 
-                $response = Http::timeout(30)
-                    ->withBasicAuth(
+                $response = Http::withBasicAuth(
                         config('app.wp.username'),
                         config('app.wp.password')
                     )
@@ -287,13 +286,13 @@ class UserRegistrationService
     /**
      * Manually create user account (for admin use)
      */
-    public function manuallyCreateAccount(User $user): array
+    public function manuallyCreateAccount(User $user, string $password): array
     {
         if (!$user->needs_manual_processing) {
             throw new \InvalidArgumentException('User does not need manual processing');
         }
 
-        $result = $this->registerUserToWordPress($user);
+        $result = $this->registerUserToWordPress($user, $password);
         
         if ($result['success']) {
             $user->update([
@@ -317,7 +316,7 @@ class UserRegistrationService
     /**
      * Retry failed registrations (for batch processing)
      */
-    public function retryFailedRegistrations(): array
+    public function retryFailedRegistrations(string $password = 'password'): array
     {
         $failedUsers = User::where('needs_manual_processing', true)
             ->where('payment_status', 'completed')
@@ -328,7 +327,7 @@ class UserRegistrationService
 
         foreach ($failedUsers as $user) {
             try {
-                $result = $this->manuallyCreateAccount($user);
+                $result = $this->manuallyCreateAccount($user, $password);
                 $results[] = [
                     'user_id' => $user->id,
                     'success' => $result['success'],
