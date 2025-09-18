@@ -148,8 +148,7 @@ class UserRegistrationService
                     'max_retries' => $maxRetries
                 ]);
 
-                $response = Http::timeout(30)
-                    ->withBasicAuth(
+                $response = Http::withBasicAuth(
                         config('app.wp.username'),
                         config('app.wp.password')
                     )
