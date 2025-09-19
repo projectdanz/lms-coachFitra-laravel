@@ -118,9 +118,6 @@ class PaymentController extends Controller
             'ip' => $request->ip(),
         ]);
 
-        // Set execution time limit for shared hosting
-        set_time_limit(25);
-
         // Create webhook log for tracking
         $webhookLog = WebhookLog::create([
             'order_id' => $webhookData['order_id'] ?? 'unknown',

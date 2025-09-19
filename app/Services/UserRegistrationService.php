@@ -152,6 +152,7 @@ class UserRegistrationService
                         config('app.wp.username'),
                         config('app.wp.password')
                     )
+                    ->timeout(300)
                     ->withHeaders(['Content-Type' => 'application/json'])
                     ->post('https://ecourse.sekolahkaya.com/wp-json/wp/v2/users', [
                         'username' => $this->generateUniqueUsername($user->username, $retryCount),
