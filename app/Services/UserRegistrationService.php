@@ -157,11 +157,7 @@ class UserRegistrationService
                     ->post('https://ecourse.sekolahkaya.com/wp-json/wp/v2/users', [
                         'username' => $this->generateUniqueUsername($user->username, $retryCount),
                         'email' => $user->email,
-                        'password' => $password,
-                        'meta' => [
-                            'order_id' => $user->order_id,
-                            'phone' => $user->phone,
-                        ]
+                        'password' => $password
                     ]);
 
                 if ($response->successful()) {
